@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SplashActivity"
+        <activity android:name=".view.activity.SignUpActivity"></activity>
+        <activity
+            android:name=".view.activity.SplashActivity"
             android:label="E-Travel"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -20,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.LoginActivity"
+        <activity
+            android:name=".view.activity.LoginActivity"
             android:label="تسجيل الدخول"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
