@@ -8,10 +8,12 @@ public class User {
 
     String email;
     String password;
+    String username;
 
-    public User(String email, String password) {
+    public User(String email, String password, String username) {
         this.email = email;
         this.password = password;
+        this.username = username;
     }
 
     public String getEmail() {
@@ -20,5 +22,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
