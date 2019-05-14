@@ -1,19 +1,36 @@
 package com.travel.iti.travelapp.repository.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ayman on 2019-05-13.
  */
 
 public class User {
 
+    int id;
     String email;
     String password;
+    @SerializedName("name")
     String username;
+    @SerializedName("user_phone")
+    String phone;
+    String city;
 
-    public User(String email, String password, String username) {
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public User(String email, String password, String username, String phone , String city) {
         this.email = email;
         this.password = password;
         this.username = username;
+        this.phone=phone;
+        this.city=city;
     }
 
     public User(String email, String password) {

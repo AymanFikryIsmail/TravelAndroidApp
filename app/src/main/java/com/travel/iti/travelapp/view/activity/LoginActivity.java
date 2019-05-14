@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+loginViewModel.init(this);
 
         binding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_login);
 
@@ -55,8 +56,9 @@ public class LoginActivity extends AppCompatActivity {
 //                }
                 else {
 
-                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(intent);
+                    loginViewModel.signIn(loginUser);
                 }
 
             }
