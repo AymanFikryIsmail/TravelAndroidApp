@@ -28,13 +28,22 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData<String> EmailAddress = new MutableLiveData<>();
     public MutableLiveData<String> Password = new MutableLiveData<>();
     public MutableLiveData<String> UserName = new MutableLiveData<>();
+    public  MutableLiveData<String> phone = new MutableLiveData<>();
+    public MutableLiveData<String> city = new MutableLiveData<>();
 
     private MutableLiveData<User> userMutableLiveData;
+    private  MutableLiveData<User> loginData;
+    private  MutableLiveData<User> signUpData;
+
 
     private Context mcontext;
     public void init(Context context) {
         this.mcontext=context;
     }
+
+//    public MutableLiveData<User> getLoginData() {
+//        return loginData;
+//    }
 
     public MutableLiveData<User> getUser() {
 
@@ -48,24 +57,32 @@ public class LoginViewModel extends ViewModel {
     public void onClick(View view) {
 
         if(view == view.findViewById(R.id.btnLogin)) {
-            User loginUser = new User(EmailAddress.getValue(), Password.getValue(), UserName.getValue());
+            User loginUser = new User(EmailAddress.getValue(), Password.getValue());
 
             userMutableLiveData.setValue(loginUser);
         }else{
-            Intent intent= new Intent(context, SignUpActivity.class);
-            context.startActivity(intent);
+
+            Intent intent= new Intent(mcontext, SignUpActivity.class);
+            mcontext.startActivity(intent);
         }
 
     }
+
+    public  void signUpOnClick(View view){
+
+        User loginUser = new User(EmailAddress.getValue(), Password.getValue(), UserName.getValue(), phone.getValue(),city.getValue());
+
+        userMutableLiveData.setValue(loginUser);
+    }
     public void signIn(User loginUser){
-        final MutableLiveData<User> data = new MutableLiveData<>();
+        loginData = new MutableLiveData<>();
 
         Call<ApiResponse<User>> call =Apiservice.getInstance().apiRequest.SignIn(loginUser);
         call.enqueue(new Callback<ApiResponse<User>>() {
             @Override
             public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
-                        data.setValue(response.body().data);
+                        loginData.setValue(response.body().data);
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
@@ -79,4 +96,28 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void signUp(User signUpUser){
+        signUpData = new MutableLiveData<>();
+        Call<ApiResponse<User>> signUpCall = Apiservice.getInstance().apiRequest.signup(signUpUser);
+        signUpCall.enqueue(new Callback<ApiResponse<User>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
+                if(response.body().status == "true" && response.body().data!=null){
+                    signUpData.setValue(response.body().data);
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                } else {
+                    Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<User>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+            }
+        });
+    }
+
+
 }

@@ -17,6 +17,9 @@ public interface  ApiRequest {
     @POST("users/login")
     Call<ApiResponse<User>> SignIn(@Body User body);
 
+    @POST("users/signup")
+    Call<ApiResponse<User>> signup(@Body User body);
+
 }
 
 

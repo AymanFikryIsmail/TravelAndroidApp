@@ -9,11 +9,23 @@ public class User {
     String email;
     String password;
     String username;
+    String phone;
+    String city;
 
-    public User(String email, String password, String username) {
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public User(String email, String password, String username, String phone , String city) {
         this.email = email;
         this.password = password;
         this.username = username;
+        this.phone=phone;
+        this.city=city;
     }
 
     public User(String email, String password) {

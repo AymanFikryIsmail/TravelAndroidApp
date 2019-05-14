@@ -12,10 +12,10 @@ import android.text.TextUtils;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivitySignUpBinding;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.viewmodel.SignUpViewModel;
+import com.travel.iti.travelapp.viewmodel.LoginViewModel;
 
 public class SignUpActivity extends AppCompatActivity {
-    private SignUpViewModel signUpViewModel;
+    private LoginViewModel signUpViewModel;
 
     private ActivitySignUpBinding binding2;
 
@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
+        signUpViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         binding2 = DataBindingUtil.setContentView(SignUpActivity.this,R.layout.activity_sign_up);
         binding2.setLifecycleOwner(this);
 
@@ -43,8 +43,8 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 else if (TextUtils.isEmpty(signUpUser.getPassword())) {
-                    binding2.editTextPassword2.setError("Enter a Password");
-                    binding2.editTextPassword2.requestFocus();
+                    binding2.editTextPhone.setError("Enter a Password");
+                    binding2.editTextPhone.requestFocus();
                 }
 
 
@@ -53,10 +53,16 @@ public class SignUpActivity extends AppCompatActivity {
                     binding2.editTextUser.requestFocus();
                 }
 
+                else if (TextUtils.isEmpty(signUpUser.getUsername())) {
+                    binding2.editTextCity.setError("Enter a User Name");
+                    binding2.editTextCity.requestFocus();
+                }
+
                 else {
 
-                    Intent intent=new Intent(SignUpActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent=new Intent(SignUpActivity.this, MainActivity.class);
+//                    startActivity(intent);
+                    signUpViewModel.signUp(signUpUser);
                 }
 
             }
