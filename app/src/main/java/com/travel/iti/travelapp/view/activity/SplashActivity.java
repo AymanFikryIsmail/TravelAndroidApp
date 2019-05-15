@@ -6,13 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 
 public class SplashActivity extends AppCompatActivity {
 
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        prefManager =new PrefManager(this);
 
         new ProgressTask().execute();
 
@@ -47,10 +51,19 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void openActivity() {
-        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
+        if (prefManager.isFirstTimeLaunch() ){
+            Intent i = new Intent(this,WelcomeActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+        else {
+            Intent i=new Intent(this,LoginActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+    }
 
 }

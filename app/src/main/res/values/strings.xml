@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TravelApp</string>
 
+<<<<<<< HEAD
     <string name="input_error_name">name required</string>
     <string name="input_error_email">email required</string>
     <string name="input_error_password">password required</string>
@@ -9,4 +10,9 @@
     <string name="input_error_phone_invalid">enter a valid phone number</string>
     <string name="input_error_email_invalid">enter a valid email</string>
     <string name="input_error_city">city required</string>
+=======
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+>>>>>>> 758ab95bff8ca28ee7c9de37b9d1d95d0a633971
 </resources>
