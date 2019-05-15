@@ -61,24 +61,18 @@
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
             android:text="Click to Login"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-            />
+            app:layout_constraintBottom_toTopOf="@+id/btnSignUp"/>
         <Button
             android:id="@+id/btnSignUp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
             android:text="Click to SignUp"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"/>
 
     </android.support.constraint.ConstraintLayout>
