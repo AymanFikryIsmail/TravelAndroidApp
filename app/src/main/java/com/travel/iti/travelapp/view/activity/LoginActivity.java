@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-loginViewModel.init(this);
+        loginViewModel.init(this);
 
         binding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_login);
 
@@ -64,4 +64,11 @@ loginViewModel.init(this);
             }
         });
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//
+//        finishAffinity();
+//    }
 }

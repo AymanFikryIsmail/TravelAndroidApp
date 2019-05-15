@@ -14,16 +14,20 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--android:layout_height="match_parent"-->
     <!--android:orientation="vertical">-->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:padding="5dp">
@@ -81,12 +85,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:text="@={SignUpViewModel.Password}"
                 android:padding="5dp"
                 android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/edit_text_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:drawableLeft="@drawable/ic_password"
+                android:drawableLeft="@drawable/ic_phone"
                 android:drawablePadding="5dp"
                 android:hint="phone"
                 android:inputType="phone"
@@ -94,12 +99,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:padding="5dp"
                 android:textSize="20dp" />
 
+
             <EditText
                 android:id="@+id/edit_text_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:drawableLeft="@drawable/ic_password"
+                android:drawableLeft="@drawable/ic_home"
                 android:drawablePadding="5dp"
                 android:hint="city"
                 android:inputType="text"
@@ -118,13 +124,30 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+        <!--<include layout="@layout/progress_view"/>-->
 
     </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/progress_view"
+            android:alpha="0.4"
+            android:animateLayoutChanges="true"
+            android:layout_centerInParent="true"
+            android:background="#B0E6CECE"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            >
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
+        </FrameLayout>
+    </RelativeLayout>
 
 <!--</ScrollView>-->
 </layout>
