@@ -18,7 +18,6 @@ import com.travel.iti.travelapp.databinding.ActivitySignUpBinding;
 import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.viewmodel.LoginViewModel;
 
-import static android.support.constraint.ConstraintSet.VISIBLE;
 
 public class SignUpActivity extends AppCompatActivity {
     private LoginViewModel signUpViewModel;
