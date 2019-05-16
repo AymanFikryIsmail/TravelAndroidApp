@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            for (int i = 0; i < 300; i++) {
+            for (int i = 0; i < 200; i++) {
                 try {
                     Thread.sleep(10);
                     publishProgress(i);
@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
 
         }
         else {
-            Intent i=new Intent(this,LoginActivity.class);
+            Intent i=new Intent(this,WelcomeActivity.class);
             startActivity(i);
             finish();
 

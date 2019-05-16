@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         prefManager =new PrefManager(this);
-        if(!prefManager.isFirstTimeLaunch())
+        if(prefManager.isFirstTimeLaunch())
         {
             launchHomeScreen();
         }
@@ -63,6 +63,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 launchHomeScreen();
             }
         });
