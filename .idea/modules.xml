@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://D:\iti\finalproject\TravelAndroidApp-master\TravelAndroidApp.iml" filepath="D:\iti\finalproject\TravelAndroidApp-master\TravelAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/TravelAndroidApp-master.iml" filepath="$PROJECT_DIR$/TravelAndroidApp-master.iml" />
-      <module fileurl="file://D:\iti\finalproject\TravelAndroidApp-master\app\app.iml" filepath="D:\iti\finalproject\TravelAndroidApp-master\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
