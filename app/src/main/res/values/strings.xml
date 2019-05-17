@@ -15,4 +15,7 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
 </resources>
