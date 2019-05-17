@@ -1,6 +1,7 @@
 package com.travel.iti.travelapp.view.activity;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         nv = (NavigationView)findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -40,18 +42,21 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         Toast.makeText(MainActivity.this, "Home",Toast.LENGTH_SHORT).show();break;
                     case R.id.favorites:
-                        Toast.makeText(MainActivity.this, "favorites",Toast.LENGTH_SHORT).show();break;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.favorites_fragment,
+                                new FavoritesFragment()).commit();
                     case R.id.booking:
-                        Toast.makeText(MainActivity.this, "booking",Toast.LENGTH_SHORT).show();break;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.booking_fragment,
+                                new BookingsFragment()).commit();
                     case R.id.myprofile:
-                        Toast.makeText(MainActivity.this, "My Profile",Toast.LENGTH_SHORT).show();break;
-
+                        getSupportFragmentManager().beginTransaction().replace(R.id.myprofile_fragment,
+                                new MyProfileFragment()).commit();
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.settings_fragment,
+                                new SettingsFragment()).commit();
 
                     case R.id.share:
-                        Toast.makeText(MainActivity.this, "Share",Toast.LENGTH_SHORT).show();break;
-
+                        getSupportFragmentManager().beginTransaction().replace(R.id.share_fragment,
+                                new ShareFragment()).commit();
                     case R.id.logout:
                         Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();break;
 
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                 }
 
-
+                dl.closeDrawer(GravityCompat.START);
                 return true;
 
             }
@@ -79,9 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
     public void onBackPressed() {
+            if (dl.isDrawerOpen(GravityCompat.START)){
+                dl.closeDrawer(GravityCompat.START);
+            }else {
+                super.onBackPressed();
+                finishAffinity();
+            }
 
-        super.onBackPressed();
-
-        finishAffinity();
     }
 }
