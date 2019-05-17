@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
 
     <data>
         <variable
@@ -12,71 +13,151 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundg_image">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.10"/>
+            app:layout_constraintGuide_percent="0.05" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.90"/>
+            app:layout_constraintGuide_percent="0.94" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/wetravel"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline1"
+            app:layout_constraintVertical_bias="0.01" />
 
         <EditText
             android:id="@+id/txtEmailAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
+            android:background="@color/editTextColor"
+            android:drawableStart="@drawable/profile"
+            android:drawablePadding="10dp"
             android:ems="10"
-            android:hint="E-Mail Address"
+            android:hint="E-Mail"
             android:inputType="textEmailAddress"
+            android:padding="5dp"
+            android:paddingStart="15dp"
             android:text="@={LoginViewModel.EmailAddress}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+            android:textColorHint="@color/textColorHint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintVertical_bias="0.027" />
 
         <EditText
             android:id="@+id/txtPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:background="@color/editTextColor"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:padding="5dp"
+            android:paddingStart="15dp"
             android:text="@={LoginViewModel.Password}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmailAddress" />
+            android:textColorHint="@color/textColorHint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmailAddress"
+            app:layout_constraintVertical_bias="0.031" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/login_button"
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
-            android:text="Click to Login"
+            android:text="Login"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/btnSignUp"/>
+            android:textColor="@color/textColorHint"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
+            app:layout_constraintVertical_bias="0.092" />
+
         <Button
-            android:id="@+id/btnSignUp"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnGoogle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/googleplus_button"
+            android:drawableStart="@drawable/googleplus"
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
-            android:text="Click to SignUp"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"/>
+            android:padding="5dp"
+            android:text="Continue with google"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/btnFaceBook"
+            app:layout_constraintVertical_bias="0.112" />
+
+        <Button
+            android:id="@+id/btnFaceBook"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/facebook_button"
+            android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
+            android:text="Continue with facebook"
+            android:textAllCaps="false"
+            android:drawableStart="@drawable/facebook"
+            android:textSize="14sp"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            app:layout_constraintVertical_bias="0.068" />
+
+
+
 
     </android.support.constraint.ConstraintLayout>
-
 
 
 </layout>

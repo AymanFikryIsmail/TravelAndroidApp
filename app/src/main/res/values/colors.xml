@@ -12,6 +12,15 @@
     <!-- font colors-->
     <color name="font_color">#FFFFFF</color>
 
+    <color name="editTextColor">#200A2B</color>
+
+
+    <color name="faceBookLoginBtn">#425BB4</color>
+    <color name="textColorHint">#FFFFFF</color>
+    <color name="googlePlusLoginBtn">#D34836</color>
+
+>>>>>>> 2ada6f516b78a64ce25916fb8c5ca674cb71b65c
+
 
     <!-- dots active colors -->
     <color name="dot_light_screen1">#DBB10B</color>
