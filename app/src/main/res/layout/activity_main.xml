@@ -31,6 +31,7 @@ android:background="@android:color/holo_green_dark">
     android:layout_height="match_parent"
     app:menu="@menu/navigation_menu"
     android:layout_gravity="start"
+    app:itemIconTint="@color/darkYellow"
     app:headerLayout="@layout/nav_header_home"
     android:id="@+id/nv">
 
