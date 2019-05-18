@@ -39,4 +39,14 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+
+    // for image sliding
+    implementation 'com.synnapps:carouselview:0.1.4'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+
+
 }
