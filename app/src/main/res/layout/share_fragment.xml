@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/share_fragment"
-    tools:context=".view.activity.ShareFragment">
+    tools:context=".view.fragments.ShareFragment">
 
     <TextView
         android:layout_width="match_parent"
