@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            for (int i = 0; i < 300; i++) {
+            for (int i = 0; i < 100; i++) {
                 try {
                     Thread.sleep(10);
                     publishProgress(i);
