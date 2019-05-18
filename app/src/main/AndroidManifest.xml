@@ -35,7 +35,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.activity.QRCardActivity" />
-        <activity android:name=".view.activity.PackageDetailsActivity"></activity>
+        <activity android:name=".view.activity.PackageDetailsActivity" />
+        <activity
+            android:name=".view.activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -6,26 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.travel.iti.travelapp.view.activity.PackageDetailsActivity">
-    <com.synnapps.carouselview.CarouselView
-        android:id="@+id/carouselView"
+    <com.smarteist.autoimageslider.SliderLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#444"
-        app:animateOnBoundary="true"
-        app:autoPlay="true"
-        app:fillColor="#FFFFFFFF"
-        app:indicatorGravity="top"
-        app:pageColor="#00000000"
-        app:pageTransformInterval="1500"
-        app:pageTransformer="depth"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#FF777777"
-        app:indicatorVisibility="gone"
-        app:strokeWidth="1dp"/>
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/imageSlider"/>
 
     <TextView
-        android:layout_below="@+id/carouselView"
+        android:layout_below="@+id/imageSlider"
         android:id="@+id/transformers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

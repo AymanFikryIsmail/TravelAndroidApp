@@ -53,13 +53,13 @@ public class SplashActivity extends AppCompatActivity {
     public void openActivity() {
 
         if (prefManager.isFirstTimeLaunch() ){
-            Intent i = new Intent(this,WelcomeActivity.class);
+            Intent i = new Intent(this,MainActivity.class);
             startActivity(i);
             finish();
 
         }
         else {
-            Intent i=new Intent(this,LoginActivity.class);
+            Intent i=new Intent(this,MainActivity.class);
             startActivity(i);
             finish();
 
