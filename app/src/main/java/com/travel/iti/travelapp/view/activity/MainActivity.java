@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.view.fragments.BookingsFragment;
+import com.travel.iti.travelapp.view.fragments.FavoritesFragment;
+import com.travel.iti.travelapp.view.fragments.MyProfileFragment;
+import com.travel.iti.travelapp.view.fragments.SettingsFragment;
+import com.travel.iti.travelapp.view.fragments.ShareFragment;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
