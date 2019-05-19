@@ -19,7 +19,6 @@
     <color name="textColorHint">#FFFFFF</color>
     <color name="googlePlusLoginBtn">#D34836</color>
 
->>>>>>> 2ada6f516b78a64ce25916fb8c5ca674cb71b65c
 
 
     <!-- dots active colors -->
@@ -45,5 +44,6 @@
         <item>@color/dot_dark_screen3</item>
     </array>
 
+    <color name="white">#fff</color>
 
 </resources>

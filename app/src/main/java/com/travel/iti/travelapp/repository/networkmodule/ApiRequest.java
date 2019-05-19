@@ -22,7 +22,7 @@ public interface  ApiRequest {
     Call<ApiResponse<User>> signup(@Body User body);
 
     @GET("package/city")
-    Call<ApiResponse<Package>> get_to_cities ();
+    Call<ApiResponse<Package>> get_to_cities (@Body Package body);
 
 
 }

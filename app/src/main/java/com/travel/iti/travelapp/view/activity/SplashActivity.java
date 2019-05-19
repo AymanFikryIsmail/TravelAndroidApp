@@ -27,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
 
             for (int i = 0; i < 200; i++) {
+
+
                 try {
                     Thread.sleep(10);
                     publishProgress(i);
@@ -53,13 +55,15 @@ public class SplashActivity extends AppCompatActivity {
     public void openActivity() {
 
         if (prefManager.isFirstTimeLaunch() ){
-            Intent i = new Intent(this,WelcomeActivity.class);
+            Intent i = new Intent(this,MainActivity.class);
             startActivity(i);
             finish();
 
         }
         else {
+
             Intent i=new Intent(this,WelcomeActivity.class);
+
             startActivity(i);
             finish();
 

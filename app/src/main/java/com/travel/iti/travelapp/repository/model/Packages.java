@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Packages {
 
     int id;
+    @SerializedName("travelTo")
     String travelFrom ;
     @SerializedName("travelTo")
     String travelTo;
