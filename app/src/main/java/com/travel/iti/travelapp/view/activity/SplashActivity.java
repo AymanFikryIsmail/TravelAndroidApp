@@ -20,6 +20,8 @@ public class SplashActivity extends AppCompatActivity {
 
         new ProgressTask().execute();
 
+
+
     }
 
     class ProgressTask extends AsyncTask<String, Integer, String> {
