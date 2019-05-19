@@ -5,7 +5,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.travel.iti.travelapp.view.activity.PackageDetailsActivity">
+    tools:context="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity">
     <com.smarteist.autoimageslider.SliderLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"

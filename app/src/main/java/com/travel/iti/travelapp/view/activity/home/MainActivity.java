@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.home;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,12 +13,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.view.fragments.BookingsFragment;
-import com.travel.iti.travelapp.view.fragments.FavoritesFragment;
-import com.travel.iti.travelapp.view.fragments.MainFragment;
-import com.travel.iti.travelapp.view.fragments.MyProfileFragment;
-import com.travel.iti.travelapp.view.fragments.SettingsFragment;
-import com.travel.iti.travelapp.view.fragments.ShareFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.BookingsFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.FavoritesFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.MainFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.MyProfileFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;

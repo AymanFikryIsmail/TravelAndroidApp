@@ -5,8 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@color/colorPrimary"
     tools:context=".view.activity.PackageActivity">
+=======
+    tools:context=".view.activity._package.PackageActivity">
+>>>>>>> 4c4eb0f297605ef8f22ee74a6b45b4505ec09e2f
 
     <LinearLayout
         android:layout_width="match_parent"

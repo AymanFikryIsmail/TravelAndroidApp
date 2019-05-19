@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.qrcard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

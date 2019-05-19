@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.view.activity.login.LoginActivity;
+import com.travel.iti.travelapp.view.activity.welcome.WelcomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,6 +21,8 @@ public class SplashActivity extends AppCompatActivity {
         prefManager =new PrefManager(this);
 
         new ProgressTask().execute();
+
+
 
     }
 

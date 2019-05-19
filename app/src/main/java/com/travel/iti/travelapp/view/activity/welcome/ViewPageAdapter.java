@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.adapter;
+package com.travel.iti.travelapp.view.activity.welcome;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

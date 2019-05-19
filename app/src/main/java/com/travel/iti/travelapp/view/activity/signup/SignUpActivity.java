@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.signup;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,7 +16,8 @@ import android.widget.Toast;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivitySignUpBinding;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.viewmodel.LoginViewModel;
+import com.travel.iti.travelapp.view.activity.home.MainActivity;
+import com.travel.iti.travelapp.view.activity.login.LoginViewModel;
 
 
 public class SignUpActivity extends AppCompatActivity {
