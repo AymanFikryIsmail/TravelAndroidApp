@@ -1,8 +1,11 @@
 package com.travel.iti.travelapp.view.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +17,8 @@ import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.view.adapter.CityPackagesAdapter;
+import com.travel.iti.travelapp.viewmodel.LoginViewModel;
+import com.travel.iti.travelapp.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,7 @@ public class MainFragment extends Fragment {
     List<CityPackage> cityPackageList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CityPackagesAdapter adapter;
+    private MainViewModel mainViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,8 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.init(getContext());
 
         // prefManager=new PrefManager(getContext());
         recyclerView = view.findViewById(R.id.recyclerViewId);
@@ -46,8 +54,21 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         adapter = new CityPackagesAdapter(getContext(), cityPackageList);
         cityPackageList = null;
-        getCities();
+        //getCities();
+        getData();
         return view;
+    }
+
+    void getData(){
+        mainViewModel.getData();
+        mainViewModel.cityPackageData.observe(getActivity(), new Observer<List<CityPackage>>() {
+            @Override
+            public void onChanged(@Nullable List<CityPackage> cityPackages) {
+                cityPackageList=cityPackages;
+                adapter.updateList(cityPackageList);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 
     void getCities() {

@@ -35,6 +35,13 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.setLoginViewModel(loginViewModel);
 
+        loginViewModel.loginData.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         loginViewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User loginUser) {

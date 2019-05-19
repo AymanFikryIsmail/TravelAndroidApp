@@ -1,6 +1,9 @@
 package com.travel.iti.travelapp.repository.networkmodule;
 
+import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -21,9 +24,8 @@ public interface  ApiRequest {
     @POST("users/signup")
     Call<ApiResponse<User>> signup(@Body User body);
 
-    @GET("package/city")
-    Call<ApiResponse<Package>> get_to_cities (@Body Package body);
-
+    @GET("packages/city")
+    Call<ApiResponse<List<CityPackage>>> getPackageCity();
 
 }
 
