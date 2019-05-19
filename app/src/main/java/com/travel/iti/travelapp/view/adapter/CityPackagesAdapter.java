@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
@@ -74,19 +76,19 @@ public class CityPackagesAdapter extends RecyclerView.Adapter<CityPackagesAdapte
         public void bind(final CityPackage cityPackage) {
 
             cityNameId.setText(cityPackage.getCityName());
-            cityDescId.setText(cityPackage.getCityName());
-            Picasso.with(context).load(cityPackage.getCityImage())
+            cityDescId.setText(cityPackage.getCityDesc());
+            Picasso.with(context).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())//
                     .fit().centerCrop()
                     .placeholder(R.drawable.recommended)
+                    .error(R.drawable.recent)
                     .into(cityImageId);
+//            Glide.with(context).load("http://172.16.5.220:3000/"+").into(cityImageId);
 
-//            operatorname.setText(package.getFirstname() + " " + package.getLastname());
-//            jobname.setText(package.getJob_name());
-//
-//            Picasso.with(context).load("http://192.168.43.102:81/api/uploads/" + package.getPhoto())
-//                    .fit().centerCrop()
-//                    .placeholder(R.drawable.profile_img)
-//                    .into(operatorImage);
+//            Glide.with(context)
+//                    .load("http://via.placeholder.com/300.png")
+//                    .error(R.drawable.recent)
+//                    .placeholder(R.drawable.recommended)
+//                    .into(cityImageId);
 
         }
 

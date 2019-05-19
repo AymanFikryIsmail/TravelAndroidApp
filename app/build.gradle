@@ -45,7 +45,7 @@ dependencies {
 
     // for image sliding
     implementation 'com.github.smarteist:autoimageslider:1.2.0'
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
 

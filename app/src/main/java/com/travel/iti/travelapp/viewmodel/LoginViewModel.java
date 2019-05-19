@@ -35,8 +35,8 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData<String> city = new MutableLiveData<>();
 
     private MutableLiveData<User> userMutableLiveData;
-    private  MutableLiveData<User> loginData;
-    public   MutableLiveData<User> signUpData;
+    public   MutableLiveData<User> loginData= new MutableLiveData<>();
+    public   MutableLiveData<User> signUpData= new MutableLiveData<>();
 
     public MutableLiveData<Boolean> isSuccess =new MutableLiveData<>();
 
@@ -69,14 +69,10 @@ public class LoginViewModel extends ViewModel {
         if(view == view.findViewById(R.id.btnLogin)) {
             User loginUser = new User(EmailAddress.getValue(), Password.getValue());
             userMutableLiveData.setValue(loginUser);
-
-
         }else{
-
             Intent intent= new Intent(mcontext, SignUpActivity.class);
             mcontext.startActivity(intent);
         }
-
     }
 
     public  void signUpOnClick(View view){
@@ -90,7 +86,7 @@ public class LoginViewModel extends ViewModel {
 
 
     public void signIn(User loginUser){
-        loginData = new MutableLiveData<>();
+        //loginData = new MutableLiveData<>();
 
         Call<ApiResponse<User>> call =Apiservice.getInstance().apiRequest.SignIn(loginUser);
         call.enqueue(new Callback<ApiResponse<User>>() {
@@ -113,19 +109,19 @@ public class LoginViewModel extends ViewModel {
     }
 
 
-    public void signUp(User signUpUser){
-        signUpData = new MutableLiveData<>();
+    public void signUp(User signUpUser) {
+        //signUpData = new MutableLiveData<>();
         Call<ApiResponse<User>> signUpCall = Apiservice.getInstance().apiRequest.signup(signUpUser);
         signUpCall.enqueue(new Callback<ApiResponse<User>>() {
             @Override
             public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
-                if(response.body().status == "true" && response.body().data!=null){
+                if (response.body().status == "true" && response.body().data != null) {
                     signUpData.setValue(response.body().data);
                     isSuccess.setValue(true);
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 } else {
                     isSuccess.setValue(false);
-                    Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mcontext, "auth failed", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -136,6 +132,4 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
-
-
 }

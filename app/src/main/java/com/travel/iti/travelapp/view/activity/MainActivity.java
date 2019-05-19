@@ -96,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 loadFragment(myProfileFragment,"favoritesFragment ");
                 break;
             case R.id.settings:
-                SettingsFragment settingsFragment= new SettingsFragment();
-                loadFragment(settingsFragment,"favoritesFragment ");
+                loadFragment(SettingsFragment.newInstance(),"favoritesFragment ");
                 break;
             case R.id.logout:
                 Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();
