@@ -1,6 +1,7 @@
 package com.travel.iti.travelapp.repository.networkmodule;
 
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.model.User;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public interface  ApiRequest {
 
     @GET("packages/city")
     Call<ApiResponse<List<CityPackage>>> getPackageCity();
+
+    @GET("/city/packages")
+    Call<ApiResponse<List<PackagesPojo>>> getPackage();
 
 }
 

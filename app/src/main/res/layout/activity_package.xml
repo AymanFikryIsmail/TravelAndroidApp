@@ -5,51 +5,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".view.activity.PackageActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/slider_package_layout"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
         <com.smarteist.autoimageslider.SliderLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_alignParentTop="true"
-            android:id="@+id/imageSlider"
+            android:id="@+id/packageImageSlider"
             />
 
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/slider_package_layout"
-        >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="wrap_content"
+            android:id="@+id/dataLayoutId"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-            <TextView
-                android:id="@+id/notesText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="noTrips"
-                android:textAlignment="center"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
 
-                android:textSize="30sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/package_city_name"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_room"
+                    android:text="Dubai"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/notesHome"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cityDescId"
+                    android:layout_marginStart="16dp"
+                    android:text="Dubai is one of the most beautiful places
+Dubai is one of the most beautiful places"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cityFavId"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_favorite_border" />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/packages_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </FrameLayout>
-    </RelativeLayout>
 
     </LinearLayout>
 
