@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.home;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.welcome;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
-import com.travel.iti.travelapp.view.adapter.ViewPageAdapter;
+import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 
 
 public class WelcomeActivity extends AppCompatActivity {

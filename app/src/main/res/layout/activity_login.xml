@@ -6,7 +6,7 @@
     <data>
         <variable
             name="LoginViewModel"
-            type="com.travel.iti.travelapp.viewmodel.LoginViewModel" />
+            type="com.travel.iti.travelapp.view.activity.login.LoginViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -70,7 +70,6 @@
             android:inputType="textEmailAddress"
             android:padding="5dp"
             android:paddingStart="15dp"
-            android:textColor="@color/white"
             android:text="@={LoginViewModel.EmailAddress}"
             android:textColorHint="@color/textColorHint"
             app:layout_constraintBottom_toBottomOf="parent"

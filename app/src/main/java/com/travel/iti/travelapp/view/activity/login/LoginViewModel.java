@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.viewmodel;
+package com.travel.iti.travelapp.view.activity.login;
 
 
 import android.arch.lifecycle.MutableLiveData;
@@ -7,13 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.view.activity.SignUpActivity;
+import com.travel.iti.travelapp.view.activity.signup.SignUpActivity;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 

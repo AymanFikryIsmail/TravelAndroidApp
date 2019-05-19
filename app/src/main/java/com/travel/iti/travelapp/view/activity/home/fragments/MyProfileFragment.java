@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.fragments;
+package com.travel.iti.travelapp.view.activity.home.fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -10,26 +10,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.viewmodel.BookingsViewModel;
+import com.travel.iti.travelapp.viewmodel.MyProfileViewModel;
 
-public class BookingsFragment extends Fragment {
+public class MyProfileFragment extends Fragment {
 
-    private BookingsViewModel mViewModel;
+    private MyProfileViewModel mViewModel;
 
-    public static BookingsFragment newInstance() {
-        return new BookingsFragment();
+    public static MyProfileFragment newInstance() {
+        return new MyProfileFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.bookings_fragment, container, false);
+        return inflater.inflate(R.layout.my_profile_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(BookingsViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(MyProfileViewModel.class);
         // TODO: Use the ViewModel
     }
 

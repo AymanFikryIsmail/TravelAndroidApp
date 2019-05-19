@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.fragments;
+package com.travel.iti.travelapp.view.activity.home.fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -10,26 +10,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.viewmodel.ShareViewModel;
+import com.travel.iti.travelapp.viewmodel.SettingsViewModel;
 
-public class ShareFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
-    private ShareViewModel mViewModel;
+    private SettingsViewModel mViewModel;
 
-    public static ShareFragment newInstance() {
-        return new ShareFragment();
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.share_fragment, container, false);
+        return inflater.inflate(R.layout.settings_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ShareViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
         // TODO: Use the ViewModel
     }
 

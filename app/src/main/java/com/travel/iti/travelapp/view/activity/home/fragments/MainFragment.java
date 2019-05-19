@@ -1,9 +1,7 @@
-package com.travel.iti.travelapp.view.fragments;
+package com.travel.iti.travelapp.view.activity.home.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
-import com.travel.iti.travelapp.view.adapter.CityPackagesAdapter;
-import com.travel.iti.travelapp.viewmodel.LoginViewModel;
-import com.travel.iti.travelapp.viewmodel.MainViewModel;
+import com.travel.iti.travelapp.view.activity.home.CityPackagesAdapter;
+import com.travel.iti.travelapp.view.activity.home.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
