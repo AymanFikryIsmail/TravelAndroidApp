@@ -1,12 +1,7 @@
-<<<<<<< HEAD:app/src/main/java/com/travel/iti/travelapp/view/activity/PackageActivity.java
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity._package;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
-=======
-package com.travel.iti.travelapp.view.activity._package;
-
->>>>>>> 4c4eb0f297605ef8f22ee74a6b45b4505ec09e2f:app/src/main/java/com/travel/iti/travelapp/view/activity/_package/PackageActivity.java
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,13 +63,9 @@ public class PackageActivity extends AppCompatActivity {
         getData();
     }
 
-
     private void setSliderViews() {
-
         for (int i = 0; i <= 3; i++) {
-
             DefaultSliderView sliderView = new DefaultSliderView(this);
-
             switch (i) {
                 case 0:
                     sliderView.setImageDrawable(R.drawable.ic_launcher_background);
@@ -109,7 +100,7 @@ public class PackageActivity extends AppCompatActivity {
     }
 
     void getData(){
-        packagesViewModel.getData();
+        packagesViewModel.getData("Sharm");
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {

@@ -2,6 +2,8 @@ package com.travel.iti.travelapp.repository.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class PackagesPojo {
 
     @SerializedName("pid")
@@ -19,7 +21,8 @@ public class PackagesPojo {
     @SerializedName("c_id")
     private int cityId;
     private String addingDate;
-
+    @SerializedName("paths")
+    private List<String> photoPaths;
     public PackagesPojo() {
     }
 
@@ -132,5 +135,14 @@ public class PackagesPojo {
 
     public void setAddingDate(String addingDate) {
         this.addingDate = addingDate;
+    }
+
+
+    public List<String> getPhotoPaths() {
+        return photoPaths;
+    }
+
+    public void setPhotoPaths(List<String> photoPaths) {
+        this.photoPaths = photoPaths;
     }
 }

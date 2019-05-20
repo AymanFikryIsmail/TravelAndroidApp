@@ -11,6 +11,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by ayman on 2019-05-13.
@@ -28,8 +29,8 @@ public interface  ApiRequest {
     @GET("packages/city")
     Call<ApiResponse<List<CityPackage>>> getPackageCity();
 
-    @GET("/city/packages")
-    Call<ApiResponse<List<PackagesPojo>>> getPackage();
+    @GET("packages/city/packages")
+    Call<ApiResponse<List<PackagesPojo>>> getPackage(@Query("city") String city);
 
 }
 
