@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class Packages {
 
     int id;
-    @SerializedName("travelTo")
+    @SerializedName("travel_to")
     String travelFrom ;
-    @SerializedName("travelTo")
+    @SerializedName("travel_from")
     String travelTo;
     int price ;
     int duration ;
@@ -40,9 +40,6 @@ public class Packages {
         this.duration = duration;
     }
 
-    public Packages(String travelTo) {
-        this.travelTo = travelTo;
-    }
 
 
 }

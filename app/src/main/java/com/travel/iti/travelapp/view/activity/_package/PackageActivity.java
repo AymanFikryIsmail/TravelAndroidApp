@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity._package;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
-import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 
 import java.util.HashMap;
 
-public class PackageDetailsActivity extends AppCompatActivity  {
+
+public class PackageActivity extends AppCompatActivity {
 
     HashMap<String,String> url_maps;
     TextView carouselLabel;
@@ -29,18 +29,20 @@ public class PackageDetailsActivity extends AppCompatActivity  {
             "http://tvfiles.alphacoders.com/100/hdclearart-10.png",
             "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg",
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package_details);
+        setContentView(R.layout.activity_package);
 
         sliderLayout = findViewById(R.id.imageSlider);
         sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderLayout.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);
         sliderLayout.setScrollTimeInSec(2); //set scroll delay in seconds :
         setSliderViews();
-
     }
+
+
     private void setSliderViews() {
 
         for (int i = 0; i <= 3; i++) {
@@ -70,7 +72,7 @@ public class PackageDetailsActivity extends AppCompatActivity  {
             sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
                 @Override
                 public void onSliderClick(SliderView sliderView) {
-                    Toast.makeText(PackageDetailsActivity.this, "This is slider " + (finalI + 1), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PackageActivity.this, "This is slider " + (finalI + 1), Toast.LENGTH_SHORT).show();
 
                 }
             });

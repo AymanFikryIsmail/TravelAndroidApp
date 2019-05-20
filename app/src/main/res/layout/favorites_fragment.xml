@@ -7,7 +7,7 @@
     android:id="@+id/favorites_fragment"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".view.fragments.FavoritesFragment">
+    tools:context=".view.activity.home.fragments.FavoritesFragment">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline1"

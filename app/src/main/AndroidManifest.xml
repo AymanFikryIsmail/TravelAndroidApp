@@ -15,10 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.PackageActivity"></activity>
-        <activity android:name=".view.activity.SignUpActivity" />
+        <activity android:name=".view.activity._package.PackageActivity"></activity>
+        <activity android:name=".view.activity.signup.SignUpActivity" />
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name=".view.activity.splash_and_welcomScreens.SplashActivity"
             android:label="E-Travel"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,19 +29,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.WelcomeActivity"
+            android:name=".view.activity.splash_and_welcomScreens.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.home.MainActivity" />
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.login.LoginActivity"
             android:label="تسجيل الدخول"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".view.activity.QRCardActivity" />
-        <activity android:name=".view.activity.PackageDetailsActivity" />
+        <activity android:name=".view.activity.qrcard.QRCardActivity" />
+        <activity android:name=".view.activity.package_details.PackageDetailsActivity" />
         <activity
-            android:name=".view.activity.HomeActivity"
+            android:name=".view.activity.home.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

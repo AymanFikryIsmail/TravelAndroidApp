@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity;
+package com.travel.iti.travelapp.view.activity.login;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -12,9 +12,7 @@ import android.text.TextUtils;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityLoginBinding;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.viewmodel.LoginViewModel;
-
-import java.util.Objects;
+import com.travel.iti.travelapp.view.activity.home.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

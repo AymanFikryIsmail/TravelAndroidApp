@@ -27,6 +27,13 @@ public interface  ApiRequest {
     @GET("packages/city")
     Call<ApiResponse<List<CityPackage>>> getPackageCity();
 
+    @GET("packages/recent")
+    Call<ApiResponse<List<CityPackage>>> getRecentPackagesInCity();
+
+    @GET("packages/recommended")
+    Call<ApiResponse<List<CityPackage>>> getRecommendedPackagesInCity();
+
+
 }
 
 
