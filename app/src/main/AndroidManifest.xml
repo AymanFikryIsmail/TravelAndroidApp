@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity._package.PackagrieActivity"></activity>
+        <activity android:name=".view.activity._package.PackageActivity"></activity>
         <activity android:name=".view.activity.signup.SignUpActivity"
             android:label="E-Travel"
             android:screenOrientation="portrait"
@@ -43,6 +43,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.activity.qrcard.QRCardActivity" />
         <activity android:name=".view.activity.package_details.PackageDetailsActivity" />
+        <activity android:name=".view.activity.RecentPackages.RecentAndRecommendedActivity" />
         <activity
             android:name=".view.activity.home.HomeActivity"
             android:label="@string/title_activity_home"

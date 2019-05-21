@@ -41,7 +41,7 @@ public class RecentAndRecommendedActivity extends AppCompatActivity {
         packagesPojoList = null;
         String keyValue ;
         keyValue = getIntent().getStringExtra("key");
-        if (keyValue == "recent"){
+        if (keyValue.equals("recent")){
             getRecentPackages();
         }
         else{
