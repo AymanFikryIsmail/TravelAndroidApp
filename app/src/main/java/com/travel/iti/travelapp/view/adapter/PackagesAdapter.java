@@ -36,7 +36,7 @@ private List<PackagesPojo> packagesPojoList;
     @Override
     public PackagesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.add_packages_card, parent, false);
+                .inflate(R.layout.recent_package_row, parent, false);
         return new PackagesAdapter.MyViewHolder(itemView);
     }
 
@@ -67,7 +67,7 @@ private List<PackagesPojo> packagesPojoList;
             availableTickets = itemView.findViewById(R.id.available_tickets);
             details = itemView.findViewById(R.id.details);
 
-            roomBtn = itemView.findViewById(R.id.room_btn);
+//            roomBtn = itemView.findViewById(R.id.room_btn);
             packageFavBtn = itemView.findViewById(R.id.package_fav_btn);
             maskImage = itemView.findViewById(R.id.mask);
 
@@ -77,9 +77,9 @@ private List<PackagesPojo> packagesPojoList;
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
             date.setText(packagesPojo.getDate());
-            duration.setText(packagesPojo.getDuration());
-            price.setText(packagesPojo.getPrice());
-            availableTickets.setText(packagesPojo.getAvail_tickets());
+            duration.setText(packagesPojo.getDuration()+"");
+            price.setText(packagesPojo.getPrice()+"");
+            availableTickets.setText(packagesPojo.getAvail_tickets()+"");
 
             Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
                     .fit().centerCrop()

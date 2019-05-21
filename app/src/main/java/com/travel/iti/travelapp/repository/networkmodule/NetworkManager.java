@@ -30,7 +30,7 @@ public class NetworkManager {
         }
         return networkManager;
     }
-        public  ApiRequest createGithubService(final String githubToken) {
+        public  ApiRequest createService(final String githubToken) {
 //        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 //        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Retrofit.Builder builder = new Retrofit.Builder()

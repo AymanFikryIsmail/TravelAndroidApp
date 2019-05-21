@@ -14,12 +14,13 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:id="@+id/mask"
-                android:scaleType="fitXY"
-                android:src="@drawable/mask"/>
+
+                <ImageView
+                    android:id="@+id/mask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/mask" />
                 <RatingBar
                     android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
