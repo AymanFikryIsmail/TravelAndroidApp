@@ -1,19 +1,5 @@
 package com.travel.iti.travelapp.view.adapter;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.TextView;
-
-import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.repository.model.Packages;
-
-import java.util.List;
-
 //public class RecyclerViewAdapter extends RecyclerView.Adapter <RecyclerViewAdapter.MyViewHolder> {
 //
 //    private List <Packages> packages ;

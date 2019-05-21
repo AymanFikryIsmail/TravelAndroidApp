@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.view.activity.home.MainActivity;
+import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.WelcomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -77,12 +79,17 @@ public class SplashActivity extends AppCompatActivity {
 
         }
         else {
+            if (prefManager.getUserId()==0){
+                Intent i=new Intent(this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }else {
+                Intent i=new Intent(this, MainActivity.class);
+                startActivity(i);
+                finish();
 
+            }
 
-            Intent i=new Intent(this,WelcomeActivity.class);
-
-            startActivity(i);
-            finish();
 
         }
     }

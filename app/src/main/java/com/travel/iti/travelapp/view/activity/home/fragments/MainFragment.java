@@ -2,6 +2,7 @@ package com.travel.iti.travelapp.view.activity.home.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.view.activity.RecentPackages.RecentAndRecommendedActivity;
 import com.travel.iti.travelapp.view.activity.home.CityPackagesAdapter;
 import com.travel.iti.travelapp.view.activity.home.MainViewModel;
 
@@ -31,6 +34,8 @@ public class MainFragment extends Fragment {
     private CityPackagesAdapter adapter;
     private MainViewModel mainViewModel;
     private EditText searchEditText ;
+    ImageView recentPackages ;
+    ImageView recommendedPackages ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,31 @@ public class MainFragment extends Fragment {
         cityPackageList = null;
         //getCities();
         getData();
+
+        recentPackages = view.findViewById(R.id.recentPackages);
+        recommendedPackages = view.findViewById(R.id.recommendedPackages);
+        recentPackages.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getContext(), RecentAndRecommendedActivity.class);
+                i.putExtra("key" , "recent");
+                startActivity(i);
+
+            }
+        });
+
+        recommendedPackages.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getContext(), RecentAndRecommendedActivity.class);
+                i.putExtra("key" , "recommended");
+                startActivity(i);
+
+            }
+        });
+
         return view;
     }
 

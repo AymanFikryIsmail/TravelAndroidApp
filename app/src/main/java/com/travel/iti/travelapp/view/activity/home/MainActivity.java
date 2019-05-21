@@ -1,6 +1,5 @@
 package com.travel.iti.travelapp.view.activity.home;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,25 +9,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.repository.model.Packages;
-import com.travel.iti.travelapp.repository.networkmodule.ApiRequest;
-import com.travel.iti.travelapp.repository.networkmodule.NetworkManager;
 //import com.travel.iti.travelapp.view.adapter.RecyclerViewAdapter;
-
-import java.util.List;
 
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.view.activity.SearchActivity;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.view.activity.home.fragments.BookingsFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.FavoritesFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.MainFragment;
@@ -40,11 +29,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private EditText searchDestinationEditText ;
+    private PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        prefManager=new PrefManager(this);
 
         drawerLayout = (DrawerLayout)findViewById(R.id.activity_main);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.Open, R.string.Close);
@@ -117,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.logout:
                 Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();
+                prefManager.setUserId(0);
+
                 break;
             default:
                 return true;

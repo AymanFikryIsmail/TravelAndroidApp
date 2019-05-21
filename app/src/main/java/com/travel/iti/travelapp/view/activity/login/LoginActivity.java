@@ -11,6 +11,7 @@ import android.text.TextUtils;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityLoginBinding;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.view.activity.home.MainActivity;
 
@@ -19,13 +20,14 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
 
     private ActivityLoginBinding binding;
-    
+    private PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginViewModel.init(this);
+        prefManager=new PrefManager(this);
 
         binding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_login);
 
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.loginData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
+                prefManager.setUserId(user.getId());
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

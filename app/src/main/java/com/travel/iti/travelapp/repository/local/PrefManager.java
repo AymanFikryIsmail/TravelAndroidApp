@@ -32,6 +32,15 @@ public class PrefManager {
     public boolean isFirstTimeLaunch() {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
+    public void setUserId(int uid){
+        editor.putInt("uid", uid);
+        editor.commit();
+    }
+
+    public int getUserId(){
+        return  pref.getInt("uid", 0);
+
+    }
 
 
 }

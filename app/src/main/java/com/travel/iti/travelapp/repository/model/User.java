@@ -15,7 +15,12 @@ public class User {
     String username;
     @SerializedName("user_phone")
     String phone;
+    @SerializedName("city")
     String city;
+
+    public int getId() {
+        return id;
+    }
 
     public String getPhone() {
         return phone;

@@ -64,7 +64,7 @@ public class CityPackagesAdapter extends RecyclerView.Adapter<CityPackagesAdapte
             cityNameId=itemView.findViewById(R.id.cityNameId);
             cityDescId=itemView.findViewById(R.id.cityDescId);
             cityImageId=itemView.findViewById(R.id.cityImageId);
-            cityFavId=itemView.findViewById(R.id.cityImageId);
+            cityFavId=itemView.findViewById(R.id.cityFavId);
             dataLayout=itemView.findViewById(R.id.dataLayoutId);
 //            gridCardView=itemView.findViewById(R.id.gridCardView);
 
