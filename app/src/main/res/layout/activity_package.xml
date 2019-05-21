@@ -5,10 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:background="@color/colorPrimary"
-=======
->>>>>>> 2549731d7d669a8f071743963bd739fee4862a25
     tools:context=".view.activity._package.PackageActivity">
 
     <LinearLayout
