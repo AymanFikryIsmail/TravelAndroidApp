@@ -24,8 +24,8 @@ public class PackagesViewModel extends ViewModel {
         this.mcontext=context;
     }
 
-    public void getData(){
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage();
+    public void getData(String city){
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {

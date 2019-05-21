@@ -77,9 +77,9 @@ private List<PackagesPojo> packagesPojoList;
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
             date.setText(packagesPojo.getDate());
-            duration.setText(packagesPojo.getDuration());
-            price.setText(packagesPojo.getPrice());
-            availableTickets.setText(packagesPojo.getAvail_tickets());
+            duration.setText(packagesPojo.getDuration()+"");
+            price.setText(packagesPojo.getPrice()+"");
+            availableTickets.setText(packagesPojo.getAvail_tickets()+"");
 
             Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
                     .fit().centerCrop()

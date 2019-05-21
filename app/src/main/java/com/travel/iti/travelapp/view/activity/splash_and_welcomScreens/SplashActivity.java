@@ -8,7 +8,11 @@ import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
+<<<<<<< HEAD:app/src/main/java/com/travel/iti/travelapp/view/activity/splash_and_welcomScreens/SplashActivity.java
 import com.travel.iti.travelapp.view.activity.home.MainActivity;
+=======
+import com.travel.iti.travelapp.view.activity._package.PackageActivity;
+>>>>>>> 2549731d7d669a8f071743963bd739fee4862a25:app/src/main/java/com/travel/iti/travelapp/view/activity/SplashActivity.java
 import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.WelcomeActivity;
 
@@ -89,7 +93,6 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
 
             }
-
 
         }
     }

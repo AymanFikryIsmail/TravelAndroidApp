@@ -15,8 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity._package.PackageActivity"></activity>
-        <activity android:name=".view.activity.signup.SignUpActivity" />
+        <activity android:name=".view.activity._package.PackagrieActivity"></activity>
+        <activity android:name=".view.activity.signup.SignUpActivity"
+            android:label="E-Travel"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".view.activity.splash_and_welcomScreens.SplashActivity"
             android:label="E-Travel"

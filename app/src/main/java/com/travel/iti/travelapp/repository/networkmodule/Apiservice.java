@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class Apiservice {
     public static Apiservice newInstance=null;
-    public ApiRequest apiRequest =NetworkManager.getInstance().createGithubService("");
+    public ApiRequest apiRequest =NetworkManager.getInstance().createService("");
     private Apiservice(){}
 
     public static Apiservice getInstance(){
