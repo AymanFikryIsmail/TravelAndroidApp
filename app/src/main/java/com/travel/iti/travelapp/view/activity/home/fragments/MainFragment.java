@@ -16,7 +16,7 @@ import android.widget.ImageView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
-import com.travel.iti.travelapp.view.activity.RecentPackages.RecentAndRecommendedActivity;
+import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
 import com.travel.iti.travelapp.view.activity.home.CityPackagesAdapter;
 import com.travel.iti.travelapp.view.activity.home.MainViewModel;
 
@@ -67,7 +67,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent i = new Intent(getContext(), RecentAndRecommendedActivity.class);
+                Intent i = new Intent(getContext(), RecentActivity.class);
                 i.putExtra("key" , "recent");
                 startActivity(i);
 
@@ -78,7 +78,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent i = new Intent(getContext(), RecentAndRecommendedActivity.class);
+                Intent i = new Intent(getContext(), RecentActivity.class);
                 i.putExtra("key" , "recommended");
                 startActivity(i);
 
