@@ -1,5 +1,4 @@
 package com.travel.iti.travelapp.view.activity._package;
-
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
@@ -111,6 +110,7 @@ public class PackageActivity extends AppCompatActivity {
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
             }
+
         });
     }
 }
