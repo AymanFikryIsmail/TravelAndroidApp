@@ -2,9 +2,10 @@ package com.travel.iti.travelapp.repository.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PackagesPojo {
+public class PackagesPojo implements Serializable {
 
     @SerializedName("pid")
     private int packageId;

@@ -1,5 +1,6 @@
 package com.travel.iti.travelapp.view.activity.package_details;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.databinding.ActivityPackageDetailsBinding;
+import com.travel.iti.travelapp.repository.model.PackagesPojo;
 
 import java.util.HashMap;
 
@@ -28,10 +31,17 @@ public class PackageDetailsActivity extends AppCompatActivity  {
             "http://tvfiles.alphacoders.com/100/hdclearart-10.png",
             "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg",
     };
+    private PackagesPojo packagesPojo;
+    private ActivityPackageDetailsBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package_details);
+//        setContentView(R.layout.activity_package_details);
+        packagesPojo= (PackagesPojo) getIntent().getSerializableExtra("packageDetails");
+        binding = DataBindingUtil.setContentView(PackageDetailsActivity.this, R.layout.activity_package_details);
+        binding.setLifecycleOwner(this);
+        binding.setPackageDetails(packagesPojo);
 
         sliderLayout = findViewById(R.id.imageSlider);
         sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!

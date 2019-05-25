@@ -7,6 +7,7 @@
     <color name="darkYellow">#DBB10B</color>
     <color name="darkPurple">#510567</color>
     <color name="lightPurple">#65087F</color>
+    <color name="black">#000000</color>
 
     <!-- welcome screens background color-->
     <color name="backgroundg_image">#510567</color>
@@ -49,5 +50,6 @@
     <color name="white">#fff</color>
     <color name="blue">#425BB4</color>
 
+    <color name="brown">#71706f</color>
 
 </resources>

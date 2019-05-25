@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity.home.fragments;
+package com.travel.iti.travelapp.view.activity.home.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.view.activity.RecentPackages.RecentAndRecommendedActivity;
-import com.travel.iti.travelapp.view.activity.home.CityPackagesAdapter;
-import com.travel.iti.travelapp.view.activity.home.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

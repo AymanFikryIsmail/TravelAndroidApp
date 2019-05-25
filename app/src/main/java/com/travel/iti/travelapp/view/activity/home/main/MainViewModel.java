@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity.home;
+package com.travel.iti.travelapp.view.activity.home.main;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;

@@ -3,9 +3,6 @@ package com.travel.iti.travelapp.view.activity._package;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,9 +16,9 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.adapter.PackagesAdapter;
-import com.travel.iti.travelapp.viewmodel.PackagesViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +42,12 @@ public class PackageActivity extends AppCompatActivity {
         packagesPojoList = new ArrayList<>();
     }
 
+    private CityPackage cityPackage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package);
+        cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
 
         sliderLayout = findViewById(R.id.packageImageSlider);
         sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -104,7 +103,7 @@ public class PackageActivity extends AppCompatActivity {
     }
 
     void getData(){
-        packagesViewModel.getData("Sharm");
+        packagesViewModel.getData(cityPackage.getCityName());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {

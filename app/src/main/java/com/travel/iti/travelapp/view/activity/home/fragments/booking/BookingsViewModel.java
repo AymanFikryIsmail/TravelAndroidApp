@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.viewmodel;
+package com.travel.iti.travelapp.view.activity.home.fragments.booking;
 
 import android.arch.lifecycle.ViewModel;
 

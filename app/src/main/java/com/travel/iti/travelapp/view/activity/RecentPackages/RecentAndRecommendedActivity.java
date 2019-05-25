@@ -10,8 +10,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.adapter.PackagesAdapter;
-import com.travel.iti.travelapp.viewmodel.PackagesViewModel;
+import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
+import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
