@@ -1,7 +1,9 @@
-package com.travel.iti.travelapp.view.adapter;
+package com.travel.iti.travelapp.view.activity.home.fragments.booking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,35 +15,40 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
+/**
+ * Created by ayman on 2019-05-22.
+ */
 
-private Context context;
-private List<PackagesPojo> packagesPojoList;
+public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHolder> {
 
-    public PackagesAdapter() {
+    private Context context;
+    private List<PackagesPojo> packagesPojoList;
+
+    public BookingAdapter() {
         packagesPojoList = new ArrayList<>();
     }
 
 
-    public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList) {
+    public BookingAdapter(Context context, List<PackagesPojo> packagesPojoList) {
         this.context = context;
         this.packagesPojoList = packagesPojoList;
     }
 
     @NonNull
     @Override
-    public PackagesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recent_package_row, parent, false);
-        return new PackagesAdapter.MyViewHolder(itemView);
+        return new BookingAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookingAdapter.MyViewHolder holder, int position) {
         holder.bind(packagesPojoList.get(position));
     }
 
@@ -59,7 +66,6 @@ private List<PackagesPojo> packagesPojoList;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             travelTo = itemView.findViewById(R.id.travel_to);
             date = itemView.findViewById(R.id.date);
             duration = itemView.findViewById(R.id.duration);
@@ -86,6 +92,19 @@ private List<PackagesPojo> packagesPojoList;
                     .placeholder(R.drawable.recommended)
                     .error(R.drawable.recent)
                     .into(maskImage);
+<<<<<<< HEAD:app/src/main/java/com/travel/iti/travelapp/view/adapter/PackagesAdapter.java
+=======
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, PackageDetailsActivity.class);
+                    intent.putExtra("packageDetails", packagesPojo);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+
+>>>>>>> bfff4c5ed7e303edcf19c7b0bccc899f85a8ee49:app/src/main/java/com/travel/iti/travelapp/view/activity/home/fragments/booking/BookingAdapter.java
         }
     }
 

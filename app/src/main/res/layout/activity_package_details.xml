@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <import type="java.lang.Integer" />
+        <variable
+            name="packageDetails"
+            type="com.travel.iti.travelapp.repository.model.PackagesPojo" />
+        <variable
+            name="gotoBooking"
+            type="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity" />
+
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity">
@@ -18,7 +29,7 @@
     <com.smarteist.autoimageslider.SliderLayout
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true" />
 
@@ -45,9 +56,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
+                android:id="@+id/destinationId"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_index"
-                android:text="Cairo"
+                android:text="@{packageDetails.packageName ,default=Cairo}"
                 android:textColor="@color/black"
                 />
 
@@ -56,9 +68,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_weight="1"
+                android:id="@+id/priceId"
                 android:drawablePadding="8dp"
                 android:gravity="end"
-                android:text="9000 LE"
+                android:text="@{Integer.toString(packageDetails.price),default=a}"
                 android:textColor="@color/black"
                 />
         </LinearLayout>
@@ -74,9 +87,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
+                android:id="@+id/dateId"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_calendar"
-                android:text="20/9 , may" />
+                android:text="@{packageDetails.date,default=april}"
+
+                />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -98,9 +114,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:id="@+id/durationId"
                 android:drawablePadding="8dp"
                 android:gravity="end"
-                android:text="3Dayes"
+                android:text="@{Integer.toString(packageDetails.duration),default=Dayes}"
                 android:textColor="@color/black"
                 />
             </LinearLayout>
@@ -129,7 +146,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alexandria"
+                    android:text="@{packageDetails.travel_from,default=Alexandria}"
+                    android:id="@+id/departureId"
                     android:textColor="#000"
                     android:textSize="18sp" />
 
@@ -159,7 +177,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="cairo"
+                    android:id="@+id/arrivalId"
+                    android:text="@{packageDetails.travel_to ,default=cairo}"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -175,6 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:id="@+id/pkgdescId"
             android:orientation="horizontal">
 
             <TextView
@@ -202,6 +222,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/paperlayoutId"
             android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
@@ -244,6 +265,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/login_button"
             android:text="Book now"
+            android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
             android:textSize="18sp"
             android:textColor="@color/textColorHint"
             />
@@ -251,7 +273,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite"
-        android:layout_margin="16dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_favorite_white"
+        android:padding="15dp"
+        android:background="@drawable/fav_back_drawable"
         android:layout_alignParentEnd="true"/>
     </RelativeLayout>
+</layout>

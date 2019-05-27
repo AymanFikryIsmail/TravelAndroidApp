@@ -1,5 +1,6 @@
 package com.travel.iti.travelapp.view.activity.home;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,11 +19,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.repository.local.PrefManager;
-import com.travel.iti.travelapp.view.activity.home.fragments.BookingsFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.FavoritesFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.MainFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.booking.BookingsFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.favourite.FavoritesFragment;
+import com.travel.iti.travelapp.view.activity.home.main.MainFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.MyProfileFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.SettingsFragment;
+import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -75,9 +77,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
             }else {
                 super.onBackPressed();
-                finishAffinity();
+              //  finishAffinity();
             }
-
     }
 
     @Override
@@ -110,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();
                 prefManager.setUserId(0);
 
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             default:
                 return true;

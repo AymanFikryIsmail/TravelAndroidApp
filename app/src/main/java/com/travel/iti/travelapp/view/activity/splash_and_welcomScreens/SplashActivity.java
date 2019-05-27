@@ -14,60 +14,59 @@ import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 public class SplashActivity extends AppCompatActivity {
 
     PrefManager prefManager;
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_splash);
+//
+//        prefManager =new PrefManager(this);
+//
+//        new ProgressTask().execute();
+//    }
+//
+//    class ProgressTask extends AsyncTask<String, Integer, String> {
+//        @Override
+//        protected String doInBackground(String... strings) {
+//
+//            for (int i = 0; i < 200; i++) {
+//
+//                try {
+//                    Thread.sleep(10);
+//                    publishProgress(i);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//            // code executed after task finish hide progress and change text
+//            openActivity();
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Integer... values) {
+//            super.onProgressUpdate(values);
+//        }
+//    }
+
+    private static int SPLASH_TIME_OUT = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        prefManager =new PrefManager(this);
+        new Handler().postDelayed(new Runnable() {
 
-        new ProgressTask().execute();
-    }
-
-    class ProgressTask extends AsyncTask<String, Integer, String> {
-        @Override
-        protected String doInBackground(String... strings) {
-
-            for (int i = 0; i < 200; i++) {
-
-                try {
-                    Thread.sleep(10);
-                    publishProgress(i);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            @Override
+            public void run() {
+                openActivity();
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            // code executed after task finish hide progress and change text
-            openActivity();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
+        }, SPLASH_TIME_OUT);
     }
-
-//    private static int SPLASH_TIME_OUT = 3000;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash);
-//
-//        new Handler().postDelayed(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                openActivity();
-//            }
-//        }, SPLASH_TIME_OUT);
-//    }
 
     public void openActivity() {
 

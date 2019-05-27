@@ -2,16 +2,18 @@ package com.travel.iti.travelapp.repository.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by ayman on 2019-05-18.
  */
 
-public class CityPackage {
-    @SerializedName("travel_to")
+public class CityPackage implements Serializable{
+    @SerializedName("city_name")
     private String cityName;
     @SerializedName("p_name")
     private String cityDesc;
-    @SerializedName("photo_path")
+    @SerializedName("city_photo")
     private String cityImage;
     private boolean cityFav;
 

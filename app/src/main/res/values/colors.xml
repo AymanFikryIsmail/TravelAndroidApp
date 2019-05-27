@@ -49,6 +49,9 @@
 
     <color name="white">#fff</color>
     <color name="blue">#425BB4</color>
+    <color name="secondblue">#2680eb</color>
+
+    <color name="brown">#3d3d3d</color>
 
 
 </resources>

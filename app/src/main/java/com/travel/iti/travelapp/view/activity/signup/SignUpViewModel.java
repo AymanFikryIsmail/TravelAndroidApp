@@ -1,5 +1,4 @@
-package com.travel.iti.travelapp.view.activity.login;
-
+package com.travel.iti.travelapp.view.activity.signup;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
@@ -10,8 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.view.activity.signup.SignUpActivity;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 
@@ -20,26 +19,46 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by ayman on 2019-05-13.
+ * Created by ayman on 2019-05-26.
  */
 
-public class LoginViewModel extends ViewModel {
+public class SignUpViewModel extends ViewModel {
+
+
     public MutableLiveData<String> EmailAddress;
     public MutableLiveData<String> Password;
+    public MutableLiveData<String> UserName;
+    public MutableLiveData<String> phone;
+    public MutableLiveData<String> city;
     private MutableLiveData<User> userMutableLiveData;
-    public MutableLiveData<User> loginData = new MutableLiveData<>();
-    public MutableLiveData<Boolean> isSuccess = new MutableLiveData<>();
+    public MutableLiveData<User> signUpData;
+    public MutableLiveData<Boolean> isSuccess;
 
     private Context mcontext;
+    private PrefManager prefManager;
 
-    public LoginViewModel() {
+    private SignUpView view;
+    public SignUpViewModel() {
         EmailAddress = new MutableLiveData<>();
         Password = new MutableLiveData<>();
+        UserName = new MutableLiveData<>();
+        phone = new MutableLiveData<>();
+        city = new MutableLiveData<>();
+        signUpData = new MutableLiveData<>();
         isSuccess = new MutableLiveData<>();
     }
 
     public void init(Context context) {
         this.mcontext = context;
+        this.view= (SignUpView) context;
+        prefManager=new PrefManager(context);
+    }
+
+    public MutableLiveData<User> getSignUpData() {
+        if (signUpData == null) {
+            signUpData = new MutableLiveData<>();
+        }
+        return signUpData;
     }
 
     public MutableLiveData<User> getUser() {
@@ -62,27 +81,34 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void signIn(User loginUser) {
-        //loginData = new MutableLiveData<>();
+    public void signUpOnClick(View view) {
 
-        Call<ApiResponse<User>> call = Apiservice.getInstance().apiRequest.SignIn(loginUser);
-        call.enqueue(new Callback<ApiResponse<User>>() {
+        User loginUser = new User(EmailAddress.getValue(), Password.getValue(), UserName.getValue(), phone.getValue(), city.getValue());
+        userMutableLiveData.setValue(loginUser);
+
+    }
+    public void signUp(User signUpUser) {
+        //signUpData = new MutableLiveData<>();
+        Call<ApiResponse<User>> signUpCall = Apiservice.getInstance().apiRequest.signup(signUpUser);
+        signUpCall.enqueue(new Callback<ApiResponse<User>>() {
             @Override
             public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
                 if (response.body().status == "true" && response.body().data != null) {
-                    loginData.setValue(response.body().data);
-                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    signUpData.setValue(response.body().data);
+                    isSuccess.setValue(true);
+                    prefManager.setUserId(response.body().data.getId());
                 } else {
-                    Toast.makeText(mcontext, "auth failed", Toast.LENGTH_LONG).show();
+                    isSuccess.setValue(false);
+                    view.shwoError("auth failed");
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse<User>> call, Throwable t) {
+                isSuccess.setValue(false);
+                view.shwoError(t.getMessage());
                 Log.d("tag", "articles total result:: " + t.getMessage());
-
             }
         });
     }
-
 }

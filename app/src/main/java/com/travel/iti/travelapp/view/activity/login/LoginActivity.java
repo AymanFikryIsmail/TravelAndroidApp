@@ -51,28 +51,15 @@ public class LoginActivity extends AppCompatActivity {
                     binding.txtEmailAddress.setError("Enter an E-Mail Address");
                     binding.txtEmailAddress.requestFocus();
                 }
-//                else if (!loginUser.isEmailValid()) {
-//                    binding.txtEmailAddress.setError("Enter a Valid E-mail Address");
-//                    binding.txtEmailAddress.requestFocus();
-//                }
                 else if (TextUtils.isEmpty(loginUser.getPassword())) {
                     binding.txtPassword.setError("Enter a Password");
                     binding.txtPassword.requestFocus();
                 }
-//                else if (!loginUser.isPasswordLengthGreaterThan5()) {
-//                    binding.txtPassword.setError("Enter at least 6 Digit password");
-//                    binding.txtPassword.requestFocus();
-//                }
                 else {
-
-//                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
                     loginViewModel.signIn(loginUser);
                 }
 
             }
         });
     }
-
-
 }

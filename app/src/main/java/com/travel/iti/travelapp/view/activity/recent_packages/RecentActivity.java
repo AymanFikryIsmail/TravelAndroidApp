@@ -14,9 +14,8 @@ import android.widget.Button;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
-import com.travel.iti.travelapp.view.adapter.PackagesAdapter;
-import com.travel.iti.travelapp.viewmodel.PackagesViewModel;
-
+import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
+import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class RecentActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList);
+        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList,packagesViewModel);
         packagesPojoList = null;
 
         String keyValue;

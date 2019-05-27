@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity.home.fragments;
+package com.travel.iti.travelapp.view.activity.home.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
-import com.travel.iti.travelapp.view.activity.home.CityPackagesAdapter;
-import com.travel.iti.travelapp.view.activity.home.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,21 +96,6 @@ public class MainFragment extends Fragment {
                 recyclerView.setAdapter(adapter);
             }
         });
-    }
-
-    void getCities() {
-        cityPackageList=new ArrayList<>();
-        cityPackageList.add(new CityPackage("cairo", "cairo is beautiful" ,
-                "https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("alex", "cairo is beautiful" ,
-                "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("sharm", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("hurgada", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("marse", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("fayoum", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-
-        adapter.updateList(cityPackageList);
-        recyclerView.setAdapter(adapter);
     }
 
 }

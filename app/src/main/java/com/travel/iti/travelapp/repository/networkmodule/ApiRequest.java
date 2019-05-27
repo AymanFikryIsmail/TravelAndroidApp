@@ -38,8 +38,18 @@ public interface  ApiRequest {
     @GET("packages/recommended")
     Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
 
+
     @GET ("packages/filter")
     Call<ApiResponse<List<PackagesPojo>>> getFilteredPackages ();
+
+    @GET("packages/favorite")
+    Call<ApiResponse<List<PackagesPojo>>> getFavouritePackages(@Query("user_id") int user_id);
+
+    @GET("packages/favorite/update")
+    Call<ApiResponse<Boolean>> postFavouritePackages(
+            @Query("user_id") int user_id,
+            @Query("package_id") int package_id);
+
 
 }
 
