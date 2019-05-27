@@ -53,6 +53,7 @@ public class LoginViewModel extends ViewModel {
         }
         return signUpData;
     }
+
     public MutableLiveData<User> getUser() {
 
         if (userMutableLiveData == null) {

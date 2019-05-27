@@ -38,6 +38,9 @@ public interface  ApiRequest {
     @GET("packages/recommended")
     Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
 
+    @GET ("packages/filter")
+    Call<ApiResponse<List<PackagesPojo>>> getFilteredPackages ();
+
 }
 
 

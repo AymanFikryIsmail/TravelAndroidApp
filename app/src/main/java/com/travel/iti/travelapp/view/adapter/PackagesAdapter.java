@@ -86,7 +86,6 @@ private List<PackagesPojo> packagesPojoList;
                     .placeholder(R.drawable.recommended)
                     .error(R.drawable.recent)
                     .into(maskImage);
-
         }
     }
 
