@@ -92,8 +92,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     .placeholder(R.drawable.recommended)
                     .error(R.drawable.recent)
                     .into(maskImage);
-<<<<<<< HEAD:app/src/main/java/com/travel/iti/travelapp/view/adapter/PackagesAdapter.java
-=======
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,8 +102,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     context.startActivity(intent);
                 }
             });
-
->>>>>>> bfff4c5ed7e303edcf19c7b0bccc899f85a8ee49:app/src/main/java/com/travel/iti/travelapp/view/activity/home/fragments/booking/BookingAdapter.java
         }
     }
 

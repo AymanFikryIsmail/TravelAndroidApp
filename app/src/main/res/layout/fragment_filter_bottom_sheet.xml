@@ -118,20 +118,21 @@
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priceRangeSeekBar"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <SeekBar
         android:id="@+id/daysRangeSeekBar"
         android:layout_width="300dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <TextView
         android:id="@+id/textViewDate"
@@ -142,10 +143,10 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/daysRangeSeekBar"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <EditText
         android:id="@+id/editText"
@@ -160,7 +161,7 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.039" />
 
     <TextView
         android:id="@+id/textViewRate"
