@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,11 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity._package.PackageActivity"></activity>
-        <activity android:name=".view.activity.signup.SignUpActivity"
+        <activity android:name=".view.activity._package.PackageActivity" />
+        <activity
+            android:name=".view.activity.signup.SignUpActivity"
             android:label="E-Travel"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.splash_and_welcomScreens.SplashActivity"
             android:label="E-Travel"
@@ -44,10 +46,7 @@
         <activity android:name=".view.activity.qrcard.QRCardActivity" />
         <activity android:name=".view.activity.package_details.PackageDetailsActivity" />
         <activity android:name=".view.activity.RecentPackages.RecentAndRecommendedActivity" />
-        <activity
-            android:name=".view.activity.home.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.activity.booking.BookingActivity"></activity>
     </application>
 
 </manifest>

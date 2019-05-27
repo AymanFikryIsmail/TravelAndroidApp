@@ -20,118 +20,78 @@ import com.travel.iti.travelapp.view.activity.home.MainActivity;
 import com.travel.iti.travelapp.view.activity.login.LoginViewModel;
 
 
-public class SignUpActivity extends AppCompatActivity {
-    private LoginViewModel signUpViewModel;
-
+public class SignUpActivity extends AppCompatActivity implements  SignUpView {
+    private SignUpViewModel signUpViewModel;
     private ActivitySignUpBinding binding2;
-    FrameLayout frameLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        signUpViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
         signUpViewModel.init(this);
-        binding2 = DataBindingUtil.setContentView(SignUpActivity.this,R.layout.activity_sign_up);
+        binding2 = DataBindingUtil.setContentView(SignUpActivity.this, R.layout.activity_sign_up);
         binding2.setLifecycleOwner(this);
         binding2.setSignUpViewModel(signUpViewModel);
-
-
-        signUpViewModel.UserName.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                Toast.makeText(SignUpActivity.this,"user name"+ s, Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-//        signUpViewModel.getSignUpData().observe(this, new Observer<User>() {
-//            @Override
-//            public void onChanged(@Nullable User user) {
-//               // Toast.makeText(SignUpActivity.this,"isSuccess : "+ isSuccess, Toast.LENGTH_LONG).show();
-//                frameLayout.setVisibility(View.GONE);
-//                Intent gotoHome = new Intent(SignUpActivity.this,MainActivity.class);
-//                startActivity(gotoHome);
-//            }
-//        });
 
         signUpViewModel.getUser().observe(this, new Observer<User>() {
 
 
-
             @Override
             public void onChanged(@Nullable User signUpUser) {
-
-
                 if (TextUtils.isEmpty(signUpUser.getUsername())) {
                     binding2.editTextUser.setError(getString(R.string.input_error_name));
                     binding2.editTextUser.requestFocus();
-                }
-
-                else if (TextUtils.isEmpty(signUpUser.getEmail())) {
+                } else if (TextUtils.isEmpty(signUpUser.getEmail())) {
                     binding2.editTextEmail.setError(getString(R.string.input_error_email));
                     binding2.editTextEmail.requestFocus();
-                }
-                else if (!Patterns.EMAIL_ADDRESS.matcher(signUpUser.getEmail().trim()).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(signUpUser.getEmail().trim()).matches()) {
                     binding2.editTextEmail.setError(getString(R.string.input_error_email_invalid));
                     binding2.editTextEmail.requestFocus();
                     return;
-                }
-                else if (TextUtils.isEmpty(signUpUser.getPassword())) {
+                } else if (TextUtils.isEmpty(signUpUser.getPassword())) {
                     binding2.editTextPassword.setError(getString(R.string.input_error_password));
                     binding2.editTextPassword.requestFocus();
-                }
-
-                else  if (signUpUser.getPassword().length() < 6) {
+                } else if (signUpUser.getPassword().length() < 6) {
                     binding2.editTextPassword.setError(getString(R.string.input_error_password_length));
                     binding2.editTextPassword.requestFocus();
                     return;
-                }
-
-                else if (TextUtils.isEmpty(signUpUser.getPhone())) {
+                } else if (TextUtils.isEmpty(signUpUser.getPhone())) {
                     binding2.editTextPhone.setError(getString(R.string.input_error_phone));
                     binding2.editTextPhone.requestFocus();
-                }
-
-                else if (signUpUser.getPhone().length() != 11  ) {
+                } else if (signUpUser.getPhone().length() != 11) {
                     binding2.editTextPhone.setError(getString(R.string.input_error_phone_invalid));
                     binding2.editTextPhone.requestFocus();
-                }
-
-                else if (TextUtils.isEmpty(signUpUser.getCity())) {
+                } else if (TextUtils.isEmpty(signUpUser.getCity())) {
                     binding2.editTextCity.setError(getString(R.string.input_error_city));
                     binding2.editTextCity.requestFocus();
-                }
-
-                else {
-
-//                    Intent intent=new Intent(SignUpActivity.this, MainActivity.class);
-//                    startActivity(intent);
+                } else {
                     binding2.progressView.setVisibility(View.VISIBLE);
-
                     signUpViewModel.signUp(signUpUser);
-
-
                 }
 
             }
         });
-       signUpViewModel.isSuccess.observe(this, new Observer<Boolean>() {
-    @Override
-    public void onChanged(@Nullable Boolean isSuccess) {
-
-       // Toast.makeText(SignUpActivity.this,"isSuccess : "+ isSuccess, Toast.LENGTH_LONG).show();
-        binding2.progressView.setVisibility(View.GONE);
-        Intent intent=new Intent(SignUpActivity.this, MainActivity.class);
+        signUpViewModel.isSuccess.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean isSuccess) {
+                if (isSuccess) {
+                    binding2.progressView.setVisibility(View.GONE);
+                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                }
+            }
+        });
 
     }
-});
 
+
+    @Override
+    public void shwoError(String error) {
+        Toast.makeText(this,error, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void showSuccess() {
 
-
+    }
 }

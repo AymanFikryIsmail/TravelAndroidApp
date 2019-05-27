@@ -68,7 +68,7 @@
             android:ems="10"
             android:hint="E-Mail"
             android:inputType="textEmailAddress"
-            android:padding="5dp"
+            android:padding="8dp"
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.EmailAddress}"
             android:textColor="@color/white"
@@ -91,7 +91,7 @@
             android:hint="Password"
             android:textColor="@color/white"
             android:inputType="textPassword"
-            android:padding="5dp"
+            android:padding="15dp"
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.Password}"
             android:textColorHint="@color/textColorHint"
@@ -130,22 +130,22 @@
             android:text="Continue with google"
             android:textAllCaps="false"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/btnFaceBook"
             app:layout_constraintVertical_bias="0.112" />
-
         <Button
             android:id="@+id/btnFaceBook"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/facebook_button"
+            android:background="@drawable/googleplus_button"
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
-            android:text="Continue with facebook"
+            android:text="Sign up"
+            android:textColor="@color/white"
             android:textAllCaps="false"
-            android:drawableStart="@drawable/facebook"
             android:textSize="14sp"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -154,6 +154,25 @@
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin"
             app:layout_constraintVertical_bias="0.068" />
+
+        <!--<Button-->
+            <!--android:id="@+id/btnFaceBook"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/facebook_button"-->
+            <!--android:onClick="@{(v) -> LoginViewModel.onClick(v)}"-->
+            <!--android:text="Continue with facebook"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:drawableStart="@drawable/facebook"-->
+            <!--android:textSize="14sp"-->
+            <!--android:padding="5dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toStartOf="@+id/guideline4"-->
+            <!--app:layout_constraintHorizontal_bias="1.0"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/guideline3"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/btnLogin"-->
+            <!--app:layout_constraintVertical_bias="0.068" />-->
+
 
 
 

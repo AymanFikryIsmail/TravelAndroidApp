@@ -9,11 +9,11 @@ import java.io.Serializable;
  */
 
 public class CityPackage implements Serializable{
-    @SerializedName("travel_to")
+    @SerializedName("city_name")
     private String cityName;
     @SerializedName("p_name")
     private String cityDesc;
-    @SerializedName("photo_path")
+    @SerializedName("city_photo")
     private String cityImage;
     private boolean cityFav;
 

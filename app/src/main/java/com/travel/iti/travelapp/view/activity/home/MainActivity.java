@@ -1,5 +1,6 @@
 package com.travel.iti.travelapp.view.activity.home;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.travel.iti.travelapp.view.activity.home.fragments.favourite.Favorites
 import com.travel.iti.travelapp.view.activity.home.main.MainFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.MyProfileFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.SettingsFragment;
+import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -110,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();
                 prefManager.setUserId(0);
 
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             default:
                 return true;

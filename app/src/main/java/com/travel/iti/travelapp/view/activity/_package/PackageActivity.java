@@ -14,6 +14,7 @@ import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
@@ -23,20 +24,11 @@ import java.util.List;
 
 public class PackageActivity extends AppCompatActivity {
 
-    SliderLayout sliderLayout;
+    ImageView sliderLayout;
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
     private PackagesAdapter packagesAdapter;
     private PackagesViewModel packagesViewModel;
-
-    TextView customCarouselLabel;
-    String[] sampleNetworkImageURLs = {
-            "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg",
-            "http://cdn3.nflximg.net/images/3093/2043093.jpg",
-            "http://tvfiles.alphacoders.com/100/hdclearart-10.png",
-            "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg",
-    };
-
     public PackageActivity() {
         packagesPojoList = new ArrayList<>();
     }
@@ -48,59 +40,23 @@ public class PackageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package);
         cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
 
-        sliderLayout = findViewById(R.id.packageImageSlider);
-        sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        sliderLayout.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);
-        sliderLayout.setScrollTimeInSec(2); //set scroll delay in seconds :
-        setSliderViews();
+        sliderLayout = findViewById(R.id.packageImage);
 
+        Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
+                .fit().centerCrop()
+                .placeholder(R.drawable.mask)
+                .error(R.drawable.mask)
+                .into(sliderLayout);
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         packagesViewModel.init(getApplicationContext());
 
         recyclerView = findViewById(R.id.packages_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList);
+        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
         getData();
     }
-
-    private void setSliderViews() {
-        for (int i = 0; i <= 3; i++) {
-            DefaultSliderView sliderView = new DefaultSliderView(this);
-            switch (i) {
-                case 0:
-                    sliderView.setImageDrawable(R.drawable.ic_launcher_background);
-                    break;
-                case 1:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-                    break;
-                case 2:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-                    break;
-                case 3:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-                    break;
-            }
-
-            sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-            sliderView.setDescription("The quick brown fox jumps over the lazy dog.\n" +
-                    "Jackdaws love my big sphinx of quartz. " + (i + 1));
-            final int finalI = i;
-
-            sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-                @Override
-                public void onSliderClick(SliderView sliderView) {
-                    Toast.makeText(PackageActivity.this, "This is slider " + (finalI + 1), Toast.LENGTH_SHORT).show();
-
-                }
-            });
-
-            //at last add this view in your layout :
-            sliderLayout.addSliderView(sliderView);
-        }
-    }
-
     void getData(){
         packagesViewModel.getData(cityPackage.getCityName());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {

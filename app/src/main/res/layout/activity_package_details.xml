@@ -8,6 +8,10 @@
         <variable
             name="packageDetails"
             type="com.travel.iti.travelapp.repository.model.PackagesPojo" />
+        <variable
+            name="gotoBooking"
+            type="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity" />
+
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
@@ -25,7 +29,7 @@
     <com.smarteist.autoimageslider.SliderLayout
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true" />
 
@@ -261,6 +265,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/login_button"
             android:text="Book now"
+            android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
             android:textSize="18sp"
             android:textColor="@color/textColorHint"
             />
@@ -268,8 +273,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite"
-        android:layout_margin="16dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_favorite_white"
+        android:padding="15dp"
+        android:background="@drawable/fav_back_drawable"
         android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 </layout>

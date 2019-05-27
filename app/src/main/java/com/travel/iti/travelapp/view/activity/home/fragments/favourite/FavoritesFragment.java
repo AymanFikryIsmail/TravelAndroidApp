@@ -11,8 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
@@ -26,8 +29,8 @@ public class FavoritesFragment extends Fragment {
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
     private FavouriteAdapter packagesAdapter;
-    private PackagesViewModel packagesViewModel;
-    private CityPackage cityPackage;
+    private LinearLayout emptyLayout;
+    private PrefManager prefManager;
 
     public static FavoritesFragment newInstance() {
         return new FavoritesFragment();
@@ -36,17 +39,18 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.favorites_fragment, container, false);
-        packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getActivity());
+        View view = inflater.inflate(R.layout.favorites_fragment, container, false);
+        mViewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
+        mViewModel.init(getActivity());
+        prefManager = new PrefManager(getContext());
 
+        emptyLayout = view.findViewById(R.id.emptyLayoutId);
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         packagesAdapter = new FavouriteAdapter(getContext(), packagesPojoList);
         packagesPojoList = null;
-        getData();
-
+        getFavouritePackages();
         return view;
     }
 
@@ -54,21 +58,19 @@ public class FavoritesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
-        // TODO: Use the ViewModel
     }
 
-
-    void getData(){
-        packagesViewModel.getData("luxor");
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+    void getFavouritePackages() {
+        mViewModel.getFavouritePackages(prefManager.getUserId());
+        mViewModel.pckageList.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
+                emptyLayout.setVisibility(View.GONE);
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
             }
         });
     }
-
 
 }

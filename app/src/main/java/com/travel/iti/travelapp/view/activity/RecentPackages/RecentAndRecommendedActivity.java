@@ -37,7 +37,7 @@ public class RecentAndRecommendedActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList);
+        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList,packagesViewModel);
         packagesPojoList = null;
         String keyValue ;
         keyValue = getIntent().getStringExtra("key");

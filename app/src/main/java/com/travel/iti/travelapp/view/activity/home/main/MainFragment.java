@@ -98,19 +98,4 @@ public class MainFragment extends Fragment {
         });
     }
 
-    void getCities() {
-        cityPackageList=new ArrayList<>();
-        cityPackageList.add(new CityPackage("cairo", "cairo is beautiful" ,
-                "https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("alex", "cairo is beautiful" ,
-                "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("sharm", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("hurgada", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("marse", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-        cityPackageList.add(new CityPackage("fayoum", "cairo is beautiful" , "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" , true));
-
-        adapter.updateList(cityPackageList);
-        recyclerView.setAdapter(adapter);
-    }
-
 }

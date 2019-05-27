@@ -1,8 +1,11 @@
 package com.travel.iti.travelapp.view.activity._package;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +19,29 @@ import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
 
 private Context context;
 private List<PackagesPojo> packagesPojoList;
-
+private PackagesViewModel packagesViewModel;
     public PackagesAdapter() {
         packagesPojoList = new ArrayList<>();
     }
 
 
-    public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList) {
+    public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList, PackagesViewModel packagesViewModel) {
         this.context = context;
         this.packagesPojoList = packagesPojoList;
+        this.packagesViewModel=packagesViewModel;
     }
 
     @NonNull
@@ -78,12 +88,24 @@ private List<PackagesPojo> packagesPojoList;
 
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
-            date.setText(packagesPojo.getDate());
+            String strCurrentDate = packagesPojo.getDate();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            Date newDate = null;
+            try {
+                newDate = format.parse(strCurrentDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            format = new SimpleDateFormat("yyyy-MM-dd");
+            Date currentDate = new Date(newDate.getTime());
+            String d = format.format(currentDate);
+            date.setText(d);
+
             duration.setText(packagesPojo.getDuration()+"");
             price.setText(packagesPojo.getPrice()+"");
             availableTickets.setText(packagesPojo.getAvail_tickets()+"");
 
-            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
+            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
@@ -98,6 +120,22 @@ private List<PackagesPojo> packagesPojoList;
                 }
             });
 
+            packageFavBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    packagesViewModel.setFavPackage(packagesPojo.getPackageId());
+                }
+            });
+
+            packagesViewModel.isFavPressed.observeForever( new Observer<Boolean>() {
+                @Override
+                public void onChanged(@Nullable Boolean aBoolean) {
+                    if (aBoolean)
+                    packageFavBtn.setImageResource(R.drawable.ic_user);
+                    else
+                        packageFavBtn.setImageResource(R.drawable.ic_favorite);
+                }
+            });
         }
     }
 

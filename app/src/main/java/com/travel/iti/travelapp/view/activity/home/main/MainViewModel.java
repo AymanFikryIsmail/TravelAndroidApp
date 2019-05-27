@@ -20,21 +20,17 @@ import retrofit2.Response;
 public class MainViewModel extends ViewModel {
     // TODO: Implement the ViewModel
 
-    public   MutableLiveData<List<CityPackage>> cityPackageData = new MutableLiveData<>();
+    public   MutableLiveData<List<CityPackage>> cityPackageData;
 
     private Context mcontext;
+
+    public MainViewModel() {
+        cityPackageData = new MutableLiveData<>();
+    }
+
     public void init(Context context) {
         this.mcontext=context;
     }
-//    public MainViewModel(Context context) {
-//        this.mcontext=context;
-//    }
-//    public MutableLiveData<List<CityPackage>> getCityPackageData() {
-//        if (cityPackageData == null) {
-//            cityPackageData = new MutableLiveData<>();
-//        }
-//        return cityPackageData;
-//    }
     public void getData(){
         Call<ApiResponse<List<CityPackage>>> call = Apiservice.getInstance().apiRequest.getPackageCity();
         call.enqueue(new Callback<ApiResponse<List<CityPackage>>>() {
