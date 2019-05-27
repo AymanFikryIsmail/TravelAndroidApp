@@ -1,6 +1,7 @@
-package com.travel.iti.travelapp.view.adapter;
+package com.travel.iti.travelapp.view.activity._package;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,9 +85,18 @@ private List<PackagesPojo> packagesPojoList;
 
             Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
                     .fit().centerCrop()
-                    .placeholder(R.drawable.recommended)
-                    .error(R.drawable.recent)
+                    .placeholder(R.drawable.mask)
+                    .error(R.drawable.mask)
                     .into(maskImage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, PackageDetailsActivity.class);
+                    intent.putExtra("packageDetails", packagesPojo);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

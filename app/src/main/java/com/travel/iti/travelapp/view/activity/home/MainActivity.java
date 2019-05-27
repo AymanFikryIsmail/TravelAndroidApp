@@ -18,9 +18,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.repository.local.PrefManager;
-import com.travel.iti.travelapp.view.activity.home.fragments.BookingsFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.FavoritesFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.MainFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.booking.BookingsFragment;
+import com.travel.iti.travelapp.view.activity.home.fragments.favourite.FavoritesFragment;
+import com.travel.iti.travelapp.view.activity.home.main.MainFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.MyProfileFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.SettingsFragment;
 

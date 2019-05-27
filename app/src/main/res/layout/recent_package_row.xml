@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/mask"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="120dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/mask" />
 
@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:text="Paris"
                         android:textColor="@color/black"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         android:drawableStart="@drawable/ic_index"
                         android:drawablePadding="10dp"
                         />
@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:text="23/7-2019"
-                        android:textSize="20dp"
+                        android:textSize="16sp"
                         android:layout_marginStart="20dp"
                         android:drawableStart="@drawable/ic_calendar"
                         android:drawablePadding="10dp"
@@ -76,7 +76,7 @@
                     android:rating="5"
                     android:numStars="5"
                     android:stepSize="1"
-                    style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
 
                 <TextView
                     android:id="@+id/price"
@@ -85,8 +85,8 @@
                     android:layout_weight="1"
                     android:layout_gravity="end"
                     android:gravity="end"
-                    android:layout_marginEnd="20dp"
-                    android:textSize="20dp"
+                    android:layout_marginEnd="16sp"
+                    android:textSize="16sp"
                     android:text="9.000 LE"
                     android:textColor="@color/black"/>
 
