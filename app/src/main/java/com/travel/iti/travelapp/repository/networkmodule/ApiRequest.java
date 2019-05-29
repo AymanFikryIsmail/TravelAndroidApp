@@ -39,6 +39,9 @@ public interface  ApiRequest {
     Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
 
 
+    @GET ("packages/filter")
+    Call<ApiResponse<List<PackagesPojo>>> getFilteredPackages ();
+
     @GET("packages/favorite")
     Call<ApiResponse<List<PackagesPojo>>> getFavouritePackages(@Query("user_id") int user_id);
 

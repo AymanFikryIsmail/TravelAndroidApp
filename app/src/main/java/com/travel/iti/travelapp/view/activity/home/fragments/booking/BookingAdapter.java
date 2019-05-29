@@ -92,6 +92,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     .placeholder(R.drawable.recommended)
                     .error(R.drawable.recent)
                     .into(maskImage);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,7 +102,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     context.startActivity(intent);
                 }
             });
-
         }
     }
 
