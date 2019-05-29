@@ -23,8 +23,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -141,6 +143,8 @@ private PackagesViewModel packagesViewModel;
 
     public void updateList(List<PackagesPojo> newlist) {
         packagesPojoList = newlist;
+
+
         this.notifyDataSetChanged();
     }
 
