@@ -16,10 +16,12 @@ import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
+import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentActivity extends AppCompatActivity {
+public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -28,6 +30,7 @@ public class RecentActivity extends AppCompatActivity {
     private Button filterBtn ;
     private Button sortBtn ;
     public static final String TAG = "bottom_sheet";
+    private FilterFragmentInterface filterFragmentInterface ;
 
 
     public RecentActivity() {
@@ -64,6 +67,7 @@ public class RecentActivity extends AppCompatActivity {
                 filterFragment.show(getSupportFragmentManager(), TAG);
             }
         });
+
     }
 
     void getRecentPackages(){
@@ -72,7 +76,7 @@ public class RecentActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList);
+                packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
             }
         });
@@ -84,10 +88,17 @@ public class RecentActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList);
+                packagesAdapter.updateList(packagesPojoList , packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
             }
         });
     }
 
+    @Override
+    public void passData(int price, int duration, int rate) {
+
+        packagesAdapter.filter (price , duration , rate);
+        recyclerView.setAdapter(packagesAdapter);
+
+    }
 }

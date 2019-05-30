@@ -103,8 +103,20 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
         app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+    <TextView
+        android:id="@+id/priceValue"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/daysRangeSeekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.828"
+        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
+        app:layout_constraintTop_toBottomOf="@+id/priceRangeSeekBar"
+        app:layout_constraintVertical_bias="0.162" />
 
     <TextView
         android:id="@+id/textView4"
@@ -133,6 +145,20 @@
         app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/daysNumber"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.828"
+        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
+        app:layout_constraintTop_toBottomOf="@+id/daysRangeSeekBar"
+        app:layout_constraintVertical_bias="0.162" />
 
     <TextView
         android:id="@+id/textViewDate"
@@ -191,6 +217,7 @@
         app:layout_constraintVertical_bias="0.064">
 
         <Button
+            android:id="@+id/rateThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/left_curved_border_drawable"
@@ -198,6 +225,7 @@
             android:textSize="25sp" />
 
         <Button
+            android:id="@+id/rateFour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rating_border_drawable"
@@ -205,6 +233,7 @@
             android:textSize="25sp" />
 
         <Button
+            android:id="@+id/rateFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rating_border_drawable"
@@ -212,6 +241,7 @@
             android:textSize="25sp" />
 
         <Button
+            android:id="@+id/rateAll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/right_curved_border_drawable"
@@ -221,7 +251,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/filterBtn"
         android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:background="@color/lightPurple"

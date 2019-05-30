@@ -63,7 +63,7 @@ public class PackageActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList);
+                packagesAdapter.updateList(packagesPojoList , packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
             }
 

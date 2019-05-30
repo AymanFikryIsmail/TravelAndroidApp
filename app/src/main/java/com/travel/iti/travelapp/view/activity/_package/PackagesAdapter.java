@@ -30,9 +30,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
 
-private Context context;
-private List<PackagesPojo> packagesPojoList;
-private PackagesViewModel packagesViewModel;
+    private Context context;
+    private List<PackagesPojo> packagesPojoList;
+    private List<PackagesPojo> originList;
+
+    private PackagesViewModel packagesViewModel;
+
     public PackagesAdapter() {
         packagesPojoList = new ArrayList<>();
     }
@@ -41,7 +44,8 @@ private PackagesViewModel packagesViewModel;
     public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList, PackagesViewModel packagesViewModel) {
         this.context = context;
         this.packagesPojoList = packagesPojoList;
-        this.packagesViewModel=packagesViewModel;
+        this.originList=  new ArrayList<>();
+        this.packagesViewModel = packagesViewModel;
     }
 
     @NonNull
@@ -65,8 +69,8 @@ private PackagesViewModel packagesViewModel;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView travelTo ,date ,duration ,price ,availableTickets ,details;
-        public ImageView roomBtn , packageFavBtn , maskImage;
+        public TextView travelTo, date, duration, price, availableTickets, details;
+        public ImageView roomBtn, packageFavBtn, maskImage;
         public LinearLayout packageDataLayout;
 
         public MyViewHolder(View itemView) {
@@ -101,11 +105,11 @@ private PackagesViewModel packagesViewModel;
             String d = format.format(currentDate);
             date.setText(d);
 
-            duration.setText(packagesPojo.getDuration()+"");
-            price.setText(packagesPojo.getPrice()+"");
-            availableTickets.setText(packagesPojo.getAvail_tickets()+"");
+            duration.setText(packagesPojo.getDuration() + "");
+            price.setText(packagesPojo.getPrice() + "");
+            availableTickets.setText(packagesPojo.getAvail_tickets() + "");
 
-            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPhotoPaths().get(0))
+            Picasso.with(context).load("http://172.16.5.220:3000/" + packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
@@ -113,7 +117,7 @@ private PackagesViewModel packagesViewModel;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, PackageDetailsActivity.class);
+                    Intent intent = new Intent(context, PackageDetailsActivity.class);
                     intent.putExtra("packageDetails", packagesPojo);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
@@ -127,11 +131,11 @@ private PackagesViewModel packagesViewModel;
                 }
             });
 
-            packagesViewModel.isFavPressed.observeForever( new Observer<Boolean>() {
+            packagesViewModel.isFavPressed.observeForever(new Observer<Boolean>() {
                 @Override
                 public void onChanged(@Nullable Boolean aBoolean) {
                     if (aBoolean)
-                    packageFavBtn.setImageResource(R.drawable.ic_user);
+                        packageFavBtn.setImageResource(R.drawable.ic_user);
                     else
                         packageFavBtn.setImageResource(R.drawable.ic_favorite);
                 }
@@ -139,10 +143,26 @@ private PackagesViewModel packagesViewModel;
         }
     }
 
-    public void updateList(List<PackagesPojo> newlist) {
+    public void updateList(List<PackagesPojo> newlist ,List<PackagesPojo> originNewList ) {
         packagesPojoList = newlist;
+        this.originList.addAll(originNewList) ;
         this.notifyDataSetChanged();
     }
 
+    public void filter(int price  , int duration , int rate ){
+
+        packagesPojoList.clear();
+        List<PackagesPojo> filteredList = new ArrayList<>();
+        for (PackagesPojo packagesPojo : originList){
+
+            if ((price <= packagesPojo.getPrice()) && (duration <= packagesPojo.getDuration())){
+                filteredList.add (packagesPojo) ;
+            }
+        }
+
+        packagesPojoList = filteredList ;
+        this.notifyDataSetChanged();
+
+    }
 
 }

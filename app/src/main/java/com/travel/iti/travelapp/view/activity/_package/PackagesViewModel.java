@@ -37,8 +37,7 @@ public class PackagesViewModel extends ViewModel {
     }
 
     public void setFavPackage(int pcgId ){
-        Call<ApiResponse<Boolean>> call
-                = Apiservice.getInstance().apiRequest.postFavouritePackages( prefManager.getUserId(),pcgId);
+        Call<ApiResponse<Boolean>> call = Apiservice.getInstance().apiRequest.postFavouritePackages( prefManager.getUserId(),pcgId);
         call.enqueue(new Callback<ApiResponse<Boolean>>() {
             @Override
             public void onResponse(Call<ApiResponse<Boolean>> call, Response<ApiResponse<Boolean>> response) {
@@ -58,6 +57,7 @@ public class PackagesViewModel extends ViewModel {
             }
         });
     }
+
     public void getData(String city){
         Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
@@ -124,4 +124,6 @@ public class PackagesViewModel extends ViewModel {
         });
 
     }
+
+
 }

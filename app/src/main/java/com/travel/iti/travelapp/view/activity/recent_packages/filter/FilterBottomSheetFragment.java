@@ -3,6 +3,7 @@ package com.travel.iti.travelapp.view.activity.recent_packages.filter;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,15 +14,36 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
+import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashActivity;
 
-public class FilterBottomSheetFragment extends BottomSheetDialogFragment {
+public class FilterBottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
+
+    private PackagesAdapter packagesAdapter;
+    SeekBar priceSeekBar;
+    SeekBar daysSeekBar;
+    TextView priceTextiew;
+    TextView daysTextView;
+    int priceProgress = 0;
+    int daysProgress = 0;
+    Button rateThree;
+    Button rateFour;
+    Button rateFive;
+    Button rateAll;
+    int startOfRate;
+    Button btnApply;
+    private FilterFragmentInterface filterFragmentInterface;
 
     @SuppressLint("RestrictedApi")
     @Override
-    public void setupDialog(Dialog dialog, int style) {
+    public void setupDialog(final Dialog dialog, int style) {
         super.setupDialog(dialog, style);
 
         //Set the custom view
@@ -61,7 +83,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment {
                         }
                     }
 
-                    Toast.makeText(getContext(), "Bottom Sheet State Changed to: " + state, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Bottom Sheet State Changed to: " + state, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -69,5 +91,109 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment {
                 }
             });
         }
+
+        filterFragmentInterface = (FilterFragmentInterface) getActivity();
+
+        priceSeekBar = view.findViewById(R.id.priceRangeSeekBar);
+        priceSeekBar.setMax(3000);
+
+        priceTextiew = view.findViewById(R.id.priceValue);
+        priceTextiew.setText(priceSeekBar.getProgress() + "/" + priceSeekBar.getMax());
+
+        priceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                priceProgress = progressValue;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Display the value in textview
+                priceTextiew.setText(priceProgress + "/" + seekBar.getMax());
+            }
+        });
+
+        daysSeekBar = view.findViewById(R.id.daysRangeSeekBar);
+        daysSeekBar.setMax(5);
+        daysSeekBar.incrementProgressBy(1);
+
+        daysTextView = view.findViewById(R.id.daysNumber);
+        daysTextView.setText(daysSeekBar.getProgress() + "/" + daysSeekBar.getMax());
+
+        daysSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                daysProgress = progressValue;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Display the value in textview
+                daysTextView.setText(daysProgress + "/" + seekBar.getMax());
+            }
+        });
+
+        rateThree = view.findViewById(R.id.rateThree);
+        rateFour = view.findViewById(R.id.rateFour);
+        rateFive = view.findViewById(R.id.rateFive);
+        rateAll = view.findViewById(R.id.rateAll);
+
+        rateThree.setOnClickListener(this);
+        rateFour.setOnClickListener(this);
+        rateFive.setOnClickListener(this);
+        rateAll.setOnClickListener(this);
+
+        btnApply = view.findViewById(R.id.filterBtn);
+        btnApply.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if (filterFragmentInterface != null) {
+                    filterFragmentInterface.passData(priceProgress, daysProgress, startOfRate);
+                }
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.rateThree:
+                startOfRate = 3;
+                rateThree.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                Toast.makeText(getActivity(), "rate is 3", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.rateFour:
+                startOfRate = 4;
+                rateFour.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                Toast.makeText(getActivity(), "rate is 4", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.rateFive:
+                startOfRate = 5;
+                rateFive.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                Toast.makeText(getActivity(), "rate is 5", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.rateAll:
+                startOfRate = 1;
+                rateAll.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                Toast.makeText(getActivity(), "rate is all", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
+
