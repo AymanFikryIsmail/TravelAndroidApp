@@ -137,6 +137,49 @@
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/btnFaceBook"
             app:layout_constraintVertical_bias="0.112" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/guidelineSignup"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            app:layout_constraintVertical_bias="0.068"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.3sp"
+                android:textColor="#bebcbd"
+                android:lineSpacingExtra="1.7sp"
+                android:gravity="center_horizontal"
+                tools:text="Dont Have Account ?  "
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="1.7sp"
+                android:gravity="center_horizontal"
+                tools:text="SIGN UP"
+                android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
+                />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnFaceBook"
             android:layout_width="0dp"
@@ -148,6 +191,7 @@
             android:textAllCaps="false"
             android:textSize="14sp"
             android:padding="5dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="1.0"

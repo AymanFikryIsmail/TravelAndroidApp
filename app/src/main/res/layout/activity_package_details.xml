@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:id="@+id/destinationId"
                 android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_index"
+                android:drawableStart="@drawable/ic_blue_index"
                 android:text="@{packageDetails.packageName ,default=Cairo}"
                 android:textColor="@color/black"
                 />
@@ -89,7 +89,7 @@
                 android:layout_weight="1"
                 android:id="@+id/dateId"
                 android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_calendar"
+                android:drawableStart="@drawable/ic_blue_calendar"
                 android:text="@{packageDetails.date,default=april}"
 
                 />
