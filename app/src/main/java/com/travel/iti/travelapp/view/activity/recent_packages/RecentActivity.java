@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
@@ -17,6 +18,7 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBotto
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private PackagesViewModel packagesViewModel;
     private Button filterBtn ;
     private Button sortBtn ;
+    private EditText searchEditText ;
     public static final String TAG = "bottom_sheet";
     private FilterFragmentInterface filterFragmentInterface ;
 
@@ -68,6 +71,14 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             }
         });
 
+        searchEditText = findViewById(R.id.searchEditText);
+        searchEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RecentActivity.this, SearchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     void getRecentPackages(){
