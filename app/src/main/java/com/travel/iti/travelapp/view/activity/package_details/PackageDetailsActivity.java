@@ -46,6 +46,7 @@ public class PackageDetailsActivity extends AppCompatActivity  {
         binding = DataBindingUtil.setContentView(PackageDetailsActivity.this, R.layout.activity_package_details);
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
+        binding.setGotoBooking(this);
 
         sliderLayout = findViewById(R.id.imageSlider);
 //        sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -56,6 +57,7 @@ public class PackageDetailsActivity extends AppCompatActivity  {
     }
     public void gotoBooking(View view){
         Intent intent=new Intent(this , BookingActivity.class);
+        intent.putExtra("packageDetails", packagesPojo);
         startActivity(intent);
     }
     private void setSliderViews() {

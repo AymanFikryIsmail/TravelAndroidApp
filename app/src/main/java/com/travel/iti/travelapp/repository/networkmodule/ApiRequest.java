@@ -1,5 +1,6 @@
 package com.travel.iti.travelapp.repository.networkmodule;
 
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.model.User;
@@ -49,6 +50,13 @@ public interface  ApiRequest {
     Call<ApiResponse<Boolean>> postFavouritePackages(
             @Query("user_id") int user_id,
             @Query("package_id") int package_id);
+
+
+    @GET("packages/booking")
+    Call<ApiResponse<String>> postBookedPackages(
+            @Body BookedPackage bookedPackage
+            );
+
 
 
 }

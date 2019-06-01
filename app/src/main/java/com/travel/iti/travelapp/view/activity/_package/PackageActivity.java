@@ -43,7 +43,6 @@ public class PackageActivity extends AppCompatActivity {
         sliderLayout = findViewById(R.id.packageImage);
 
         Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
-                .fit().centerCrop()
                 .placeholder(R.drawable.mask)
                 .error(R.drawable.mask)
                 .into(sliderLayout);
