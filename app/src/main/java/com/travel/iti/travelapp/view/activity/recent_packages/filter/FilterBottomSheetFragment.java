@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +22,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 
 import com.travel.iti.travelapp.R;
@@ -40,6 +45,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
     int startOfRate;
     Button btnApply;
     private FilterFragmentInterface filterFragmentInterface;
+    GradientDrawable btnShape3, btnShape4, btnShape5, btnShapeAll;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -170,27 +176,35 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
 
     @Override
     public void onClick(View view) {
+        btnShape3 = (GradientDrawable) rateThree.getBackground().getCurrent();
+        btnShape3.setColor(getResources().getColor(R.color.white));
+        btnShape4 = (GradientDrawable) rateFour.getBackground().getCurrent();
+        btnShape4.setColor(getResources().getColor(R.color.white));
+        btnShape5 = (GradientDrawable) rateFive.getBackground().getCurrent();
+        btnShape5.setColor(getResources().getColor(R.color.white));
+        btnShapeAll = (GradientDrawable) rateAll.getBackground().getCurrent();
+        btnShapeAll.setColor(getResources().getColor(R.color.white));
         switch (view.getId()) {
 
             case R.id.rateThree:
                 startOfRate = 3;
-                rateThree.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                btnShape3.setColor(getResources().getColor(R.color.darkYellow));
                 Toast.makeText(getActivity(), "rate is 3", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.rateFour:
                 startOfRate = 4;
-                rateFour.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                btnShape4.setColor(getResources().getColor(R.color.darkYellow));
                 Toast.makeText(getActivity(), "rate is 4", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rateFive:
                 startOfRate = 5;
-                rateFive.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                btnShape5.setColor(getResources().getColor(R.color.darkYellow));
                 Toast.makeText(getActivity(), "rate is 5", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rateAll:
                 startOfRate = 1;
-                rateAll.setBackgroundColor(getResources().getColor(R.color.darkYellow));
+                btnShapeAll.setColor(getResources().getColor(R.color.darkYellow));
                 Toast.makeText(getActivity(), "rate is all", Toast.LENGTH_SHORT).show();
                 break;
         }
