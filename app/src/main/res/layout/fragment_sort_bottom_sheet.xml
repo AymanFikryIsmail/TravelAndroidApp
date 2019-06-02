@@ -1,13 +1,133 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_margin="16dp"
+android:background="@color/white"
     tools:context="com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+<android.support.constraint.Guideline
+    android:id="@+id/guideline1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.04" />
 
-</FrameLayout>
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.88" />
+
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.90" />
+
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.10" />
+
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.90" />
+
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.60" />
+
+<android.support.constraint.Guideline
+    android:id="@+id/btnGuideline5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.50" />
+
+<TextView
+    android:id="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Sort"
+    android:textColor="@color/black"
+    android:textSize="25sp"
+    app:layout_constraintBottom_toTopOf="@+id/guideline1"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:clickable="false"
+        android:text="Price Low to High"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.172">
+
+        <RadioButton
+            android:id="@+id/recent_to_oldest_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recent_to_oldest_radio_btn"/>
+        <RadioButton
+            android:id="@+id/rating_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_radio_btn"/>
+        <RadioButton
+            android:id="@+id/recommended_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommended_radio_btn"/>
+    </RadioGroup>
+
+
+<Button
+    android:id="@+id/filterBtn"
+    android:layout_width="322dp"
+    android:layout_height="wrap_content"
+    android:background="@color/lightPurple"
+    android:text="Apply"
+    android:textColor="@color/white"
+    android:textSize="20sp"
+    android:layout_marginTop="5dp"
+    app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
+    app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
+    app:layout_constraintTop_toBottomOf="@+id/btnGuideline3"
+    app:layout_constraintBottom_toTopOf="@+id/btnGuideline"
+    app:layout_constraintVertical_bias="1.0" />
+
+</android.support.constraint.ConstraintLayout>

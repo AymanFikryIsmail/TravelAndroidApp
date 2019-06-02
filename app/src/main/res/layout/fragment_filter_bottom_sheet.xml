@@ -13,14 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.04" />
 
     <android.support.constraint.Guideline
         android:id="@+id/btnGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <android.support.constraint.Guideline
         android:id="@+id/btnGuideline1"
@@ -48,14 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.64" />
+        app:layout_constraintGuide_percent="0.60" />
 
     <android.support.constraint.Guideline
         android:id="@+id/btnGuideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.50" />
 
     <TextView
         android:id="@+id/textView2"
@@ -93,7 +93,8 @@
         app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.02"
+        />
 
     <SeekBar
         android:id="@+id/priceRangeSeekBar"
@@ -131,7 +132,7 @@
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priceRangeSeekBar"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <SeekBar
         android:id="@+id/daysRangeSeekBar"
@@ -145,7 +146,7 @@
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
         android:id="@+id/daysNumber"
