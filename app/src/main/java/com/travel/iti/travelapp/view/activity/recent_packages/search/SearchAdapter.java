@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +70,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         public void bind(final CityPackage cityPackage) {
 
             cityName.setText(cityPackage.getCityName());
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+
+
+
+                }
+            });
         }
-
-
 
     }
 

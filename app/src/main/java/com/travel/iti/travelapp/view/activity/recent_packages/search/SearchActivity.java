@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -53,15 +54,12 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                 searchAdapter.filter(charSequence.toString());
                 recyclerView.setAdapter(searchAdapter);
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
@@ -69,18 +67,18 @@ public class SearchActivity extends AppCompatActivity {
         searchTO.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                recyclerView.setAdapter(searchAdapter);
                 searchAdapter.filter(charSequence.toString());
                 recyclerView.setAdapter(searchAdapter);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+
+
 
             }
         });
@@ -95,6 +93,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<CityPackage> cityPackages) {
                 cityPackageList  = cityPackages;
                 searchAdapter.updateList(cityPackageList , cityPackages);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
                 recyclerView.setAdapter(searchAdapter);
             }
         });
