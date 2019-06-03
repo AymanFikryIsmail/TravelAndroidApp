@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
@@ -29,7 +30,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private RecyclerView recyclerView;
     private PackagesAdapter packagesAdapter;
     private PackagesViewModel packagesViewModel;
-    private Button filterBtn ;
+    private TextView filterBtn ;
     private Button sortBtn ;
     private EditText searchEditText ;
     public static final String TAG = "bottom_sheet";
