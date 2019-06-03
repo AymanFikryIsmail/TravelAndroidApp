@@ -37,7 +37,7 @@ public class NetworkManager {
 //        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Retrofit.Builder builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.223.1:3000/");
+                .baseUrl("http://192.168.1.5:3000/");
         if (!TextUtils.isEmpty(githubToken)) {
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @Override public Response intercept(Chain chain) throws IOException {

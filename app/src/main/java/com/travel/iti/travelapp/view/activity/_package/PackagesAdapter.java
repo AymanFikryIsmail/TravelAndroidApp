@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -35,7 +36,6 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
     private Context context;
     private List<PackagesPojo> packagesPojoList;
     private List<PackagesPojo> originList;
-
     private PackagesViewModel packagesViewModel;
 
     public PackagesAdapter() {
@@ -74,6 +74,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         public TextView travelTo, date, duration, price, availableTickets, details;
         public ImageView roomBtn, packageFavBtn, maskImage;
         public LinearLayout packageDataLayout;
+        public RatingBar ratingBar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +85,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
             price = itemView.findViewById(R.id.price);
             availableTickets = itemView.findViewById(R.id.available_tickets);
             details = itemView.findViewById(R.id.details);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
 
 //            roomBtn = itemView.findViewById(R.id.room_btn);
             packageFavBtn = itemView.findViewById(R.id.package_fav_btn);
@@ -94,25 +96,12 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
-            String strCurrentDate = packagesPojo.getDate();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            Date newDate = null;
-            try {
-                newDate = format.parse(strCurrentDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            format = new SimpleDateFormat("yyyy-MM-dd");
-            Date currentDate = new Date(newDate.getTime());
-            String d = format.format(currentDate);
-            date.setText(d);
-
-            duration.setText(packagesPojo.getDuration() + "");
-            price.setText(packagesPojo.getPrice() + "");
-            availableTickets.setText(packagesPojo.getAvail_tickets() + "");
-
+            date.setText(packagesPojo.getDate());
+            duration.setText(packagesPojo.getDuration() + " Days");
+            price.setText(packagesPojo.getPrice() + " LE");
+            availableTickets.setText("Only "+packagesPojo.getAvail_tickets() +" Person available");
+            ratingBar.setRating(packagesPojo.getRate());
             Picasso.with(context).load("http://172.16.5.220:3000/" + packagesPojo.getPhotoPaths().get(0))
-                    .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);

@@ -3,6 +3,9 @@ package com.travel.iti.travelapp.repository.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PackagesPojo implements Serializable {
@@ -14,6 +17,7 @@ public class PackagesPojo implements Serializable {
     private String travel_from;
     private String travel_to;
     private int price;
+    private float rate;
     private int discounted_price;
     private int avail_tickets;
     private int duration;
@@ -107,7 +111,18 @@ public class PackagesPojo implements Serializable {
     }
 
     public String getDate() {
-        return date;
+        String strCurrentDate = this.date;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        Date newDate = null;
+        try {
+            newDate = format.parse(strCurrentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        format = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date(newDate.getTime());
+        String d = format.format(currentDate);
+        return d;
     }
 
     public void setDate(String date) {
@@ -141,6 +156,10 @@ public class PackagesPojo implements Serializable {
 
     public List<String> getPhotoPaths() {
         return photoPaths;
+    }
+
+    public float getRate() {
+        return rate;
     }
 
     public void setPhotoPaths(List<String> photoPaths) {
