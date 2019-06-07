@@ -39,10 +39,6 @@ public interface  ApiRequest {
     @GET("packages/recommended")
     Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
 
-
-    @GET ("packages/filter")
-    Call<ApiResponse<List<PackagesPojo>>> getFilteredPackages ();
-
     @GET("packages/favorite")
     Call<ApiResponse<List<PackagesPojo>>> getFavouritePackages(@Query("user_id") int user_id);
 
@@ -54,8 +50,10 @@ public interface  ApiRequest {
 
     @GET("packages/booking")
     Call<ApiResponse<String>> postBookedPackages(
-            @Body BookedPackage bookedPackage
-            );
+            @Body BookedPackage bookedPackage);
+
+    @GET("packages/search/all")
+    Call<ApiResponse<List<CityPackage>>> getSearchedCity();
 
 
 

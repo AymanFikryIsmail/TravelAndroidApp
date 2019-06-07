@@ -37,7 +37,6 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
     private Context context;
     private List<PackagesPojo> packagesPojoList;
     private List<PackagesPojo> originList;
-
     private PackagesViewModel packagesViewModel;
 
     private PrefManager prefManager;

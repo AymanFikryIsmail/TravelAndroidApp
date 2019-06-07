@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity.home.main;
+package com.travel.iti.travelapp.view.activity.recent_packages.search;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.repository.model.CityPackage;
-import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 
@@ -17,28 +16,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+public class SearchViewModel extends ViewModel {
 
-    public   MutableLiveData<List<CityPackage>> cityPackageData;
-
+    public MutableLiveData<List<CityPackage>> searchedCity;
     private Context mcontext;
 
-    public MainViewModel() {
-        cityPackageData = new MutableLiveData<>();
+    public SearchViewModel() {
+        searchedCity = new MutableLiveData<>();
     }
-
     public void init(Context context) {
+
         this.mcontext=context;
     }
 
-    public void getData(){
-        Call<ApiResponse<List<CityPackage>>> call = Apiservice.getInstance().apiRequest.getPackageCity();
+    public void getSearchedCities(){
+        Call<ApiResponse<List<CityPackage>>> call = Apiservice.getInstance().apiRequest.getSearchedCity();
         call.enqueue(new Callback<ApiResponse<List<CityPackage>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<CityPackage>>> call, Response<ApiResponse<List<CityPackage>>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
-                    cityPackageData.setValue(response.body().data);
+                    searchedCity.setValue(response.body().data);
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
@@ -53,3 +50,5 @@ public class MainViewModel extends ViewModel {
         });
     }
 }
+
+
