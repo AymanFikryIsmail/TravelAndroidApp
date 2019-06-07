@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 import java.util.ArrayList;
@@ -25,14 +26,19 @@ import java.util.List;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyViewHolder> {
     private Context context;
     private List<PackagesPojo> packagesPojoList;
+    private FavoritesViewModel mViewModel;
 
+    private PrefManager prefManager;
     public FavouriteAdapter() {
         packagesPojoList = new ArrayList<>();
     }
 
-    public FavouriteAdapter(Context context, List<PackagesPojo> packagesPojoList) {
+    public FavouriteAdapter(Context context, List<PackagesPojo> packagesPojoLis,FavoritesViewModel mViewModel) {
         this.context = context;
+        prefManager=new PrefManager(context);
         this.packagesPojoList = packagesPojoList;
+        this.mViewModel = mViewModel;
+
     }
 
     @NonNull
@@ -82,6 +88,15 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
+            packageFavBtn.setOnClickListener((View v) -> {
+                mViewModel.setFavPackage(packagesPojo.getPackageId(), prefManager.getUserId(),(boolean isFav) -> {
+                            if (isFav)
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_white);
+                            else
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite);
+                        }
+                );
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

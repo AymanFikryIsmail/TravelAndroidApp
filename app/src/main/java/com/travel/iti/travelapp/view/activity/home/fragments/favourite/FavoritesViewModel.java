@@ -6,10 +6,12 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
+import com.travel.iti.travelapp.view.activity._package.FavPressCallBack;
 
 import java.util.List;
 
@@ -20,14 +22,11 @@ import retrofit2.Response;
 public class FavoritesViewModel extends ViewModel {
 
     public MutableLiveData<List<PackagesPojo>> pckageList;
-    private Context mcontext;
+
     public FavoritesViewModel() {
         pckageList = new MutableLiveData<>();
     }
 
-    public void init(Context context) {
-        this.mcontext=context;
-    }
 
     public void getFavouritePackages(int userId){
         Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getFavouritePackages(userId);
@@ -39,7 +38,7 @@ public class FavoritesViewModel extends ViewModel {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "failed:: " + response.body().getMessage());
                 }
             }
             @Override
@@ -49,4 +48,30 @@ public class FavoritesViewModel extends ViewModel {
             }
         });
     }
+
+
+
+    public void setFavPackage(int pcgId ,int userId,FavPressCallBack favPressCallBack){
+        Call<ApiResponse<Boolean>> call = Apiservice.getInstance().apiRequest.postFavouritePackages( userId,pcgId);
+        call.enqueue(new Callback<ApiResponse<Boolean>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Boolean>> call, Response<ApiResponse<Boolean>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    // isFavPressed.setValue(response.body().data);
+                    favPressCallBack.setIsFav(true);
+                }
+                else {
+                    Log.d("tag", "failed:: " + response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Boolean>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+
+            }
+        });
+    }
+
 }

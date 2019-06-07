@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.05" />
+            app:layout_constraintGuide_percent="0.1" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
@@ -68,7 +68,7 @@
             android:ems="10"
             android:hint="E-Mail"
             android:inputType="textEmailAddress"
-            android:padding="8dp"
+            android:padding="10dp"
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.EmailAddress}"
             android:textColor="@color/white"
@@ -78,7 +78,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/logo"
-            app:layout_constraintVertical_bias="0.027" />
+            app:layout_constraintVertical_bias="0.127" />
 
         <EditText
             android:id="@+id/txtPassword"
@@ -91,7 +91,7 @@
             android:hint="Password"
             android:textColor="@color/white"
             android:inputType="textPassword"
-            android:padding="15dp"
+            android:padding="10dp"
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.Password}"
             android:textColorHint="@color/textColorHint"
@@ -151,12 +151,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/guidelineSignup"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-            app:layout_constraintVertical_bias="0.068"
             android:gravity="center"
+            android:layout_marginTop="50dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -191,7 +190,6 @@
             android:textAllCaps="false"
             android:textSize="14sp"
             android:padding="5dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="1.0"

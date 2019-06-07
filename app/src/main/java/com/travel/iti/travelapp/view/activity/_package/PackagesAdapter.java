@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
@@ -39,6 +40,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
     private PackagesViewModel packagesViewModel;
 
+    private PrefManager prefManager;
     public PackagesAdapter() {
         packagesPojoList = new ArrayList<>();
     }
@@ -46,8 +48,9 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
     public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList, PackagesViewModel packagesViewModel) {
         this.context = context;
+        prefManager=new PrefManager(context);
         this.packagesPojoList = packagesPojoList;
-        this.originList=  new ArrayList<>();
+        this.originList = new ArrayList<>();
         this.packagesViewModel = packagesViewModel;
     }
 
@@ -100,7 +103,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
             date.setText(packagesPojo.getDate());
             duration.setText(packagesPojo.getDuration() + " Days");
             price.setText(packagesPojo.getPrice() + " LE");
-            availableTickets.setText("Only "+packagesPojo.getAvail_tickets() +" Person available");
+            availableTickets.setText("Only " + packagesPojo.getAvail_tickets() + " Person available");
             ratingBar.setRating(packagesPojo.getRate());
             Picasso.with(context).load("http://172.16.5.220:3000/" + packagesPojo.getPhotoPaths().get(0))
                     .placeholder(R.drawable.mask)
@@ -116,43 +119,37 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
                 }
             });
 
-            packageFavBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    packagesViewModel.setFavPackage(packagesPojo.getPackageId());
-                }
+            packageFavBtn.setOnClickListener((View v) -> {
+                packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
+                            if (isFav)
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_white);
+                            else
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite);
+                        }
+                );
             });
 
-            packagesViewModel.isFavPressed.observeForever(new Observer<Boolean>() {
-                @Override
-                public void onChanged(@Nullable Boolean aBoolean) {
-                    if (aBoolean)
-                        packageFavBtn.setImageResource(R.drawable.ic_user);
-                    else
-                        packageFavBtn.setImageResource(R.drawable.ic_favorite);
-                }
-            });
         }
     }
 
-    public void updateList(List<PackagesPojo> newlist ,List<PackagesPojo> originNewList ) {
+    public void updateList(List<PackagesPojo> newlist, List<PackagesPojo> originNewList) {
         packagesPojoList = newlist;
-        this.originList.addAll(originNewList) ;
+        this.originList.addAll(originNewList);
         this.notifyDataSetChanged();
     }
 
-    public void filter(int price  , int duration , int rate ){
+    public void filter(int price, int duration, int rate) {
 
         packagesPojoList.clear();
         List<PackagesPojo> filteredList = new ArrayList<>();
-        for (PackagesPojo packagesPojo : originList){
+        for (PackagesPojo packagesPojo : originList) {
 
-            if ((price <= packagesPojo.getPrice()) && (duration <= packagesPojo.getDuration())){
-                filteredList.add (packagesPojo) ;
+            if ((price <= packagesPojo.getPrice()) && (duration <= packagesPojo.getDuration())) {
+                filteredList.add(packagesPojo);
             }
         }
 
-        packagesPojoList = filteredList ;
+        packagesPojoList = filteredList;
         this.notifyDataSetChanged();
 
     }

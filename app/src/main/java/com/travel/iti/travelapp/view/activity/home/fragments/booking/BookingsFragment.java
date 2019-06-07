@@ -38,7 +38,6 @@ public class BookingsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.bookings_fragment, container, false);
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getActivity());
 
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

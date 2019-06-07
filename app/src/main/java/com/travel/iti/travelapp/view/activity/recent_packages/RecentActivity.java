@@ -43,7 +43,6 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         setContentView(R.layout.activity_recent);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getApplicationContext());
 
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());

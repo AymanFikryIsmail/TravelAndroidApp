@@ -41,14 +41,13 @@ public class FavoritesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.favorites_fragment, container, false);
         mViewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
-        mViewModel.init(getActivity());
         prefManager = new PrefManager(getContext());
 
         emptyLayout = view.findViewById(R.id.emptyLayoutId);
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new FavouriteAdapter(getContext(), packagesPojoList);
+        packagesAdapter = new FavouriteAdapter(getContext(), packagesPojoList, mViewModel);
         packagesPojoList = null;
         getFavouritePackages();
         return view;

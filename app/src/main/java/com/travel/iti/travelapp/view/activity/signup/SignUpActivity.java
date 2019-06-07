@@ -1,5 +1,6 @@
 package com.travel.iti.travelapp.view.activity.signup;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -70,6 +71,13 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
 
             }
         });
+//        mapBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Intent intent = new Intent(getContext(), MapsActivity.class);
+//                startActivityForResult(intent, 11);
+//            }
+//        });
         signUpViewModel.isSuccess.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isSuccess) {
@@ -94,4 +102,21 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
     public void showSuccess() {
 
     }
+
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode==11&&data!=null){
+//            if(resultCode == Activity.RESULT_OK) {
+//                latEt = data.getDoubleExtra("latitude",0);
+//                lngEt = data.getDoubleExtra("longitude",0);
+//                String addrs= data.getStringExtra("address");
+//                locationAddress.setText(TextUtils.isEmpty(addrs)?"":addrs);
+//            } else {
+//                Toast.makeText(getContext(), "open gps and try again ", Toast.LENGTH_LONG).show();
+//
+//            }
+//        }
+//    }
 }
