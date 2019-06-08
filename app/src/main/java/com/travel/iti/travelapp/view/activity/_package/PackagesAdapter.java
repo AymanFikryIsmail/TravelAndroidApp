@@ -154,4 +154,20 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
     }
 
+    public void searchByCityFilter(String fromCity , String toCity){
+
+        packagesPojoList.clear();
+        List<PackagesPojo> filteredList = new ArrayList<>();
+        for (PackagesPojo packagesPojo : originList){
+
+            if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))){
+                filteredList.add (packagesPojo) ;
+            }
+            packagesPojoList = filteredList ;
+            this.notifyDataSetChanged();
+        }
+
+
+    }
+
 }

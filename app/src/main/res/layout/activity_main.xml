@@ -32,6 +32,7 @@
         android:layout_gravity="start"
         android:background="@drawable/side_nav_bar"
         app:itemIconTint="@color/darkYellow"
+        app:itemTextColor="@color/white"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/navigation_menu">
     </android.support.design.widget.NavigationView>

@@ -242,7 +242,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bookLayoutId"
-        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/btnBook"
@@ -252,7 +251,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/login_button"
+            android:background="@drawable/book_button"
             android:text="Book now"
             android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
             android:textSize="18sp"

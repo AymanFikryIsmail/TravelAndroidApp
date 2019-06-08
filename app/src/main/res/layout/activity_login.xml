@@ -186,6 +186,7 @@
             android:background="@drawable/googleplus_button"
             android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
             android:text="Sign up"
+
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="14sp"
