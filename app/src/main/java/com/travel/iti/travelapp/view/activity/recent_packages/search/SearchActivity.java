@@ -2,6 +2,7 @@ package com.travel.iti.travelapp.view.activity.recent_packages.search;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +10,17 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
+import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +33,9 @@ public class SearchActivity extends AppCompatActivity {
     private SearchViewModel searchViewModel;
     private EditText searchFrom ;
     private EditText searchTO ;
+    private String fromCity ;
+    private String toCity ;
+    Button searchBtn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        searchAdapter = new SearchAdapter(getApplicationContext(), cityPackageList , searchViewModel);
+        searchAdapter = new SearchAdapter(getApplicationContext(), cityPackageList , searchViewModel , searchFrom);
         cityPackageList = null;
 
         getSearchedCities ();
@@ -82,6 +92,25 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+
+
+        fromCity = searchFrom.getText().toString() ;
+        toCity = searchTO.getText().toString();
+
+        searchBtn = findViewById(R.id.searchResultBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.putExtra("fromCity",fromCity);
+                intent.putExtra("toCity",toCity);
+                setResult(2, intent);
+                finish();
+
+            }
+        });
+
     }
 
 

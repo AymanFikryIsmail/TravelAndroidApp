@@ -20,6 +20,7 @@ import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +31,19 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private RecyclerView recyclerView;
     private PackagesAdapter packagesAdapter;
     private PackagesViewModel packagesViewModel;
-    private TextView filterBtn ;
-    private Button sortBtn ;
-    private EditText searchEditText ;
+    private TextView filterBtn;
+    private Button sortBtn;
+    private EditText searchEditText;
     public static final String TAG = "bottom_sheet";
-    private FilterFragmentInterface filterFragmentInterface ;
+    private FilterFragmentInterface filterFragmentInterface;
+    private String fromCity;
+    private String toCity;
 
 
     public RecentActivity() {
         packagesPojoList = new ArrayList<>();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +55,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList,packagesViewModel);
+        packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
 
         String keyValue;
@@ -80,9 +84,10 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 startActivity(i);
             }
         });
+
     }
 
-    void getRecentPackages(){
+    void getRecentPackages() {
         packagesViewModel.getRecentPackages();
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
@@ -94,13 +99,13 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         });
     }
 
-    void getRecommendedPackages(){
+    void getRecommendedPackages() {
         packagesViewModel.getRecommendedPackages();
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList , packagesPojos);
+                packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
             }
         });
@@ -109,8 +114,20 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     @Override
     public void passData(int price, int duration, int rate) {
 
-        packagesAdapter.filter (price , duration , rate);
+        packagesAdapter.filter(price, duration, rate);
         recyclerView.setAdapter(packagesAdapter);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            fromCity = data.getStringExtra("fromCity");
+            toCity = data.getStringExtra("toCity");
+
+
+        }
     }
 }

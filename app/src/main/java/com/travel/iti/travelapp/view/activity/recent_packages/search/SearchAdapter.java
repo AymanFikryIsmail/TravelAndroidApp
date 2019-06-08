@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,12 +27,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private List<CityPackage> cityPackageList = new ArrayList<>();
     private SearchViewModel searchViewModel;
     private List<CityPackage> originList;
+    EditText mEditText;
 
-    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel) {
+    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel , EditText mEditText ) {
         this.context = context;
         this.cityPackageList = cityPackages;
         this.searchViewModel = searchViewModel;
         this.originList = new ArrayList<>();
+        this.mEditText = mEditText ;
     }
 
 
@@ -73,7 +76,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-
 
 
                 }
