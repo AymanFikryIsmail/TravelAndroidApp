@@ -50,7 +50,6 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         setContentView(R.layout.activity_recent);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getApplicationContext());
 
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -80,8 +79,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(RecentActivity.this, SearchActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(RecentActivity.this, SearchActivity.class);
+                startActivityForResult(intent, 2);
             }
         });
 
@@ -126,7 +125,6 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         if (requestCode == 2) {
             fromCity = data.getStringExtra("fromCity");
             toCity = data.getStringExtra("toCity");
-
 
         }
     }

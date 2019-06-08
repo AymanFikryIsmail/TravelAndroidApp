@@ -19,6 +19,7 @@ import static java.lang.String.format;
 
 public class NetworkManager {
     protected static Retrofit retrofit;
+    public static String BASE_URL= "http://192.168.223.1:3000/";
     private ApiRequest apiRequest;
     private static NetworkManager networkManager;
     private NetworkManager() { }
@@ -37,7 +38,8 @@ public class NetworkManager {
 //        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Retrofit.Builder builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.223.1:3000/");
+                .baseUrl(BASE_URL);
+
         if (!TextUtils.isEmpty(githubToken)) {
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @Override public Response intercept(Chain chain) throws IOException {

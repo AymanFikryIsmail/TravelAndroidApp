@@ -22,8 +22,6 @@ public class PackagesViewModel extends ViewModel {
     public MutableLiveData<List<PackagesPojo>> packagesData ;
     public MutableLiveData<Boolean> isFavPressed ;
 
-    private Context mcontext;
-    private PrefManager prefManager;
 
     public PackagesViewModel() {
         packagesData = new MutableLiveData<>();
@@ -31,19 +29,16 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void init(Context context) {
-        this.mcontext=context;
-        this.prefManager=new PrefManager(context);
-    }
 
-    public void setFavPackage(int pcgId ){
-        Call<ApiResponse<Boolean>> call = Apiservice.getInstance().apiRequest.postFavouritePackages( prefManager.getUserId(),pcgId);
+    public void setFavPackage(int pcgId , int userId,FavPressCallBack favPressCallBack){
+        Call<ApiResponse<Boolean>> call = Apiservice.getInstance().apiRequest.postFavouritePackages( userId,pcgId);
         call.enqueue(new Callback<ApiResponse<Boolean>>() {
             @Override
             public void onResponse(Call<ApiResponse<Boolean>> call, Response<ApiResponse<Boolean>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
-                    isFavPressed.setValue(response.body().data);
+                   // isFavPressed.setValue(response.body().data);
+                    favPressCallBack.setIsFav(true);
                 }
                 else {
                     //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
@@ -68,7 +63,7 @@ public class PackagesViewModel extends ViewModel {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
             }
             @Override
@@ -90,7 +85,7 @@ public class PackagesViewModel extends ViewModel {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Toast.makeText(mcontext,"faild", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
             }
             @Override
@@ -113,7 +108,7 @@ public class PackagesViewModel extends ViewModel {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Toast.makeText(mcontext,"faild", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
             }
             @Override

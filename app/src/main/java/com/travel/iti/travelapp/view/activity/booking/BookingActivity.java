@@ -31,14 +31,10 @@ public class BookingActivity extends AppCompatActivity {
         binding.setBookingViewModel(bookingViewModel);
         binding.setGotoBooking(this);
 
-        binding.decrementAdults.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
     public void gotoBooking(View view){
+        bookingViewModel.postBookedPackages();
         Intent intent=new Intent(this , QRCardActivity.class);
         intent.putExtra("packageDetails", packagesPojo);
         startActivity(intent);

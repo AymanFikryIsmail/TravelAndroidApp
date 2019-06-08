@@ -47,7 +47,6 @@ public class PackageActivity extends AppCompatActivity {
                 .error(R.drawable.mask)
                 .into(sliderLayout);
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getApplicationContext());
 
         recyclerView = findViewById(R.id.packages_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
