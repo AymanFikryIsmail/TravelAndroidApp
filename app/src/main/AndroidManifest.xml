@@ -16,11 +16,11 @@
         android:roundIcon="@drawable/splash_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.recent_packages.search.SearchActivity"></activity>
-        <activity android:name=".view.activity._package.PackageActivity"
+        <activity android:name=".view.activity.recent_packages.search.SearchActivity" />
+        <activity
+            android:name=".view.activity._package.PackageActivity"
             android:label="Packages"
-            android:parentActivityName=".view.activity.home.MainActivity"
-            />
+            android:parentActivityName=".view.activity.home.MainActivity" />
         <activity
             android:name=".view.activity.signup.SignUpActivity"
             android:label="E-Travel"
@@ -48,18 +48,18 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.activity.qrcard.QRCardActivity" />
-        <activity android:name=".view.activity.package_details.PackageDetailsActivity"
-        android:label="Package Details"
-         android:parentActivityName=".view.activity._package.PackageActivity"
-            />
-        <activity android:name=".view.activity.recent_packages.RecentActivity"
+        <activity
+            android:name=".view.activity.package_details.PackageDetailsActivity"
+            android:label="Package Details"
+            android:parentActivityName=".view.activity._package.PackageActivity" />
+        <activity
+            android:name=".view.activity.recent_packages.RecentActivity"
             android:label="Recent Packages"
-            android:parentActivityName=".view.activity.home.MainActivity"
-            />
-        <activity android:name=".view.activity.booking.BookingActivity"
+            android:parentActivityName=".view.activity.home.MainActivity" />
+        <activity
+            android:name=".view.activity.booking.BookingActivity"
             android:label="Booking"
-            android:parentActivityName=".view.activity.package_details.PackageDetailsActivity"
-            />
+            android:parentActivityName=".view.activity.package_details.PackageDetailsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -74,7 +74,8 @@
 
         <activity
             android:name=".view.activity.map.MapsActivity"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".view.activity.package_desc.PackageDescActivity"></activity>
     </application>
 
 </manifest>
