@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
 
 public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
 
@@ -104,7 +105,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
             price.setText(packagesPojo.getPrice() + " LE");
             availableTickets.setText("Only " + packagesPojo.getAvail_tickets() + " Person available");
             ratingBar.setRating(packagesPojo.getRate());
-            Picasso.with(context).load("http://172.16.5.220:3000/" + packagesPojo.getPhotoPaths().get(0))
+            Picasso.with(context).load(BASE_URL + packagesPojo.getPhotoPaths().get(0))
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);

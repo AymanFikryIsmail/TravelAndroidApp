@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable User user) {
                 prefManager.setUserId(user.getId());
+                prefManager.setUserData(user);
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

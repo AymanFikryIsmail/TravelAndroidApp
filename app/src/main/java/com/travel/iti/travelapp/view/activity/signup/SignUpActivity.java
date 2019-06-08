@@ -19,6 +19,7 @@ import com.travel.iti.travelapp.databinding.ActivitySignUpBinding;
 import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.view.activity.home.MainActivity;
 import com.travel.iti.travelapp.view.activity.login.LoginViewModel;
+import com.travel.iti.travelapp.view.activity.map.MapsActivity;
 
 
 public class SignUpActivity extends AppCompatActivity implements  SignUpView {
@@ -71,13 +72,13 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
 
             }
         });
-//        mapBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final Intent intent = new Intent(getContext(), MapsActivity.class);
-//                startActivityForResult(intent, 11);
-//            }
-//        });
+        binding2.editTextCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent = new Intent(SignUpActivity.this, MapsActivity.class);
+                startActivityForResult(intent, 11);
+            }
+        });
         signUpViewModel.isSuccess.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isSuccess) {
@@ -104,19 +105,17 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
     }
 
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==11&&data!=null){
-//            if(resultCode == Activity.RESULT_OK) {
-//                latEt = data.getDoubleExtra("latitude",0);
-//                lngEt = data.getDoubleExtra("longitude",0);
-//                String addrs= data.getStringExtra("address");
-//                locationAddress.setText(TextUtils.isEmpty(addrs)?"":addrs);
-//            } else {
-//                Toast.makeText(getContext(), "open gps and try again ", Toast.LENGTH_LONG).show();
-//
-//            }
-//        }
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==11&&data!=null){
+            if(resultCode == Activity.RESULT_OK) {
+                String addrs= data.getStringExtra("address");
+                binding2.editTextCity.setText(TextUtils.isEmpty(addrs)?"":addrs);
+            } else {
+                Toast.makeText(SignUpActivity.this, "open gps and try again ", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }
 }

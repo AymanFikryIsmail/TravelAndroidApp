@@ -7,7 +7,7 @@
     android:id="@+id/favorites_fragment"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="8dp"
     tools:context=".view.activity.home.fragments.favourite.FavoritesFragment">
 
     <android.support.constraint.Guideline
@@ -57,8 +57,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerViewId"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
         />
 </android.support.constraint.ConstraintLayout>

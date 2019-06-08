@@ -19,6 +19,8 @@ import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActi
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
+
 /**
  * Created by ayman on 2019-05-22.
  */
@@ -80,10 +82,10 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
 
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
-            price.setText(packagesPojo.getPrice()+"");
+            price.setText(packagesPojo.getPrice()+"LE");
             availableTickets.setText("only "+packagesPojo.getAvail_tickets()+" avaliable");
-
-            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
+            details.setText("include accomodation");
+            Picasso.with(context).load(BASE_URL+packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)

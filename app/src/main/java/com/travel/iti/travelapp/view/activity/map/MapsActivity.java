@@ -83,10 +83,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try {
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     if (addresses.size() > 0 && addresses != null) {
-                        address = addresses.get(0).getAddressLine(0);
-                        zipCode = addresses.get(0).getSubAdminArea();// If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                        address = addresses.get(0).getAdminArea();
                     } else {
-                        zipCode = "zipCode is not determined ";
+                        address = "address is not determined ";
                     }
                     data.putExtra("address", address);
 

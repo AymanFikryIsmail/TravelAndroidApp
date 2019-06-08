@@ -15,7 +15,9 @@ import com.travel.iti.travelapp.R;
 
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.repository.local.PrefManager;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private EditText searchDestinationEditText ;
+    TextView userName , email;
     private PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView)findViewById(R.id.nv);
         navigationView.setNavigationItemSelectedListener(this);
+        View navHeader = navigationView.getHeaderView(0);
+         userName=navHeader.findViewById(R.id.user_name_id);
+        email=navHeader.findViewById(R.id.emmailId);
+        userName.setText(prefManager.getUserData().getUsername());
+        email.setText(prefManager.getUserData().getEmail());
 
         MainFragment mainFragment= new MainFragment();
         loadFragment(mainFragment,"mainFragment ");
@@ -77,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
             }else {
                 super.onBackPressed();
-              //  finishAffinity();
+               finish();
             }
     }
 

@@ -18,6 +18,8 @@ import com.travel.iti.travelapp.view.activity._package.PackageActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
+
 /**
  * Created by ayman on 2019-05-18.
  */
@@ -75,7 +77,7 @@ public class CityPackagesAdapter extends RecyclerView.Adapter<CityPackagesAdapte
 
             cityNameId.setText(cityPackage.getCityName());
             cityDescId.setText(cityPackage.getCityDesc());
-            Picasso.with(context).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())//
+            Picasso.with(context).load(BASE_URL+cityPackage.getCityImage())//
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
