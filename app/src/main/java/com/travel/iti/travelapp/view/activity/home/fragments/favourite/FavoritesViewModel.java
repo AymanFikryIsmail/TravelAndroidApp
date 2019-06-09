@@ -59,7 +59,7 @@ public class FavoritesViewModel extends ViewModel {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                     // isFavPressed.setValue(response.body().data);
-                    favPressCallBack.setIsFav(true);
+                    favPressCallBack.setIsFav(response.body().data);
                 }
                 else {
                     Log.d("tag", "failed:: " + response.body().getMessage());

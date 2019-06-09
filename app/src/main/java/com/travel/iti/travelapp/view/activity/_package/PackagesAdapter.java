@@ -122,7 +122,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
             packageFavBtn.setOnClickListener((View v) -> {
                 packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
                             if (isFav)
-                                packageFavBtn.setImageResource(R.drawable.ic_favorite_white);
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
                             else
                                 packageFavBtn.setImageResource(R.drawable.ic_favorite);
                         }

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/booking_fragment"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".view.activity.home.fragments.booking.BookingsFragment">
 
@@ -14,13 +13,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="20dp"
+        android:id="@+id/emptyLayoutId"
+
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emptyTxt"
             android:text="There are no items"
-            android:textColor="@color/white"
             android:textSize="24sp"
             android:layout_marginBottom="30dp"
             android:fontFamily="serif-monospace"
@@ -30,7 +30,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_mybooking"
+            android:src="@drawable/ic_business_center"
             />
 
 
@@ -41,8 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerViewId"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_margin="16dp"
         />
 
 </LinearLayout>

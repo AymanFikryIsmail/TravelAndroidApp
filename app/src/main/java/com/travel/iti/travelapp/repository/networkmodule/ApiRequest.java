@@ -48,7 +48,7 @@ public interface  ApiRequest {
             @Query("package_id") int package_id);
 
 
-    @GET("packages/booking")
+    @POST("packages/booking")
     Call<ApiResponse<String>> postBookedPackages(
             @Body BookedPackage bookedPackage);
 

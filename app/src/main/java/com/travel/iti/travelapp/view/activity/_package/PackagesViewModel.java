@@ -38,7 +38,7 @@ public class PackagesViewModel extends ViewModel {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                    // isFavPressed.setValue(response.body().data);
-                    favPressCallBack.setIsFav(true);
+                    favPressCallBack.setIsFav(response.body().data);
                 }
                 else {
                     //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();

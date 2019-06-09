@@ -35,29 +35,5 @@
         android:text="Aenean sed lorem est. Sed quis neque ut nibh suscipit imperdiet ac non augue. Aenean ornare sit amet lectus non tristique. Nunc ut volutpat lectus. Nulla velit augue, pulvinar sed nisi sit amet, eleifend fermentum est. Quisque nibh justo, congue ut erat at, aliquet efficitur purus. Integer venenatis odio vitae orci efficitur mollis. Donec ultrices diam dictum dignissim vestibulum. Proin eleifend nunc nunc. Sed non arcu eget lorem viverra sodales."
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18.3sp"
-        android:fontFamily="sans-serif"
-        android:textStyle="normal"
-        android:textColor="#de000000"
-        android:lineSpacingExtra="11.7sp"
-        android:text="transformation"
-        android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/circle_blue_drawable"
-        android:drawablePadding="10dp"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/texttransformId"
-        android:textSize="11.7sp"
-        android:fontFamily="sans-serif"
-        android:textStyle="normal"
-        android:textColor="#de000000"
-        android:lineSpacingExtra="5sp"
-        android:text="Aenean sed lorem est. Sed quis neque ut nibh suscipit imperdiet ac non augue. Aenean ornare sit amet lectus non tristique. Nunc ut volutpat lectus. Nulla velit augue, pulvinar sed nisi sit amet, eleifend fermentum est. Quisque nibh justo, congue ut erat at, aliquet efficitur purus. Integer venenatis odio vitae orci efficitur mollis. Donec ultrices diam dictum dignissim vestibulum. Proin eleifend nunc nunc. Sed non arcu eget lorem viverra sodales."
-        />
 </LinearLayout>
