@@ -18,6 +18,7 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBotto
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private TextView filterBtn ;
     private Button sortBtn ;
     public static final String TAG = "bottom_sheet";
+    public static final String SORT_TAG = "sort_bottom_sheet";
     private FilterFragmentInterface filterFragmentInterface ;
 
 
@@ -66,6 +68,14 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
 
                 FilterBottomSheetFragment filterFragment = new FilterBottomSheetFragment();
                 filterFragment.show(getSupportFragmentManager(), TAG);
+            }
+        });
+
+        sortBtn = findViewById(R.id.sort_btn);
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
             }
         });
 
