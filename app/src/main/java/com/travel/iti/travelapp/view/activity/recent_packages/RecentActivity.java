@@ -19,12 +19,9 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBotto
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
-<<<<<<< HEAD
 import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
-=======
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
->>>>>>> 31e67c36b69f5a947a705fee83ab5686ba0ae30e
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +36,9 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private Button sortBtn;
     private EditText searchEditText;
     public static final String TAG = "bottom_sheet";
-<<<<<<< HEAD
     public static final String SORT_TAG = "sort_bottom_sheet";
-    private FilterFragmentInterface filterFragmentInterface ;
-=======
-    private FilterFragmentInterface filterFragmentInterface;
     private String fromCity;
     private String toCity;
->>>>>>> 31e67c36b69f5a947a705fee83ab5686ba0ae30e
 
 
     public RecentActivity() {
@@ -84,65 +76,64 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             }
         });
 
-<<<<<<< HEAD
         sortBtn = findViewById(R.id.sort_btn);
         sortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
-=======
+            }
+        });
         searchEditText = findViewById(R.id.searchEditText);
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecentActivity.this, SearchActivity.class);
                 startActivityForResult(intent, 2);
->>>>>>> 31e67c36b69f5a947a705fee83ab5686ba0ae30e
             }
         });
 
     }
+       public void getRecentPackages(){
+            packagesViewModel.getRecentPackages();
+            packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+                @Override
+                public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
+                    packagesPojoList = packagesPojos;
+                    packagesAdapter.updateList(packagesPojoList, packagesPojos);
+                    recyclerView.setAdapter(packagesAdapter);
+                }
+            });
+        }
 
-    void getRecentPackages() {
-        packagesViewModel.getRecentPackages();
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-            @Override
-            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                recyclerView.setAdapter(packagesAdapter);
+        void getRecommendedPackages () {
+            packagesViewModel.getRecommendedPackages();
+            packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+                @Override
+                public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
+                    packagesPojoList = packagesPojos;
+                    packagesAdapter.updateList(packagesPojoList, packagesPojos);
+                    recyclerView.setAdapter(packagesAdapter);
+                }
+            });
+        }
+
+
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 2) {
+                fromCity = data.getStringExtra("fromCity");
+                toCity = data.getStringExtra("toCity");
+
             }
-        });
-    }
-
-    void getRecommendedPackages() {
-        packagesViewModel.getRecommendedPackages();
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-            @Override
-            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                recyclerView.setAdapter(packagesAdapter);
-            }
-        });
-    }
-
-    @Override
-    public void passData(int price, int duration, int rate) {
-
-        packagesAdapter.filter(price, duration, rate);
-        recyclerView.setAdapter(packagesAdapter);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2) {
-            fromCity = data.getStringExtra("fromCity");
-            toCity = data.getStringExtra("toCity");
 
         }
+
+        
+    @Override
+    public void passData(int price, int duration, int rate) {
+        packagesAdapter.filter(price, duration, rate);
+        recyclerView.setAdapter(packagesAdapter);
     }
 }
