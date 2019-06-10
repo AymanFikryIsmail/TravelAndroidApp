@@ -305,6 +305,19 @@
                 android:text="100% refund if Not Satisfied"
                 android:textColor="@color/brown" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/userNameEd"
+                android:text="@={bookingViewModel.userName}"
+                android:inputType="text"
+                android:padding="10dp"
+                android:paddingStart="15dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:hint="user name"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -312,7 +325,6 @@
                 android:drawablePadding="10dp"
                 android:text="Payment Method"
                 android:textColor="@color/secondblue" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"

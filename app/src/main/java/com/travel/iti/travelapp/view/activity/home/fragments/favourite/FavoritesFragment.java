@@ -41,17 +41,18 @@ public class FavoritesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.favorites_fragment, container, false);
         mViewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
-        mViewModel.init(getActivity());
         prefManager = new PrefManager(getContext());
 
         emptyLayout = view.findViewById(R.id.emptyLayoutId);
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        packagesAdapter = new FavouriteAdapter(getContext(), packagesPojoList);
+        packagesAdapter = new FavouriteAdapter(getContext(), packagesPojoList, mViewModel);
         packagesPojoList = null;
         getFavouritePackages();
         return view;
+
+
     }
 
     @Override
@@ -66,7 +67,11 @@ public class FavoritesFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                emptyLayout.setVisibility(View.GONE);
+                if (packagesPojos.size()==0){
+                    emptyLayout.setVisibility(View.VISIBLE);
+                }else {
+                    emptyLayout.setVisibility(View.GONE);
+                }
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
             }

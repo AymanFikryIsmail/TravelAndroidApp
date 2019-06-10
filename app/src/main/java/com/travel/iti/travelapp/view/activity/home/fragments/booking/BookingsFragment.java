@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
@@ -28,6 +29,7 @@ public class BookingsFragment extends Fragment {
     private BookingAdapter packagesAdapter;
     private PackagesViewModel packagesViewModel;
     private CityPackage cityPackage;
+    private LinearLayout emptyLayout;
 
     public static BookingsFragment newInstance() {
         return new BookingsFragment();
@@ -38,7 +40,7 @@ public class BookingsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.bookings_fragment, container, false);
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        packagesViewModel.init(getActivity());
+        emptyLayout = view.findViewById(R.id.emptyLayoutId);
 
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -55,7 +57,6 @@ public class BookingsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(BookingsViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 
@@ -65,6 +66,11 @@ public class BookingsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
+                if (packagesPojos.size()==0){
+                    emptyLayout.setVisibility(View.VISIBLE);
+                }else {
+                    emptyLayout.setVisibility(View.GONE);
+                }
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
             }

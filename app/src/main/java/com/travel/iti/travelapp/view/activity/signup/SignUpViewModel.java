@@ -97,6 +97,7 @@ public class SignUpViewModel extends ViewModel {
                     signUpData.setValue(response.body().data);
                     isSuccess.setValue(true);
                     prefManager.setUserId(response.body().data.getId());
+                    prefManager.setUserData(response.body().data);;
                 } else {
                     isSuccess.setValue(false);
                     view.shwoError("auth failed");

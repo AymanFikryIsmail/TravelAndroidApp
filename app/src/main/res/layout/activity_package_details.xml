@@ -13,10 +13,16 @@
             type="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity" />
 
     </data>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -25,13 +31,25 @@
         android:orientation="vertical"
         android:layout_above="@+id/bookLayoutId"
         >
-
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <com.smarteist.autoimageslider.SliderLayout
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_favorite_white"
+            android:padding="15dp"
+            android:background="@drawable/fav_back_drawable"
+            android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +125,7 @@
                 android:layout_gravity="end"
                 android:drawablePadding="8dp"
                 android:gravity="end"
-                android:text="Dayes :"
+                android:text="Days :"
                 android:textColor="@color/blue"
                 />
             <TextView
@@ -117,7 +135,7 @@
                 android:id="@+id/durationId"
                 android:drawablePadding="8dp"
                 android:gravity="end"
-                android:text="@{Integer.toString(packageDetails.duration),default=Dayes}"
+                android:text="@{Integer.toString(packageDetails.duration),default=Days}"
                 android:textColor="@color/black"
                 />
             </LinearLayout>
@@ -212,35 +230,6 @@
                 android:src="@drawable/ic_arrow" />
         </LinearLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/dot_light_screen1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/paperlayoutId"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:textColor="@color/blue"
-                android:textSize="18sp"
-                android:text="Paper and preparation " />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow" />
-        </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -253,7 +242,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bookLayoutId"
-        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/btnBook"
@@ -263,20 +251,15 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/login_button"
+            android:background="@drawable/book_button"
             android:text="Book now"
             android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
             android:textSize="18sp"
             android:textColor="@color/textColorHint"
             />
     </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_favorite_white"
-        android:padding="15dp"
-        android:background="@drawable/fav_back_drawable"
-        android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </layout>

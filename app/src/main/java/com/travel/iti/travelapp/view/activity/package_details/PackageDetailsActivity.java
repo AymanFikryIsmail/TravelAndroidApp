@@ -22,19 +22,10 @@ import com.travel.iti.travelapp.view.activity.home.MainActivity;
 
 import java.util.HashMap;
 
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
+
 public class PackageDetailsActivity extends AppCompatActivity  {
-
-    HashMap<String,String> url_maps;
-    TextView carouselLabel;
     SliderLayout sliderLayout;
-
-    TextView customCarouselLabel;
-    String[] sampleNetworkImageURLs = {
-            "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg",
-            "http://cdn3.nflximg.net/images/3093/2043093.jpg",
-            "http://tvfiles.alphacoders.com/100/hdclearart-10.png",
-            "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg",
-    };
     private PackagesPojo packagesPojo;
     private ActivityPackageDetailsBinding binding;
 
@@ -64,7 +55,7 @@ public class PackageDetailsActivity extends AppCompatActivity  {
 
         for (int i = 0; i < packagesPojo.getPhotoPaths().size(); i++) {
             DefaultSliderView sliderView = new DefaultSliderView(this);
-            sliderView.setImageUrl("http://172.16.5.220:3000/"+packagesPojo.getPhotoPaths().get(i));
+            sliderView.setImageUrl(BASE_URL+packagesPojo.getPhotoPaths().get(i));
             sliderView.setImageScaleType(ImageView.ScaleType.FIT_XY);
 //            sliderView.setDescription(packagesPojo.getDescription());
             //at last add this view in your layout :

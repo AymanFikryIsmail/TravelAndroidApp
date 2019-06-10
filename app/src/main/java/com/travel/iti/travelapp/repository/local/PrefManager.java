@@ -3,6 +3,9 @@ package com.travel.iti.travelapp.repository.local;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.travel.iti.travelapp.repository.model.User;
+
 public class PrefManager {
 
     SharedPreferences pref;
@@ -39,8 +42,20 @@ public class PrefManager {
 
     public int getUserId(){
         return  pref.getInt("uid", 0);
-
     }
 
+    public void setUserData(User user){
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString("user", json);
+        editor.commit();
+    }
+
+    public User getUserData(){
+        Gson gson = new Gson();
+        String json = pref.getString("user", "");
+        User user = gson.fromJson(json, User.class);
+        return user;
+    }
 
 }

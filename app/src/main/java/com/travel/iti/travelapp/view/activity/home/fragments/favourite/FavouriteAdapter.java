@@ -13,10 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
 
 /**
  * Created by ayman on 2019-05-22.
@@ -25,14 +28,19 @@ import java.util.List;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyViewHolder> {
     private Context context;
     private List<PackagesPojo> packagesPojoList;
+    private FavoritesViewModel mViewModel;
 
+    private PrefManager prefManager;
     public FavouriteAdapter() {
         packagesPojoList = new ArrayList<>();
     }
 
-    public FavouriteAdapter(Context context, List<PackagesPojo> packagesPojoList) {
+    public FavouriteAdapter(Context context, List<PackagesPojo> packagesPojoLis,FavoritesViewModel mViewModel) {
         this.context = context;
+        prefManager=new PrefManager(context);
         this.packagesPojoList = packagesPojoList;
+        this.mViewModel = mViewModel;
+
     }
 
     @NonNull
@@ -74,14 +82,22 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
 
         public void bind(final PackagesPojo packagesPojo) {
             travelTo.setText(packagesPojo.getTravel_to());
-            price.setText(packagesPojo.getPrice()+"");
+            price.setText(packagesPojo.getPrice()+"LE");
             availableTickets.setText("only "+packagesPojo.getAvail_tickets()+" avaliable");
-
-            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
+            details.setText("include accomodation");
+            Picasso.with(context).load(BASE_URL+packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
+            packageFavBtn.setOnClickListener((View v) -> {
+                mViewModel.setFavPackage(packagesPojo.getPackageId(), prefManager.getUserId(),(boolean isFav) -> {
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
+                            packagesPojoList.remove(packagesPojo);
+                            notifyDataSetChanged();
+                        }
+                );
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

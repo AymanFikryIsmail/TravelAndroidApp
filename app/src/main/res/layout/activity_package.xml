@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".view.activity._package.PackageActivity">
 
     <LinearLayout
@@ -14,13 +16,30 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/packageImage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/mask"
-            android:layout_alignParentTop="true" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/packageImage"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/mask"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/package_city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_index"
+                android:text="Dubai"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:id="@+id/dataLayoutId"
@@ -28,6 +47,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:padding="8dp">
 
             <LinearLayout
@@ -36,15 +56,6 @@
                 android:layout_weight="4"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/package_city_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_index"
-                    android:text="Dubai"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/cityDescId"

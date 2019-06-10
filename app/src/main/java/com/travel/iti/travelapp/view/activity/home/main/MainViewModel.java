@@ -31,6 +31,7 @@ public class MainViewModel extends ViewModel {
     public void init(Context context) {
         this.mcontext=context;
     }
+
     public void getData(){
         Call<ApiResponse<List<CityPackage>>> call = Apiservice.getInstance().apiRequest.getPackageCity();
         call.enqueue(new Callback<ApiResponse<List<CityPackage>>>() {
