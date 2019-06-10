@@ -23,6 +23,7 @@ public class PackagesPojo implements Serializable {
     private int duration;
     private String date;
     private String description;
+    private int fav_flag;
     @SerializedName("c_id")
     private int cityId;
     private String addingDate;

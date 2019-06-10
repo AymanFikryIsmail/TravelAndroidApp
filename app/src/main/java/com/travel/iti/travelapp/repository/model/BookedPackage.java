@@ -13,13 +13,20 @@ public class BookedPackage implements Serializable{
     @SerializedName("package")
     int packageId;
     String userName;
-
     @SerializedName("user")
     int userId;
+
     @SerializedName("adults")
     int noOfAdults;
     @SerializedName("children")
     int noOfChildren;
+
+
+    public BookedPackage(int packageId, int userId) {
+        this.packageId = packageId;
+        this.userId = userId;
+
+    }
 
     public BookedPackage(int packageId, int userId, int noOfAdults, int noOfChildren , String userName) {
         this.packageId = packageId;

@@ -16,6 +16,7 @@ import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 
@@ -33,13 +34,14 @@ public class PackageActivity extends AppCompatActivity {
         packagesPojoList = new ArrayList<>();
     }
 
+    PrefManager prefManager;
     private CityPackage cityPackage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package);
         cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
-
+prefManager= new PrefManager(this);
         sliderLayout = findViewById(R.id.packageImage);
 
         Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
@@ -56,7 +58,7 @@ public class PackageActivity extends AppCompatActivity {
         getData();
     }
     void getData(){
-        packagesViewModel.getData(cityPackage.getCityName());
+        packagesViewModel.getData(cityPackage.getCityName() , prefManager.getUserId()) ;
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {

@@ -3,6 +3,7 @@ package com.travel.iti.travelapp.repository.networkmodule;
 import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.repository.model.RatePackagePojo;
 import com.travel.iti.travelapp.repository.model.User;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import retrofit2.http.Query;
  * Created by ayman on 2019-05-13.
  */
 
-public interface  ApiRequest {
+public interface ApiRequest {
 
 
     @POST("users/login")
@@ -31,13 +32,14 @@ public interface  ApiRequest {
     Call<ApiResponse<List<CityPackage>>> getPackageCity();
 
     @GET("packages/city/packages")
-    Call<ApiResponse<List<PackagesPojo>>> getPackage(@Query("city") String city);
+    Call<ApiResponse<List<PackagesPojo>>> getPackage(@Query("city") String city,
+                                                     @Query("id") int userID);
 
     @GET("packages/recent")
-    Call<ApiResponse<List<PackagesPojo>>> getRecentPackages();
+    Call<ApiResponse<List<PackagesPojo>>> getRecentPackages(@Query("id") int userID);
 
     @GET("packages/recommended")
-    Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
+    Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages(@Query("id") int userID);
 
     @GET("packages/favorite")
     Call<ApiResponse<List<PackagesPojo>>> getFavouritePackages(@Query("user_id") int user_id);
@@ -51,12 +53,16 @@ public interface  ApiRequest {
     @POST("packages/booking")
     Call<ApiResponse<String>> postBookedPackages(
             @Body BookedPackage bookedPackage);
-
+    @GET("packages/mine")
+    Call<ApiResponse<List<PackagesPojo>>> getBookedPackages(
+            @Query("user") int user_id
+    );
     @GET("packages/search/all")
     Call<ApiResponse<List<CityPackage>>> getSearchedCity();
 
-
-
+    @POST("packages/rate")
+    Call<ApiResponse<String>> postRatePackages(
+            @Body RatePackagePojo ratePackagePojo);
 }
 
 
