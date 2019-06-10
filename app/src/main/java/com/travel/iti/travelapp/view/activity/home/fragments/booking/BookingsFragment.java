@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
@@ -27,10 +28,10 @@ public class BookingsFragment extends Fragment {
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
     private BookingAdapter packagesAdapter;
-    private PackagesViewModel packagesViewModel;
     private CityPackage cityPackage;
     private LinearLayout emptyLayout;
 
+    private PrefManager prefManager;
     public static BookingsFragment newInstance() {
         return new BookingsFragment();
     }
@@ -39,7 +40,8 @@ public class BookingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.bookings_fragment, container, false);
-        packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
+      prefManager=new PrefManager(getContext());
+        mViewModel = ViewModelProviders.of(this).get(BookingsViewModel.class);
         emptyLayout = view.findViewById(R.id.emptyLayoutId);
 
         recyclerView = view.findViewById(R.id.recyclerViewId);
@@ -61,8 +63,8 @@ public class BookingsFragment extends Fragment {
 
 
     void getData(){
-        packagesViewModel.getData("luxor");
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+        mViewModel.getBookedPackages(prefManager.getUserId() );
+        mViewModel.pckageList.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;

@@ -53,8 +53,8 @@ public class PackagesViewModel extends ViewModel {
         });
     }
 
-    public void getData(String city){
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city);
+    public void getData(String city , int userId){
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city , userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
@@ -74,9 +74,9 @@ public class PackagesViewModel extends ViewModel {
         });
     }
 
-    public void getRecentPackages(){
+    public void getRecentPackages( int userId){
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecentPackages();
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecentPackages(  userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
@@ -97,9 +97,9 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void getRecommendedPackages(){
+    public void getRecommendedPackages( int userId){
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecommendedPackages ();
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecommendedPackages (  userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {

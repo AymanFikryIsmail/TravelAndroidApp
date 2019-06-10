@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
@@ -41,6 +42,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private String fromCity;
     private String toCity;
 
+    private PrefManager prefManager;
 
     public RecentActivity() {
         packagesPojoList = new ArrayList<>();
@@ -50,6 +52,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent);
+        prefManager=new PrefManager(this);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
@@ -95,26 +98,27 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         });
 
     }
-       public void getRecentPackages(){
-            packagesViewModel.getRecentPackages();
-            packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-                @Override
-                public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                    packagesPojoList = packagesPojos;
-                    packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                    recyclerView.setAdapter(packagesAdapter);
-                }
-            });
-        }
 
-        void getRecommendedPackages () {
-            packagesViewModel.getRecommendedPackages();
-            packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-                @Override
-                public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                    packagesPojoList = packagesPojos;
-                    packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                    recyclerView.setAdapter(packagesAdapter);
+    void getRecentPackages() {
+        packagesViewModel.getRecentPackages(prefManager.getUserId());
+        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+            @Override
+            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
+                packagesPojoList = packagesPojos;
+                packagesAdapter.updateList(packagesPojoList, packagesPojos);
+                recyclerView.setAdapter(packagesAdapter);
+            }
+        });
+    }
+
+    void getRecommendedPackages() {
+        packagesViewModel.getRecommendedPackages(prefManager.getUserId());
+        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
+            @Override
+            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
+                packagesPojoList = packagesPojos;
+                packagesAdapter.updateList(packagesPojoList, packagesPojos);
+                recyclerView.setAdapter(packagesAdapter);
                 }
             });
         }
