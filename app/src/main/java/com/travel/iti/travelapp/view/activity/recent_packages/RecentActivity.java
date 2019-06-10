@@ -20,6 +20,7 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBotto
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 
@@ -36,7 +37,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private Button sortBtn;
     private EditText searchEditText;
     public static final String TAG = "bottom_sheet";
-    private FilterFragmentInterface filterFragmentInterface;
+    public static final String SORT_TAG = "sort_bottom_sheet";
     private String fromCity;
     private String toCity;
 
@@ -78,6 +79,13 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             }
         });
 
+        sortBtn = findViewById(R.id.sort_btn);
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
+            }
+        });
         searchEditText = findViewById(R.id.searchEditText);
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,26 +117,27 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
+                }
+            });
+        }
+
+
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 2) {
+                fromCity = data.getStringExtra("fromCity");
+                toCity = data.getStringExtra("toCity");
+
             }
-        });
-    }
-
-    @Override
-    public void passData(int price, int duration, int rate) {
-
-        packagesAdapter.filter(price, duration, rate);
-        recyclerView.setAdapter(packagesAdapter);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2) {
-            fromCity = data.getStringExtra("fromCity");
-            toCity = data.getStringExtra("toCity");
 
         }
+
+        
+    @Override
+    public void passData(int price, int duration, int rate) {
+        packagesAdapter.filter(price, duration, rate);
+        recyclerView.setAdapter(packagesAdapter);
     }
 }
