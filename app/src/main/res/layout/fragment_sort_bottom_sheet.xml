@@ -69,7 +69,7 @@ android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sort_price_range"
@@ -82,10 +82,10 @@ android:background="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <RadioGroup
         android:id="@+id/sort_radio_group"
@@ -94,25 +94,22 @@ android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.172">
+        app:layout_constraintVertical_bias="0.267">
+
         <RadioButton
             android:id="@+id/recent_to_oldest_radioBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recent_to_oldest_radio_btn"/>
+            android:text="@string/recent_to_oldest_radio_btn" />
+
         <RadioButton
             android:id="@+id/rating_radioBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rating_radio_btn"/>
-        <RadioButton
-            android:id="@+id/recommended_radioBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recommended_radio_btn"/>
+            android:text="@string/rating_radio_btn" />
     </RadioGroup>
 
 

@@ -123,12 +123,12 @@ public class SortBottomSheetFragment extends BottomSheetDialogFragment {
                 {
                     case 0:
                         editTextPriceRange.setText("Low to High");
-                        priceRange = editTextPriceRange.getText().toString();
+                        priceRange = "asc";
                         Toast.makeText(getContext(), "Low to High", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         editTextPriceRange.setText("High to Low");
-                        priceRange = editTextPriceRange.getText().toString();
+                        priceRange ="desc";//editTextPriceRange.getText().toString();
                         Toast.makeText(getContext(), "High to Low", Toast.LENGTH_LONG).show();
                         break;
                 }
