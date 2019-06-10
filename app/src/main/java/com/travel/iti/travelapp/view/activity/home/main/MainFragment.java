@@ -16,7 +16,10 @@ import android.widget.ImageView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.view.activity.home.home_search_bar.HomeSearchActivity;
+import com.travel.iti.travelapp.view.activity.home.home_search_bar.HomeSearchResultActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class MainFragment extends Fragment {
     private EditText searchEditText ;
     ImageView recentPackages ;
     ImageView recommendedPackages ;
+    ImageView allOffersPackages ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,19 @@ public class MainFragment extends Fragment {
         //getCities();
         getData();
 
+        searchEditText = view.findViewById(R.id.search_bar);
+        searchEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext() , HomeSearchActivity.class);
+                startActivity(i);
+            }
+        });
+
         recentPackages = view.findViewById(R.id.recentPackages);
         recommendedPackages = view.findViewById(R.id.recommendedPackages);
+        allOffersPackages = view.findViewById(R.id.allOffersPackages);
+
         recentPackages.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -80,6 +95,15 @@ public class MainFragment extends Fragment {
                 i.putExtra("key" , "recommended");
                 startActivity(i);
 
+            }
+        });
+
+        allOffersPackages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext() , RecentActivity.class);
+                i.putExtra("key" , "allOffers");
+                startActivity(i);
             }
         });
 

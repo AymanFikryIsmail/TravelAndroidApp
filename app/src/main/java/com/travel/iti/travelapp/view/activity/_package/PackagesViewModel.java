@@ -120,5 +120,51 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
+    public void getAllOffesrsPackages (){
+
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getAllOffesrsPackages ();
+        call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    packagesData.setValue(response.body().data);
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+                else {
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+
+            }
+        });
+
+    }
+
+    public void getHomeSearchedPackages (){
+
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getHomeSearchedPackages ();
+        call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    packagesData.setValue(response.body().data);
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+                else {
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+
+            }
+        });
+
+    }
+
 
 }

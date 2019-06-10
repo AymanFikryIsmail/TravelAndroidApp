@@ -1,11 +1,11 @@
-package com.travel.iti.travelapp.view.activity.recent_packages;
+package com.travel.iti.travelapp.view.activity.home.home_search_bar;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,17 +15,15 @@ import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
+import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
-import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
-import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface {
+public class HomeSearchResultActivity extends AppCompatActivity implements FilterFragmentInterface {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -33,21 +31,19 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private PackagesViewModel packagesViewModel;
     private TextView filterBtn;
     private Button sortBtn;
-    private EditText searchEditText;
     public static final String TAG = "bottom_sheet";
     private FilterFragmentInterface filterFragmentInterface;
     private String fromCity;
     private String toCity;
 
-
-    public RecentActivity() {
+    public HomeSearchResultActivity() {
         packagesPojoList = new ArrayList<>();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recent);
+        setContentView(R.layout.activity_home_search_result);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
@@ -57,16 +53,17 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
 
+        getHomeSearchedPackages ();
+
         String keyValue;
         keyValue = getIntent().getStringExtra("key");
-        if (keyValue.equals("recent")) {
-            getRecentPackages();
-        } else if (keyValue.equals("recommended")) {
-            getRecommendedPackages();
+        if (keyValue.equals("search")){
+            Intent i = getIntent();
+            fromCity = i.getStringExtra("fromCity");
+            toCity = i.getStringExtra("toCity");
+
         }
-        else {
-            getAllOffesrsPackages ();
-        }
+
 
         filterBtn = findViewById(R.id.filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
@@ -77,51 +74,20 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 filterFragment.show(getSupportFragmentManager(), TAG);
             }
         });
-
-        searchEditText = findViewById(R.id.searchEditText);
-        searchEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RecentActivity.this, SearchActivity.class);
-                startActivityForResult(intent, 2);
-            }
-        });
-
     }
 
-    void getRecentPackages() {
-        packagesViewModel.getRecentPackages();
+
+    void getHomeSearchedPackages (){
+
+        packagesViewModel.getHomeSearchedPackages();
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
-            }
-        });
-    }
+                packagesAdapter.searchByCityFilter(fromCity,toCity);
 
-    void getRecommendedPackages() {
-        packagesViewModel.getRecommendedPackages();
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-            @Override
-            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                recyclerView.setAdapter(packagesAdapter);
-            }
-        });
-    }
-
-    void getAllOffesrsPackages (){
-
-        packagesViewModel.getAllOffesrsPackages();
-        packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
-            @Override
-            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
-                packagesPojoList = packagesPojos;
-                packagesAdapter.updateList(packagesPojoList, packagesPojos);
-                recyclerView.setAdapter(packagesAdapter);
             }
         });
 
@@ -133,18 +99,5 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         packagesAdapter.filter(price, duration, rate);
         recyclerView.setAdapter(packagesAdapter);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2) {
-            fromCity = data.getStringExtra("fromCity");
-            toCity = data.getStringExtra("toCity");
-            packagesAdapter.searchByCityFilter(fromCity,toCity);
-            recyclerView.setAdapter(packagesAdapter);
-
-        }
     }
 }

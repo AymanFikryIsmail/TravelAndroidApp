@@ -34,10 +34,16 @@ public interface  ApiRequest {
     Call<ApiResponse<List<PackagesPojo>>> getPackage(@Query("city") String city);
 
     @GET("packages/recent")
+    Call<ApiResponse<List<PackagesPojo>>> getHomeSearchedPackages ();
+
+    @GET("packages/recent")
     Call<ApiResponse<List<PackagesPojo>>> getRecentPackages();
 
     @GET("packages/recommended")
     Call<ApiResponse<List<PackagesPojo>>> getRecommendedPackages();
+
+    @GET ("packages/recent")
+    Call<ApiResponse<List<PackagesPojo>>> getAllOffesrsPackages ();
 
     @GET("packages/favorite")
     Call<ApiResponse<List<PackagesPojo>>> getFavouritePackages(@Query("user_id") int user_id);

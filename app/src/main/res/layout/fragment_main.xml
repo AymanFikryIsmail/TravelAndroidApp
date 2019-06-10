@@ -45,6 +45,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/search_drawable"
                         android:drawablePadding="10dp"
+                        android:inputType="none"
                         android:drawableStart="@drawable/ic_serarch_icon"
                         android:ems="10"
                         android:hint="search"
@@ -60,6 +61,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/allOffersPackages"
                             android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_weight="1"

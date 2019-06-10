@@ -1,4 +1,4 @@
-package com.travel.iti.travelapp.view.activity.recent_packages.search;
+package com.travel.iti.travelapp.view.activity.home.home_search_bar;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -21,12 +21,15 @@ import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.view.activity.home.home_search_bar.HomeSearchResultActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.CustomItemClickListener;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
+import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchViewModel;
 import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class HomeSearchActivity extends AppCompatActivity {
 
     List<CityPackage> cityPackageList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -112,17 +115,12 @@ public class SearchActivity extends AppCompatActivity {
 
                 fromCity = searchFrom.getText().toString() ;
                 toCity = searchTO.getText().toString();
-//
-//                Intent i = new Intent(getApplicationContext(), HomeSearchResultActivity.class);
-//                i.putExtra("fromCity",fromCity);
-//                i.putExtra("toCity",toCity);
-//                startActivity(i);
 
-                Intent intent = new Intent();
-                intent.putExtra("fromCity",fromCity);
-                intent.putExtra("toCity",toCity);
-                setResult(2, intent);
-                finish();
+                Intent i = new Intent(getApplicationContext(), HomeSearchResultActivity.class);
+                i.putExtra("key" , "search");
+                i.putExtra("fromCity",fromCity);
+                i.putExtra("toCity",toCity);
+                startActivity(i);
 
             }
         });

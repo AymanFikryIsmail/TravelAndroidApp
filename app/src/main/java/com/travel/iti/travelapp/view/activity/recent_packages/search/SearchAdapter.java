@@ -28,13 +28,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private SearchViewModel searchViewModel;
     private List<CityPackage> originList;
     EditText mEditText;
+    CustomItemClickListener listener;
 
-    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel , EditText mEditText ) {
+    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel , CustomItemClickListener listener) {
         this.context = context;
         this.cityPackageList = cityPackages;
         this.searchViewModel = searchViewModel;
         this.originList = new ArrayList<>();
-        this.mEditText = mEditText ;
+        this.listener = listener ;
     }
 
 
@@ -43,7 +44,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     public SearchAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.search_items_row, parent, false);
-        return new SearchAdapter.MyViewHolder(itemView);
+        final MyViewHolder myViewHolder = new MyViewHolder(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                listener.onItemClick(view , myViewHolder.getAdapterPosition());
+
+            }
+        });
+        return myViewHolder;
     }
 
     @Override
@@ -73,13 +83,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         public void bind(final CityPackage cityPackage) {
 
             cityName.setText(cityPackage.getCityName());
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
         }
 
     }
@@ -111,5 +114,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             this.notifyDataSetChanged();
         }
     }
+
 }
 

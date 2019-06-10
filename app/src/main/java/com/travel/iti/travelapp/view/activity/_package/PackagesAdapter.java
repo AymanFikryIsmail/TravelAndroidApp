@@ -144,7 +144,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         List<PackagesPojo> filteredList = new ArrayList<>();
         for (PackagesPojo packagesPojo : originList) {
 
-            if ((price <= packagesPojo.getPrice()) && (duration <= packagesPojo.getDuration())) {
+            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration)) {
                 filteredList.add(packagesPojo);
             }
         }
@@ -161,11 +161,11 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         for (PackagesPojo packagesPojo : originList){
 
             if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))){
-                filteredList.add (packagesPojo) ;
+                filteredList.add (packagesPojo);
             }
-            packagesPojoList = filteredList ;
-            this.notifyDataSetChanged();
         }
+        packagesPojoList = filteredList ;
+        this.notifyDataSetChanged();
 
 
     }
