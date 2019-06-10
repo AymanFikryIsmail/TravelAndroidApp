@@ -22,11 +22,12 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragm
 import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortFragmentinterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface {
+public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface ,SortFragmentinterface {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -81,6 +82,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             @Override
             public void onClick(View v) {
                 SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
+                sortBottomSheetFragment.show(getSupportFragmentManager() , SORT_TAG);
             }
         });
         searchEditText = findViewById(R.id.searchEditText);
@@ -130,10 +132,17 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
 
         }
 
-        
+
     @Override
     public void passData(int price, int duration, int rate) {
         packagesAdapter.filter(price, duration, rate);
         recyclerView.setAdapter(packagesAdapter);
+    }
+
+
+    @Override
+    public void passSortData(String priceRange, String sortType) {
+        recyclerView.setAdapter(packagesAdapter);
+
     }
 }
