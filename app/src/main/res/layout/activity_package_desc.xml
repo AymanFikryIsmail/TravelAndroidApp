@@ -17,8 +17,6 @@
         android:textColor="#de000000"
         android:drawableStart="@drawable/circle_drawable"
         android:drawablePadding="10dp"
-        android:layout_marginBottom="8dp"
-        android:lineSpacingExtra="11.7sp"
         android:text="Package description"
     />
 

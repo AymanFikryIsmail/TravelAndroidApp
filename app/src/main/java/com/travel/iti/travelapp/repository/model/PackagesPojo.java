@@ -12,6 +12,8 @@ public class PackagesPojo implements Serializable {
 
     @SerializedName("pid")
     private int packageId;
+    @SerializedName("cid")
+    private int companyId;
     @SerializedName("p_name")
     private String packageName;
     private String travel_from;
@@ -53,6 +55,14 @@ public class PackagesPojo implements Serializable {
 
     public void setPackageId(int packageId) {
         this.packageId = packageId;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public int getFav_flag() {
+        return fav_flag;
     }
 
     public String getPackageName() {

@@ -66,7 +66,7 @@ public class RangeDatePickerActivity extends AppCompatActivity {
 
                     String first_date = datePicker.getSelectedDates().get(0).toString();
                     String last_date  = datePicker.getSelectedDates().get(datePicker.getSelectedDates().size()-1).toString();
-                    
+
                     Intent intent = new Intent();
                     intent.putExtra("firstDate" , first_date);
                     intent.putExtra("secondDate" , last_date);

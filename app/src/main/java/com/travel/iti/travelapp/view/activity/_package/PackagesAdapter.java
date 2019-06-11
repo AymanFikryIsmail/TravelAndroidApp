@@ -26,6 +26,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,6 +121,11 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
                 }
             });
 
+            if (packagesPojo.getFav_flag()==1)
+                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
+            else
+                packageFavBtn.setImageResource(R.drawable.ic_favorite);
+
             packageFavBtn.setOnClickListener((View v) -> {
                 packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
                             if (isFav)
@@ -154,7 +161,38 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         this.notifyDataSetChanged();
 
     }
+    public void sortByDate(String sortType){
+        Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
+            @Override
+            public int compare(PackagesPojo o1, PackagesPojo o2) {
+                if (sortType.equals("asc")){
+                    return ( String.valueOf(o1.getDate())).compareToIgnoreCase(String.valueOf(o2.getDate()));
+                }else {
+                    return ( String.valueOf(o2.getDate())).compareToIgnoreCase(String.valueOf(o1.getDate()));
+                }
+            }
+        };
+        Collections.sort(packagesPojoList, comparator);
+        notifyDataSetChanged();
+    }
 
+    public void sortByRate(String sortType) {
+        Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
+
+            @Override
+            public int compare(PackagesPojo o1, PackagesPojo o2) {
+                if (sortType.equals("asc")){
+                    return ( String.valueOf(o1.getRate())).compareToIgnoreCase(String.valueOf(o2.getRate()));
+
+                }else {
+                    return ( String.valueOf(o2.getRate())).compareToIgnoreCase(String.valueOf(o1.getRate()));
+
+                }
+            }
+        };
+        Collections.sort(packagesPojoList, comparator);
+        notifyDataSetChanged();
+    }
     public void searchByCityFilter(String fromCity , String toCity){
 
         packagesPojoList.clear();

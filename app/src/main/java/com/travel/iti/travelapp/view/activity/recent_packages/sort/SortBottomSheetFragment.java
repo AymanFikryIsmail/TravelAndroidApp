@@ -1,109 +1,146 @@
 package com.travel.iti.travelapp.view.activity.recent_packages.sort;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SortBottomSheetFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SortBottomSheetFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SortBottomSheetFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class SortBottomSheetFragment extends BottomSheetDialogFragment {
+   // private PackagesAdapter packagesAdapter;
+    private EditText editTextPriceRange;
+    Button btnApply;
+    private SortFragmentinterface sortFragmentinterface;
+    RadioGroup radioGroup;
+    AlertDialog alertDialog1;
+    private String priceRange = "" ;
+    private  String sortType = "";
+    CharSequence[] values = {" Low to High "," High to Low "};
 
-    private OnFragmentInteractionListener mListener;
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void setupDialog(final Dialog dialog, int style) {
+        super.setupDialog(dialog, style);
+
+        //Set the custom view
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_sort_bottom_sheet, null);
+        dialog.setContentView(view);
+
+        radioGroup = view.findViewById(R.id.sort_radio_group);
+        radioGroup.clearCheck();
+        editTextPriceRange = view.findViewById(R.id.sort_price_range);
+
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent()).getLayoutParams();
+        CoordinatorLayout.Behavior behavior = params.getBehavior();
+
+        if (behavior != null && behavior instanceof BottomSheetBehavior) {
+            ((BottomSheetBehavior) behavior).setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    String state = "";
+
+                    switch (newState) {
+                        case BottomSheetBehavior.STATE_DRAGGING: {
+                            state = "DRAGGING";
+                            break;
+                        }
+                        case BottomSheetBehavior.STATE_SETTLING: {
+                            state = "SETTLING";
+                            break;
+                        }
+                        case BottomSheetBehavior.STATE_EXPANDED: {
+                            state = "EXPANDED";
+                            break;
+                        }
+                        case BottomSheetBehavior.STATE_COLLAPSED: {
+                            state = "COLLAPSED";
+                            break;
+                        }
+                        case BottomSheetBehavior.STATE_HIDDEN: {
+                            dismiss();
+                            state = "HIDDEN";
+                            break;
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                }
+            });
+        }
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                RadioButton rb = group.findViewById(checkedId);
+                if (null != rb && checkedId != -1) {
+                    Toast.makeText(getContext(), rb.getText(), Toast.LENGTH_SHORT).show();
+                }
+                sortType = rb.getText().toString();
+                createAlertDialogWithRadioButtonGroup() ;
+            }
+        });
+
+        sortFragmentinterface = (SortFragmentinterface) getActivity();
+
+        btnApply = view.findViewById(R.id.apply_sort_btn);
+        btnApply.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if (sortFragmentinterface != null) {
+                    sortFragmentinterface.passSortData(priceRange , sortType);
+                }
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void createAlertDialogWithRadioButtonGroup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Price Range");
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                switch(item)
+                {
+                    case 0:
+                        editTextPriceRange.setText("Low to High");
+                        priceRange = "asc";
+                        Toast.makeText(getContext(), "Low to High", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        editTextPriceRange.setText("High to Low");
+                        priceRange ="desc";//editTextPriceRange.getText().toString();
+                        Toast.makeText(getContext(), "High to Low", Toast.LENGTH_LONG).show();
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+        alertDialog1 = builder.create();
+        alertDialog1.show();
+    }
 
     public SortBottomSheetFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SortBottomSheetFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SortBottomSheetFragment newInstance(String param1, String param2) {
-        SortBottomSheetFragment fragment = new SortBottomSheetFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sort_bottom_sheet, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

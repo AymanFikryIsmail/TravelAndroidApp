@@ -108,10 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 BookingsFragment bookingsFragment= new BookingsFragment();
                 loadFragment(bookingsFragment,"favoritesFragment ");
                 break;
-            case R.id.myprofile:
-                MyProfileFragment myProfileFragment= new MyProfileFragment();
-                loadFragment(myProfileFragment,"favoritesFragment ");
-                break;
+
             case R.id.settings:
                 loadFragment(SettingsFragment.newInstance(),"favoritesFragment ");
                 break;

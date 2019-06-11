@@ -44,10 +44,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fav_btn"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_favorite_white"
+            android:src="@{packageDetails.fav_flag==0 ? @drawable/ic_favorite_white : @drawable/ic_favorite_fill}"
+
             android:padding="15dp"
             android:background="@drawable/fav_back_drawable"
+
             android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
@@ -213,6 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:id="@+id/pkgdescId"
+            android:onClick="@{(v) -> gotoBooking.gotoDescription(v)}"
             android:orientation="horizontal">
 
             <TextView
