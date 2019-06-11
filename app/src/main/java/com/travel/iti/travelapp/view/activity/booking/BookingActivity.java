@@ -29,7 +29,7 @@ public class BookingActivity extends AppCompatActivity implements BookingView {
         packagesPojo= (PackagesPojo) getIntent().getSerializableExtra("packageDetails");
         binding = DataBindingUtil.setContentView(BookingActivity.this, R.layout.activity_booking);
         bookingViewModel = ViewModelProviders.of(this).get(BookingViewModel.class);
-        bookingViewModel.init(packagesPojo.getPrice() , this);
+        bookingViewModel.init(packagesPojo , this);
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
         binding.setBookingViewModel(bookingViewModel);

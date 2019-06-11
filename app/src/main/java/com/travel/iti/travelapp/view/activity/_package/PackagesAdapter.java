@@ -119,6 +119,11 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
                 }
             });
 
+            if (packagesPojo.getFav_flag()==1)
+                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
+            else
+                packageFavBtn.setImageResource(R.drawable.ic_favorite);
+
             packageFavBtn.setOnClickListener((View v) -> {
                 packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
                             if (isFav)

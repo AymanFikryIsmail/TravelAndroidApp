@@ -50,16 +50,14 @@
         <activity android:name=".view.activity.qrcard.QRCardActivity" />
         <activity
             android:name=".view.activity.package_details.PackageDetailsActivity"
-            android:label="Package Details"
-            android:parentActivityName=".view.activity._package.PackageActivity" />
+            android:label="Package Details" />
         <activity
             android:name=".view.activity.recent_packages.RecentActivity"
             android:label="Recent Packages"
             android:parentActivityName=".view.activity.home.MainActivity" />
         <activity
             android:name=".view.activity.booking.BookingActivity"
-            android:label="Booking"
-            android:parentActivityName=".view.activity.package_details.PackageDetailsActivity" />
+            android:label="Booking" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -75,7 +73,8 @@
         <activity
             android:name=".view.activity.map.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".view.activity.package_desc.PackageDescActivity"></activity>
+        <activity android:name=".view.activity.package_desc.PackageDescActivity" />
+        <activity android:name=".view.activity.SuccessActivity"></activity>
     </application>
 
 </manifest>

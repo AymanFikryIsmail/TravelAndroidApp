@@ -41,13 +41,9 @@ public class PackageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package);
         cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
-prefManager= new PrefManager(this);
+        prefManager= new PrefManager(this);
         sliderLayout = findViewById(R.id.packageImage);
 
-        Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
-                .placeholder(R.drawable.mask)
-                .error(R.drawable.mask)
-                .into(sliderLayout);
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
         recyclerView = findViewById(R.id.packages_recycler_view);
@@ -55,7 +51,13 @@ prefManager= new PrefManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
-        getData();
+
+            cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
+            Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
+                    .placeholder(R.drawable.mask)
+                    .error(R.drawable.mask)
+                    .into(sliderLayout);
+            getData();
     }
     void getData(){
         packagesViewModel.getData(cityPackage.getCityName() , prefManager.getUserId()) ;
@@ -69,4 +71,14 @@ prefManager= new PrefManager(this);
 
         });
     }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("cityPackage" ,cityPackage);
+
+    }
+
 }

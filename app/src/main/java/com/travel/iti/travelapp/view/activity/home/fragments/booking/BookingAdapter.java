@@ -90,7 +90,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
             Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
                     .fit().centerCrop()
                     .placeholder(R.drawable.recommended)
-                    .error(R.drawable.recent)
+                    .error(R.drawable.mask)
                     .into(maskImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {

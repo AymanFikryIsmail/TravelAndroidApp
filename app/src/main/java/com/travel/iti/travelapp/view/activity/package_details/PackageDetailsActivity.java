@@ -26,6 +26,7 @@ import com.travel.iti.travelapp.utils.rateBar.RatingDialog;
 import com.travel.iti.travelapp.view.activity.booking.BookingActivity;
 import com.travel.iti.travelapp.view.activity.booking.BookingViewModel;
 import com.travel.iti.travelapp.view.activity.home.MainActivity;
+import com.travel.iti.travelapp.view.activity.package_desc.PackageDescActivity;
 
 import java.util.HashMap;
 
@@ -94,7 +95,7 @@ public class PackageDetailsActivity extends AppCompatActivity {
 
     public void ratePackage() {
         packageDetailViewModel.postRatePackages(packagesPojo.getPackageId(), prefManager.getUserId()
-                , packagesPojo.getCityId(), rateValue);
+                , packagesPojo.getCompanyId(), rateValue);
 
     }
 
@@ -103,7 +104,11 @@ public class PackageDetailsActivity extends AppCompatActivity {
         intent.putExtra("packageDetails", packagesPojo);
         startActivity(intent);
     }
-
+    public void gotoDescription(View view) {
+        Intent intent = new Intent(this, PackageDescActivity.class);
+        intent.putExtra("packageDetails", packagesPojo);
+        startActivity(intent);
+    }
     private void setSliderViews() {
 
         for (int i = 0; i < packagesPojo.getPhotoPaths().size(); i++) {

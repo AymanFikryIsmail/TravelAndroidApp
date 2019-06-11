@@ -1,9 +1,11 @@
 package com.travel.iti.travelapp.view.activity.qrcard;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
@@ -14,6 +16,8 @@ import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityQrcardBinding;
 import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.SuccessActivity;
+import com.travel.iti.travelapp.view.activity.home.MainActivity;
 
 public class QRCardActivity extends AppCompatActivity {
 
@@ -31,6 +35,7 @@ public class QRCardActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(QRCardActivity.this, R.layout.activity_qrcard);
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
+        binding.setBookedPackage(bookedPackage);
 
 
         qrCodeImage=findViewById(R.id.qrcodeImage);
@@ -43,6 +48,15 @@ public class QRCardActivity extends AppCompatActivity {
         }
         qrCodeImage.setImageBitmap(bitmap);
 
+
+
+        binding.btnSuccess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(QRCardActivity.this, SuccessActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
