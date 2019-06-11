@@ -92,10 +92,9 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
                     .into(maskImage);
             packageFavBtn.setOnClickListener((View v) -> {
                 mViewModel.setFavPackage(packagesPojo.getPackageId(), prefManager.getUserId(),(boolean isFav) -> {
-                            if (isFav)
-                                packageFavBtn.setImageResource(R.drawable.ic_favorite_white);
-                            else
-                                packageFavBtn.setImageResource(R.drawable.ic_favorite);
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
+                            packagesPojoList.remove(packagesPojo);
+                            notifyDataSetChanged();
                         }
                 );
             });

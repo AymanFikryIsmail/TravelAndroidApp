@@ -9,23 +9,27 @@ import android.view.View;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityBookingBinding;
+import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.qrcard.QRCardActivity;
 
-public class BookingActivity extends AppCompatActivity {
+public class BookingActivity extends AppCompatActivity implements BookingView {
 
     private PackagesPojo packagesPojo;
     private ActivityBookingBinding binding;
 
     private BookingViewModel bookingViewModel;
+    private PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_booking);
+        prefManager=new PrefManager(this);
         packagesPojo= (PackagesPojo) getIntent().getSerializableExtra("packageDetails");
         binding = DataBindingUtil.setContentView(BookingActivity.this, R.layout.activity_booking);
         bookingViewModel = ViewModelProviders.of(this).get(BookingViewModel.class);
-        bookingViewModel.init(packagesPojo.getPrice());
+        bookingViewModel.init(packagesPojo.getPrice() , this);
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
         binding.setBookingViewModel(bookingViewModel);
@@ -34,8 +38,17 @@ public class BookingActivity extends AppCompatActivity {
 
     }
     public void gotoBooking(View view){
-        bookingViewModel.postBookedPackages();
+        bookingViewModel.postBookedPackages(packagesPojo.getPackageId() ,prefManager.getUserId() );
+        //BookedPackage bookedPackage=new BookedPackage();
+
+    }
+
+    @Override
+    public void bookPackage(BookedPackage bookedPackage) {
         Intent intent=new Intent(this , QRCardActivity.class);
         intent.putExtra("packageDetails", packagesPojo);
+        intent.putExtra("bookedPackage", bookedPackage);
+
         startActivity(intent);
-    }}
+    }
+}

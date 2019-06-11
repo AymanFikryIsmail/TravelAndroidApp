@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
@@ -20,6 +21,7 @@ public class SearchViewModel extends ViewModel {
 
     public MutableLiveData<List<CityPackage>> searchedCity;
     private Context mcontext;
+    private PrefManager prefManager;
 
     public SearchViewModel() {
         searchedCity = new MutableLiveData<>();

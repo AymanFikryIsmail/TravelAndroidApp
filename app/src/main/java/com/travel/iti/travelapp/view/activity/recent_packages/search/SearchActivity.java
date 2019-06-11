@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.view.activity.home.home_search_bar.HomeSearchResultActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
@@ -37,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
     private String fromCity ;
     private String toCity ;
     Button searchBtn ;
+    private PrefManager prefManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +130,6 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     void getSearchedCities(){
         searchViewModel.getSearchedCities();

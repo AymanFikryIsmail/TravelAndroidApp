@@ -23,12 +23,14 @@ public class BookingViewModel extends ViewModel {
     public MutableLiveData<Integer> noOfAdults;
     public MutableLiveData<Integer> noOfChilds;
     public MutableLiveData<Double> totalCost;
+    public MutableLiveData<String> userName;
 
     private double price;
     public BookingViewModel() {
         noOfAdults=new MutableLiveData<>();
         noOfChilds=new MutableLiveData<>();
         totalCost=new MutableLiveData<>();
+        userName=new MutableLiveData<>();
 
         noOfAdults.setValue(0);
         noOfChilds.setValue(0);
@@ -36,8 +38,10 @@ public class BookingViewModel extends ViewModel {
 
     }
 
-    public void init(double price ){
+    BookingView bookingView;
+    public void init(double price ,BookingView bookingView ){
         this.price=price;
+        this. bookingView=  bookingView;
     }
 
     public void incrementAdults(View v){
@@ -64,13 +68,18 @@ public class BookingViewModel extends ViewModel {
         }
     }
 
-    public void postBookedPackages(){
-        Call<ApiResponse<String>> call = Apiservice.getInstance().apiRequest.postBookedPackages( new BookedPackage(1,2,5,5));
+    public void postBookedPackages(int packageId , int userId){
+        BookedPackage bookedPackage= new BookedPackage(packageId,userId,noOfAdults.getValue(),
+                noOfChilds.getValue(),userName.getValue());
+        Call<ApiResponse<String>> call = Apiservice.getInstance().apiRequest.
+                postBookedPackages(bookedPackage);
         call.enqueue(new Callback<ApiResponse<String>>() {
             @Override
             public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    bookingView.bookPackage(bookedPackage);
+
                 }
                 else {
                     //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();

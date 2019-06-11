@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 
@@ -35,10 +37,11 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private Button sortBtn;
     private EditText searchEditText;
     public static final String TAG = "bottom_sheet";
-    private FilterFragmentInterface filterFragmentInterface;
+    public static final String SORT_TAG = "sort_bottom_sheet";
     private String fromCity;
     private String toCity;
 
+    private PrefManager prefManager;
 
     public RecentActivity() {
         packagesPojoList = new ArrayList<>();
@@ -48,6 +51,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent);
+        prefManager=new PrefManager(this);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
@@ -78,6 +82,13 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             }
         });
 
+        sortBtn = findViewById(R.id.sort_btn);
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
+            }
+        });
         searchEditText = findViewById(R.id.searchEditText);
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +101,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     }
 
     void getRecentPackages() {
-        packagesViewModel.getRecentPackages();
+        packagesViewModel.getRecentPackages(prefManager.getUserId());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
@@ -102,7 +113,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     }
 
     void getRecommendedPackages() {
-        packagesViewModel.getRecommendedPackages();
+        packagesViewModel.getRecommendedPackages(prefManager.getUserId());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
@@ -113,9 +124,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         });
     }
 
-    void getAllOffesrsPackages (){
-
-        packagesViewModel.getAllOffesrsPackages();
+    void getAllOffesrsPackages(){
+        packagesViewModel.getAllOffesrsPackages(prefManager.getUserId());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
@@ -124,16 +134,9 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 recyclerView.setAdapter(packagesAdapter);
             }
         });
-
     }
 
-    @Override
-    public void passData(int price, int duration, int rate) {
 
-        packagesAdapter.filter(price, duration, rate);
-        recyclerView.setAdapter(packagesAdapter);
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -144,7 +147,14 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             toCity = data.getStringExtra("toCity");
             packagesAdapter.searchByCityFilter(fromCity,toCity);
             recyclerView.setAdapter(packagesAdapter);
+            }
 
         }
+
+        
+    @Override
+    public void passData(int price, int duration, int startOfRate) {
+        packagesAdapter.filter(price, duration, startOfRate);
+        recyclerView.setAdapter(packagesAdapter);
     }
 }

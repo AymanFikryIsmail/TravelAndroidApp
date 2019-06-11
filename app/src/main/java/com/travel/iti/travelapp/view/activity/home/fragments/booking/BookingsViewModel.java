@@ -23,8 +23,8 @@ public class BookingsViewModel extends ViewModel {
     }
 
 
-    public void getFavouritePackages(int userId){
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getFavouritePackages(userId);
+    public void getBookedPackages(int userId){
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getBookedPackages(userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {

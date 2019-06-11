@@ -38,6 +38,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
     TextView daysTextView;
     int priceProgress = 0;
     int daysProgress = 0;
+    TextView dateTextView;
     Button rateThree;
     Button rateFour;
     Button rateFive;
@@ -151,6 +152,17 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
             }
         });
 
+        dateTextView = view.findViewById(R.id.dateTextView);
+        dateTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getContext(),RangeDatePickerActivity.class);
+                startActivityForResult(i , 2);
+
+            }
+        });
+
         rateThree = view.findViewById(R.id.rateThree);
         rateFour = view.findViewById(R.id.rateFour);
         rateFive = view.findViewById(R.id.rateFive);
@@ -209,5 +221,22 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
                 break;
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            String first_date = data.getStringExtra("firstDate");
+            String last_date = data.getStringExtra("secondDate");
+
+            dateTextView.setText(first_date + "-" + last_date);
+
+//            packagesAdapter.searchByCityFilter(fromCity,toCity);
+//            recyclerView.setAdapter(packagesAdapter);
+        }
+
+    }
+
 }
 

@@ -38,7 +38,7 @@ public class PackagesViewModel extends ViewModel {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                    // isFavPressed.setValue(response.body().data);
-                    favPressCallBack.setIsFav(true);
+                    favPressCallBack.setIsFav(response.body().data);
                 }
                 else {
                     //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
@@ -53,8 +53,8 @@ public class PackagesViewModel extends ViewModel {
         });
     }
 
-    public void getData(String city){
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city);
+    public void getData(String city , int userId){
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getPackage(city , userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
@@ -74,32 +74,9 @@ public class PackagesViewModel extends ViewModel {
         });
     }
 
-    public void getRecentPackages(){
+    public void getRecentPackages(int userId){
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecentPackages();
-        call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
-            @Override
-            public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
-                if (response.body().status == "true"&&response.body().data!=null  ) {
-                    packagesData.setValue(response.body().data);
-                    Log.d("tag", "articles total result:: " + response.body().getMessage());
-                }
-                else {
-                    Log.d("tag", "articles total result:: " + response.body().getMessage());
-                }
-            }
-            @Override
-            public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
-                Log.d("tag", "articles total result:: " + t.getMessage());
-
-            }
-        });
-
-    }
-
-    public void getRecommendedPackages(){
-
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecommendedPackages ();
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecentPackages(userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
@@ -120,9 +97,9 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void getAllOffesrsPackages (){
+    public void getRecommendedPackages( int userId){
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getAllOffesrsPackages ();
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecommendedPackages (userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
@@ -143,9 +120,32 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void getHomeSearchedPackages (){
+    public void getAllOffesrsPackages (int userId){
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getHomeSearchedPackages ();
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getAllOffesrsPackages (userId);
+        call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    packagesData.setValue(response.body().data);
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+                else {
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+
+            }
+        });
+
+    }
+
+    public void getHomeSearchedPackages (int userId){
+
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getHomeSearchedPackages (userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {

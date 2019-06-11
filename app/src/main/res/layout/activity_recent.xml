@@ -58,7 +58,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
     <Button
-        android:id="@+id/sort"
+        android:id="@+id/sort_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/darkPurple"

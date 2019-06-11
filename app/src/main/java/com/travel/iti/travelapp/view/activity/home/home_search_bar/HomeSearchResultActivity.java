@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
@@ -35,6 +36,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
     private FilterFragmentInterface filterFragmentInterface;
     private String fromCity;
     private String toCity;
+    private PrefManager prefManager;
 
     public HomeSearchResultActivity() {
         packagesPojoList = new ArrayList<>();
@@ -79,7 +81,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
 
     void getHomeSearchedPackages (){
 
-        packagesViewModel.getHomeSearchedPackages();
+        packagesViewModel.getHomeSearchedPackages(prefManager.getUserId());
         packagesViewModel.packagesData.observe(this, new Observer<List<PackagesPojo>>() {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {

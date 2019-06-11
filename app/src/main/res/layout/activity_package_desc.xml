@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context="com.travel.iti.travelapp.view.activity.package_desc.PackageDescActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18.3sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#de000000"
+        android:drawableStart="@drawable/circle_drawable"
+        android:drawablePadding="10dp"
+        android:layout_marginBottom="8dp"
+        android:lineSpacingExtra="11.7sp"
+        android:text="Package description"
+    />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDescId"
+        android:textSize="11.7sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#de000000"
+        android:lineSpacingExtra="5sp"
+        android:layout_marginBottom="8dp"
+        android:text="Aenean sed lorem est. Sed quis neque ut nibh suscipit imperdiet ac non augue. Aenean ornare sit amet lectus non tristique. Nunc ut volutpat lectus. Nulla velit augue, pulvinar sed nisi sit amet, eleifend fermentum est. Quisque nibh justo, congue ut erat at, aliquet efficitur purus. Integer venenatis odio vitae orci efficitur mollis. Donec ultrices diam dictum dignissim vestibulum. Proin eleifend nunc nunc. Sed non arcu eget lorem viverra sodales."
+        />
+
+
+</LinearLayout>

@@ -110,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==11&&data!=null){
             if(resultCode == Activity.RESULT_OK) {
-                String addrs= data.getStringExtra("address");
+                String addrs= data.getStringExtra("address").split(" ")[0];
                 binding2.editTextCity.setText(TextUtils.isEmpty(addrs)?"":addrs);
             } else {
                 Toast.makeText(SignUpActivity.this, "open gps and try again ", Toast.LENGTH_LONG).show();

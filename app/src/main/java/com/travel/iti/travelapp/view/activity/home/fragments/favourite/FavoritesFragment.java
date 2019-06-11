@@ -51,6 +51,8 @@ public class FavoritesFragment extends Fragment {
         packagesPojoList = null;
         getFavouritePackages();
         return view;
+
+
     }
 
     @Override
@@ -65,7 +67,11 @@ public class FavoritesFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
                 packagesPojoList = packagesPojos;
-                emptyLayout.setVisibility(View.GONE);
+                if (packagesPojos.size()==0){
+                    emptyLayout.setVisibility(View.VISIBLE);
+                }else {
+                    emptyLayout.setVisibility(View.GONE);
+                }
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
             }

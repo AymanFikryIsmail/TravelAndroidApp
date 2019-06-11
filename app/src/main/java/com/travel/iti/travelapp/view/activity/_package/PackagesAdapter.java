@@ -122,7 +122,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
             packageFavBtn.setOnClickListener((View v) -> {
                 packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
                             if (isFav)
-                                packageFavBtn.setImageResource(R.drawable.ic_favorite_white);
+                                packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
                             else
                                 packageFavBtn.setImageResource(R.drawable.ic_favorite);
                         }
@@ -138,15 +138,16 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         this.notifyDataSetChanged();
     }
 
-    public void filter(int price, int duration, int rate) {
+    public void filter(int price, int duration, int startOfRate) {
 
         packagesPojoList.clear();
         List<PackagesPojo> filteredList = new ArrayList<>();
         for (PackagesPojo packagesPojo : originList) {
 
-            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration)) {
+            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration) && (packagesPojo.getRate() >= startOfRate)) {
                 filteredList.add(packagesPojo);
             }
+
         }
 
         packagesPojoList = filteredList;
