@@ -54,7 +54,7 @@ public interface ApiRequest {
     Call<ApiResponse<String>> postBookedPackages(
             @Body BookedPackage bookedPackage);
     @GET("packages/mine")
-    Call<ApiResponse<List<PackagesPojo>>> getBookedPackages(
+    Call<ApiResponse<List<BookedPackage>>> getBookedPackages(
             @Query("user") int user_id
     );
     @GET("packages/search/all")

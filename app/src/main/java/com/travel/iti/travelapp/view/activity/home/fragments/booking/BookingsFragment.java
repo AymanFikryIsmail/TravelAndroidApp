@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
@@ -25,7 +26,7 @@ import java.util.List;
 public class BookingsFragment extends Fragment {
 
     private BookingsViewModel mViewModel;
-    private List<PackagesPojo> packagesPojoList;
+    private List<BookedPackage> packagesPojoList;
     private RecyclerView recyclerView;
     private BookingAdapter packagesAdapter;
     private CityPackage cityPackage;
@@ -64,9 +65,7 @@ public class BookingsFragment extends Fragment {
 
     void getData(){
         mViewModel.getBookedPackages(prefManager.getUserId() );
-        mViewModel.pckageList.observe(this, new Observer<List<PackagesPojo>>() {
-            @Override
-            public void onChanged(@Nullable List<PackagesPojo> packagesPojos) {
+        mViewModel.pckageList.observe(this, (@Nullable List<BookedPackage> packagesPojos)-> {
                 packagesPojoList = packagesPojos;
                 if (packagesPojos.size()==0){
                     emptyLayout.setVisibility(View.VISIBLE);
@@ -75,7 +74,6 @@ public class BookingsFragment extends Fragment {
                 }
                 packagesAdapter.updateList(packagesPojoList);
                 recyclerView.setAdapter(packagesAdapter);
-            }
         });
     }
 

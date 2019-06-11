@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
@@ -16,7 +17,7 @@ import retrofit2.Response;
 
 public class BookingsViewModel extends ViewModel {
 
-    public MutableLiveData<List<PackagesPojo>> pckageList;
+    public MutableLiveData<List<BookedPackage>> pckageList;
 
     public BookingsViewModel() {
         pckageList = new MutableLiveData<>();
@@ -24,10 +25,10 @@ public class BookingsViewModel extends ViewModel {
 
 
     public void getBookedPackages(int userId){
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getBookedPackages(userId);
-        call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
+        Call<ApiResponse<List<BookedPackage>>> call = Apiservice.getInstance().apiRequest.getBookedPackages(userId);
+        call.enqueue(new Callback<ApiResponse<List<BookedPackage>>>() {
             @Override
-            public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
+            public void onResponse(Call<ApiResponse<List<BookedPackage>>> call, Response<ApiResponse<List<BookedPackage>>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     pckageList.setValue(response.body().data);
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
@@ -37,7 +38,7 @@ public class BookingsViewModel extends ViewModel {
                 }
             }
             @Override
-            public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<List<BookedPackage>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
 
             }

@@ -54,7 +54,9 @@
         <activity
             android:name=".view.activity.recent_packages.RecentActivity"
             android:label="Recent Packages"
-            android:parentActivityName=".view.activity.home.MainActivity" />
+            android:parentActivityName=".view.activity.home.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".view.activity.booking.BookingActivity"
             android:label="Booking" />

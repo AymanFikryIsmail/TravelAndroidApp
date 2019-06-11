@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
+import com.travel.iti.travelapp.view.activity.qrcard.QRCardActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +30,14 @@ import java.util.List;
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHolder> {
 
     private Context context;
-    private List<PackagesPojo> packagesPojoList;
+    private List<BookedPackage> packagesPojoList;
 
     public BookingAdapter() {
         packagesPojoList = new ArrayList<>();
     }
 
 
-    public BookingAdapter(Context context, List<PackagesPojo> packagesPojoList) {
+    public BookingAdapter(Context context, List<BookedPackage> packagesPojoList) {
         this.context = context;
         this.packagesPojoList = packagesPojoList;
     }
@@ -43,7 +46,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
     @Override
     public BookingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recent_package_row, parent, false);
+                .inflate(R.layout.booking_row, parent, false);
         return new BookingAdapter.MyViewHolder(itemView);
     }
 
@@ -60,44 +63,43 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView travelTo ,date ,duration ,price ,availableTickets ,details;
-        public ImageView roomBtn , packageFavBtn , maskImage;
+        public TextView travelTo ,date ,departure , arrival;
+        public ImageView  maskImage;
+        public RatingBar ratingBar;
         public LinearLayout packageDataLayout;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             travelTo = itemView.findViewById(R.id.travel_to);
-            date = itemView.findViewById(R.id.date);
-            duration = itemView.findViewById(R.id.duration);
-            price = itemView.findViewById(R.id.price);
-            availableTickets = itemView.findViewById(R.id.available_tickets);
-            details = itemView.findViewById(R.id.details);
-
-//            roomBtn = itemView.findViewById(R.id.room_btn);
-            packageFavBtn = itemView.findViewById(R.id.package_fav_btn);
+            departure = itemView.findViewById(R.id.departureId);
+            arrival = itemView.findViewById(R.id.arrivalId);
+            ratingBar=itemView.findViewById(R.id.ratingBar);
+            date = itemView.findViewById(R.id.dateId);
             maskImage = itemView.findViewById(R.id.mask);
-
             packageDataLayout = itemView.findViewById(R.id.package_data_layout);
         }
 
-        public void bind(final PackagesPojo packagesPojo) {
-            travelTo.setText(packagesPojo.getTravel_to());
+        public void bind(final BookedPackage packagesPojo) {
+            travelTo.setText(packagesPojo.getPackageName());
+            departure.setText(packagesPojo.getTravel_from());
+            arrival.setText(packagesPojo.getTravel_to());
+            ratingBar.setRating(packagesPojo.getRate());
             date.setText(packagesPojo.getDate());
-            duration.setText(packagesPojo.getDuration()+"");
-            price.setText(packagesPojo.getPrice()+"");
-            availableTickets.setText(packagesPojo.getAvail_tickets()+"");
 
-            Picasso.with(context).load("http://172.16.5.220:3000/"+packagesPojo.getPrice())
+            Picasso.with(context).load("http://172.16.5.220:3000/"+"4.jpg")//packagesPojo.getPhotoPaths().get(0)
                     .fit().centerCrop()
-                    .placeholder(R.drawable.recommended)
+                    .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, PackageDetailsActivity.class);
+                    Intent intent=new Intent(context, QRCardActivity.class);
                     intent.putExtra("packageDetails", packagesPojo);
+//                    BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
+//                            noOfChilds.getValue(), userName.getValue());
+                    //intent.putExtra("bookedPackage", bookedPackage);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
@@ -105,7 +107,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
         }
     }
 
-    public void updateList(List<PackagesPojo> newlist) {
+    public void updateList(List<BookedPackage> newlist) {
         packagesPojoList = newlist;
         this.notifyDataSetChanged();
     }

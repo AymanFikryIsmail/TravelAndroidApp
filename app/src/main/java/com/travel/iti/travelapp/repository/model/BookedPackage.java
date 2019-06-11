@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by ayman on 2019-05-29.
  */
 
-public class BookedPackage implements Serializable{
+public class BookedPackage extends PackagesPojo {
 
     @SerializedName("package")
     int packageId;

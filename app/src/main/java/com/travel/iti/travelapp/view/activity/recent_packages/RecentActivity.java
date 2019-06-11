@@ -62,7 +62,9 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
 
-        String keyValue;
+        String keyValue="recent";
+
+        if (getIntent().getSerializableExtra("key")!=null)
         keyValue = getIntent().getStringExtra("key");
         if (keyValue.equals("recent")) {
             getRecentPackages();
