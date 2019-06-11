@@ -23,11 +23,12 @@ import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragm
 import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActivity;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortFragmentinterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface {
+public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface, SortFragmentinterface {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -51,7 +52,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent);
-        prefManager=new PrefManager(this);
+        prefManager = new PrefManager(this);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
@@ -84,6 +85,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             @Override
             public void onClick(View v) {
                 SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
+                sortBottomSheetFragment.show(getSupportFragmentManager(), SORT_TAG);
             }
         });
         searchEditText = findViewById(R.id.searchEditText);
@@ -117,27 +119,39 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
-                }
-            });
-        }
-
-
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-
-            if (requestCode == 2) {
-                fromCity = data.getStringExtra("fromCity");
-                toCity = data.getStringExtra("toCity");
-
             }
+        });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            fromCity = data.getStringExtra("fromCity");
+            toCity = data.getStringExtra("toCity");
 
         }
 
-        
+    }
+
+
     @Override
     public void passData(int price, int duration, int rate) {
         packagesAdapter.filter(price, duration, rate);
         recyclerView.setAdapter(packagesAdapter);
+    }
+
+
+    @Override
+    public void passSortData(String priceRange, String sortType) {
+
+        if (sortType.equals("Rating")) {
+            packagesAdapter.sortByRate(priceRange);
+        } else if (sortType.equals("Date")) {
+            packagesAdapter.sortByDate(priceRange);
+        }
+
     }
 }
