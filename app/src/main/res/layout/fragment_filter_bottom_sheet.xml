@@ -189,8 +189,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate"
         app:layout_constraintVertical_bias="0.039"
-        android:background="@drawable/curved_border"
-        />
+        android:background="@drawable/curved_border" />
 
     <TextView
         android:id="@+id/textViewRate"

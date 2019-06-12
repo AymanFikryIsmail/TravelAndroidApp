@@ -27,7 +27,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private List<CityPackage> cityPackageList = new ArrayList<>();
     private SearchViewModel searchViewModel;
     private List<CityPackage> originList;
-    EditText mEditText;
     CustomItemClickListener listener;
 
     public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel , CustomItemClickListener listener) {
@@ -98,6 +97,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         searchWord = searchWord.toLowerCase();
         cityPackageList.clear();
+
         if (searchWord.isEmpty()) {
             cityPackageList.addAll(originList);
         } else {

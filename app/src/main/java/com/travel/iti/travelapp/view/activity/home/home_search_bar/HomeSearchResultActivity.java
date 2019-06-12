@@ -49,6 +49,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
 
+        prefManager=new PrefManager(this);
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);

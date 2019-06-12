@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.recent_packages.filter.RangeDatePickerActivity"></activity>
-        <activity android:name=".view.activity.home.home_search_bar.HomeSearchActivity" />
+        <activity android:name=".view.activity.home.home_search_bar.HomeSearchActivity" android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".view.activity.home.home_search_bar.HomeSearchResultActivity" />
-        <activity android:name=".view.activity.recent_packages.search.SearchActivity" />
+        <activity android:name=".view.activity.recent_packages.search.SearchActivity" android:windowSoftInputMode="adjustNothing"/>
+
         <activity
             android:name=".view.activity._package.PackageActivity"
             android:label="Packages"
