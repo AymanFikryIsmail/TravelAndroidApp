@@ -98,6 +98,8 @@ public class SignUpViewModel extends ViewModel {
                     isSuccess.setValue(true);
                     prefManager.setUserId(response.body().data.getId());
                     prefManager.setUserData(response.body().data);;
+                    view.showSuccess("Successfully authenticated");
+
                 } else {
                     isSuccess.setValue(false);
                     view.shwoError("auth failed");
@@ -108,6 +110,7 @@ public class SignUpViewModel extends ViewModel {
             public void onFailure(Call<ApiResponse<User>> call, Throwable t) {
                 isSuccess.setValue(false);
                 view.shwoError(t.getMessage());
+                view.shwoError("auth failed : check your network");
                 Log.d("tag", "articles total result:: " + t.getMessage());
             }
         });

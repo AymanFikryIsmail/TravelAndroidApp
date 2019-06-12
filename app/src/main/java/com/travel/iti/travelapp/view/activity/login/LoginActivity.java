@@ -8,14 +8,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityLoginBinding;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.view.activity.home.MainActivity;
+import com.travel.iti.travelapp.view.activity.signup.SignUpActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  implements LoginView{
 
     private LoginViewModel loginViewModel;
 
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.loginData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
+                binding.progressView.setVisibility(View.GONE);
                 prefManager.setUserId(user.getId());
                 prefManager.setUserData(user);
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
@@ -57,10 +61,29 @@ public class LoginActivity extends AppCompatActivity {
                     binding.txtPassword.requestFocus();
                 }
                 else {
+                    binding.progressView.setVisibility(View.VISIBLE);
                     loginViewModel.signIn(loginUser);
                 }
 
             }
         });
+    }
+    public void onClick(View view) {
+            Intent intent = new Intent(this, SignUpActivity.class);
+            startActivity(intent);
+    }
+
+    @Override
+    public void showSuccess(String success) {
+        binding.progressView.setVisibility(View.GONE);
+
+        Toast.makeText(this, success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showError(String error) {
+        binding.progressView.setVisibility(View.GONE);
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
+
     }
 }

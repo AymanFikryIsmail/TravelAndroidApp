@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,11 +21,12 @@ import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.home.main.MainView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PackageActivity extends AppCompatActivity {
+public class PackageActivity extends AppCompatActivity implements MainView {
 
     ImageView sliderLayout;
     private List<PackagesPojo> packagesPojoList;
@@ -33,6 +36,7 @@ public class PackageActivity extends AppCompatActivity {
     public PackageActivity() {
         packagesPojoList = new ArrayList<>();
     }
+    FrameLayout progressView;
 
     PrefManager prefManager;
     private CityPackage cityPackage;
@@ -46,7 +50,9 @@ public class PackageActivity extends AppCompatActivity {
         sliderLayout = findViewById(R.id.packageImage);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-
+        packagesViewModel.init(this);
+        progressView= findViewById(R.id.progress_view);
+        progressView.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.packages_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -71,6 +77,18 @@ public class PackageActivity extends AppCompatActivity {
             }
 
         });
+    }
+    @Override
+    public void showSuccess(String success) {
+        progressView.setVisibility(View.GONE);
+        // Toast.makeText(getContext(), success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shwoError(String error) {
+        progressView.setVisibility(View.GONE);
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
+
     }
 
 

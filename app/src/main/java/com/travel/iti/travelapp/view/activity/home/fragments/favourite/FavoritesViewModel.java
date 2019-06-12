@@ -7,11 +7,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 import com.travel.iti.travelapp.view.activity._package.FavPressCallBack;
+import com.travel.iti.travelapp.view.activity.home.main.MainView;
 
 import java.util.List;
 
@@ -27,6 +29,11 @@ public class FavoritesViewModel extends ViewModel {
         pckageList = new MutableLiveData<>();
     }
 
+    MainView mainView;
+    public void init(MainView mainView) {
+        this.mainView=mainView;
+    }
+
 
     public void getFavouritePackages(int userId){
         Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getFavouritePackages(userId);
@@ -36,15 +43,17 @@ public class FavoritesViewModel extends ViewModel {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     pckageList.setValue(response.body().data);
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    mainView.showSuccess("");
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Log.d("tag", "failed:: " + response.body().getMessage());
+                    mainView.shwoError("Error in connection");
                 }
             }
             @Override
             public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
-
+                mainView.shwoError("Error in connection");
             }
         });
     }

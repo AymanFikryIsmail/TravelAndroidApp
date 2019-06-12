@@ -10,4 +10,6 @@ public interface BookingView {
 
 
     void bookPackage(BookedPackage bookedPackage);
+    void shwoError(String error);
+    void showSuccess(String success);
 }

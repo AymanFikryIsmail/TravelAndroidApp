@@ -94,13 +94,18 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
     }
 
 
+
     @Override
-    public void shwoError(String error) {
-        Toast.makeText(this,error, Toast.LENGTH_LONG).show();
+    public void showSuccess(String success) {
+        binding2.progressView.setVisibility(View.GONE);
+
+        Toast.makeText(this, success , Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void showSuccess() {
+    public void shwoError(String error) {
+        binding2.progressView.setVisibility(View.GONE);
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
 
     }
 

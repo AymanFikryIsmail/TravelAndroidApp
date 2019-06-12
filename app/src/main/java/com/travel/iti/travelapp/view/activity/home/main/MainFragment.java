@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.CityPackage;
@@ -24,7 +26,7 @@ import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchActiv
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainView{
 
     public MainFragment() {
         // Required empty public constructor
@@ -38,6 +40,7 @@ public class MainFragment extends Fragment {
     ImageView recentPackages ;
     ImageView recommendedPackages ;
     ImageView allOffersPackages ;
+    FrameLayout progressView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +55,11 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.init(getContext());
+        mainViewModel.init(this);
 
         // prefManager=new PrefManager(getContext());
+        progressView= view.findViewById(R.id.progress_view);
+        progressView.setVisibility(View.VISIBLE);
         recyclerView = view.findViewById(R.id.recyclerViewId);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -121,5 +126,19 @@ public class MainFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void showSuccess(String success) {
+        progressView.setVisibility(View.GONE);
+       // Toast.makeText(getContext(), success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shwoError(String error) {
+        progressView.setVisibility(View.GONE);
+        Toast.makeText(getContext(), error , Toast.LENGTH_LONG).show();
+
+    }
+
 
 }

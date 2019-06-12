@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityBookingBinding;
@@ -50,5 +51,18 @@ public class BookingActivity extends AppCompatActivity implements BookingView {
         intent.putExtra("bookedPackage", bookedPackage);
 
         startActivity(intent);
+    }
+
+
+    @Override
+    public void showSuccess(String success) {
+       // progressView.setVisibility(View.GONE);
+        // Toast.makeText(getContext(), success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shwoError(String error) {
+        //progressView.setVisibility(View.GONE);
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
     }
 }

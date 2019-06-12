@@ -11,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
@@ -28,7 +31,7 @@ import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortFragmenti
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface, SortFragmentinterface {
+public class RecentActivity extends AppCompatActivity implements FilterFragmentInterface, SortFragmentinterface  , MainView {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -41,6 +44,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     public static final String SORT_TAG = "sort_bottom_sheet";
     private String fromCity;
     private String toCity;
+    FrameLayout progressView;
 
     private PrefManager prefManager;
 
@@ -55,7 +59,9 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         prefManager = new PrefManager(this);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-
+        packagesViewModel.init(this);
+        progressView= findViewById(R.id.progress_view);
+        progressView.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -173,4 +179,18 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
         }
 
     }
+
+    @Override
+    public void showSuccess(String success) {
+        progressView.setVisibility(View.GONE);
+        // Toast.makeText(getContext(), success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shwoError(String error) {
+        progressView.setVisibility(View.GONE);
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
+    }
+
+
 }
