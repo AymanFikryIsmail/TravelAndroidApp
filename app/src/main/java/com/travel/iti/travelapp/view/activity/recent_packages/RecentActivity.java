@@ -146,7 +146,10 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 2) {
+        if (data == null){
+
+        }
+        else if (requestCode == 2) {
             fromCity = data.getStringExtra("fromCity");
             toCity = data.getStringExtra("toCity");
             packagesAdapter.searchByCityFilter(fromCity,toCity);

@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
 
-                searchFrom.setText("hello") ;
+                searchFrom.setText("hello");
 
             }
         });
@@ -112,13 +112,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                fromCity = searchFrom.getText().toString() ;
-                toCity = searchTO.getText().toString();
-//
-//                Intent i = new Intent(getApplicationContext(), HomeSearchResultActivity.class);
-//                i.putExtra("fromCity",fromCity);
-//                i.putExtra("toCity",toCity);
-//                startActivity(i);
+                fromCity = searchFrom.getText().toString().toLowerCase() ;
+                toCity = searchTO.getText().toString().toLowerCase();
 
                 Intent intent = new Intent();
                 intent.putExtra("fromCity",fromCity);
