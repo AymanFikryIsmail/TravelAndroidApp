@@ -13,6 +13,8 @@ public class BookedPackage extends PackagesPojo {
     @SerializedName("package")
     int packageId;
     String userName;
+    String name;
+
     @SerializedName("user")
     int userId;
 
@@ -43,6 +45,10 @@ public class BookedPackage extends PackagesPojo {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getUserId() {

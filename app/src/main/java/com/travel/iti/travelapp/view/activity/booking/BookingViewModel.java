@@ -29,11 +29,11 @@ public class BookingViewModel extends ViewModel {
     public MutableLiveData<String> userName;
 
     public BookingViewModel() {
-        noOfAdults=new MutableLiveData<>();
-        noOfChilds=new MutableLiveData<>();
-        noOfAvails=new MutableLiveData<>();
-        totalCost=new MutableLiveData<>();
-        userName=new MutableLiveData<>();
+        noOfAdults = new MutableLiveData<>();
+        noOfChilds = new MutableLiveData<>();
+        noOfAvails = new MutableLiveData<>();
+        totalCost = new MutableLiveData<>();
+        userName = new MutableLiveData<>();
 
         noOfAdults.setValue(0);
         noOfChilds.setValue(0);
@@ -44,48 +44,52 @@ public class BookingViewModel extends ViewModel {
 
     BookingView bookingView;
     PackagesPojo packagesPojo;
-    public void init(PackagesPojo packagesPojo, BookingView bookingView ){
-        this.packagesPojo=packagesPojo;
-        this. bookingView=  bookingView;
+
+    public void init(PackagesPojo packagesPojo, BookingView bookingView) {
+        this.packagesPojo = packagesPojo;
+        this.bookingView = bookingView;
         noOfAvails.setValue(packagesPojo.getAvail_tickets());
     }
 
-    public void incrementAdults(View v){
-        if (noOfAvails.getValue()>0) {
-            noOfAvails.setValue(noOfAvails.getValue()-1);
+    public void incrementAdults(View v) {
+        if (noOfAvails.getValue() > 0) {
+            noOfAvails.setValue(noOfAvails.getValue() - 1);
             noOfAdults.setValue(noOfAdults.getValue() + 1);
             totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
 
         }
     }
-    public void decrementAdults(View v){
-        if (noOfAdults.getValue()>0) {
-            noOfAvails.setValue(noOfAvails.getValue()+1);
+
+    public void decrementAdults(View v) {
+        if (noOfAdults.getValue() > 0) {
+            noOfAvails.setValue(noOfAvails.getValue() + 1);
             noOfAdults.setValue(noOfAdults.getValue() - 1);
-            totalCost.setValue((double) ((noOfChilds.getValue()+noOfAdults.getValue())*packagesPojo.getPrice()));
+            totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
 
         }
     }
+
     public void incrementChilds(View v) {
-        if ( noOfAvails.getValue()>0) {
-            noOfAvails.setValue(noOfAvails.getValue()-1);
+        if (noOfAvails.getValue() > 0) {
+            noOfAvails.setValue(noOfAvails.getValue() - 1);
             noOfChilds.setValue(noOfChilds.getValue() + 1);
             totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
         }
     }
 
-    public void decrementChilds(View v){
-        if (noOfChilds.getValue()>0) {
-            noOfAvails.setValue(noOfAvails.getValue()+1);
-            noOfChilds.setValue(noOfChilds.getValue()-1);
-            totalCost.setValue((double) ((noOfChilds.getValue()+noOfAdults.getValue())*packagesPojo.getPrice()));
+    public void decrementChilds(View v) {
+        if (noOfChilds.getValue() > 0) {
+            noOfAvails.setValue(noOfAvails.getValue() + 1);
+            noOfChilds.setValue(noOfChilds.getValue() - 1);
+            totalCost.setValue((double) ((noOfChilds.getValue()* packagesPojo.getDiscounted_price())
+                    + (noOfAdults.getValue()* packagesPojo.getPrice()) ));
 
         }
     }
 
-    public void postBookedPackages(int packageId , int userId){
+    public void postBookedPackages(int packageId, int userId) {
 
-        if (noOfChilds.getValue()!=0 || noOfAdults.getValue()!=0 ) {
+        if (noOfChilds.getValue() != 0 || noOfAdults.getValue() != 0) {
 
             BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
                     noOfChilds.getValue(), userName.getValue());
@@ -97,20 +101,29 @@ public class BookingViewModel extends ViewModel {
                     if (response.body().status == "true" && response.body().data != null) {
                         Log.d("tag", "articles total result:: " + response.body().getMessage());
                         bookingView.bookPackage(bookedPackage);
-
-                    } else {
-                        //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                        bookingView.showSuccess("");
+                        Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    }
+                    else {
+                        bookingView.shwoError("Error in connection");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ApiResponse<String>> call, Throwable t) {
                     Log.d("tag", "articles total result:: " + t.getMessage());
+                    bookingView.shwoError("Error in connection");
 
                 }
             });
 
-        }    }
+        }
+        else {
+
+            bookingView.shwoError(" Number of passengers can't be 0");
+
+        }
+    }
 
 
 }

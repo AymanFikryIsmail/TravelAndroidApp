@@ -97,9 +97,10 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                 public void onClick(View v) {
                     Intent intent=new Intent(context, QRCardActivity.class);
                     intent.putExtra("packageDetails", packagesPojo);
-//                    BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
-//                            noOfChilds.getValue(), userName.getValue());
-                    //intent.putExtra("bookedPackage", bookedPackage);
+                    BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
+                            packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets() ,
+                    packagesPojo.getName());
+                    intent.putExtra("bookedPackage", bookedPackage);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
