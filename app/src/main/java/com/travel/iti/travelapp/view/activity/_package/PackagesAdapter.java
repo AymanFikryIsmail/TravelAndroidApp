@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
@@ -161,6 +162,42 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         this.notifyDataSetChanged();
 
     }
+
+    public void searchByCityFilter(String fromCity , String toCity){
+
+        packagesPojoList.clear();
+        List<PackagesPojo> filteredList = new ArrayList<>();
+
+        if (fromCity.equals("") && toCity.equals("") ){
+           filteredList = originList ;
+        }
+
+        else {
+            for (PackagesPojo packagesPojo : originList){
+
+            if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))){
+                filteredList.add (packagesPojo);
+            }
+
+            else if (packagesPojo.getTravel_from().equals(fromCity) && (toCity.equals(""))){
+                filteredList.add(packagesPojo);
+            }
+
+            else if (fromCity.equals("") && packagesPojo.getTravel_to().equals(toCity)){
+                filteredList.add (packagesPojo);
+            }
+            else {
+
+            }
+        }
+        }
+        packagesPojoList = filteredList ;
+        this.notifyDataSetChanged();
+
+
+    }
+
+
     public void sortByDate(String sortType){
         Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
             @Override
@@ -192,21 +229,6 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         };
         Collections.sort(packagesPojoList, comparator);
         notifyDataSetChanged();
-    }
-    public void searchByCityFilter(String fromCity , String toCity){
-
-        packagesPojoList.clear();
-        List<PackagesPojo> filteredList = new ArrayList<>();
-        for (PackagesPojo packagesPojo : originList){
-
-            if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))){
-                filteredList.add (packagesPojo);
-            }
-        }
-        packagesPojoList = filteredList ;
-        this.notifyDataSetChanged();
-
-
     }
 
 }

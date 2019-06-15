@@ -22,14 +22,14 @@ public class MainViewModel extends ViewModel {
 
     public   MutableLiveData<List<CityPackage>> cityPackageData;
 
-    private Context mcontext;
 
     public MainViewModel() {
         cityPackageData = new MutableLiveData<>();
     }
 
-    public void init(Context context) {
-        this.mcontext=context;
+    MainView mainView;
+    public void init(MainView mainView) {
+        this.mainView=mainView;
     }
 
     public void getData(){
@@ -39,16 +39,17 @@ public class MainViewModel extends ViewModel {
             public void onResponse(Call<ApiResponse<List<CityPackage>>> call, Response<ApiResponse<List<CityPackage>>> response) {
                 if (response.body().status == "true"&&response.body().data!=null  ) {
                     cityPackageData.setValue(response.body().data);
+                    mainView.showSuccess("");
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                    mainView.shwoError("Error in connection");
                 }
             }
             @Override
             public void onFailure(Call<ApiResponse<List<CityPackage>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
-
+                mainView.shwoError("Error in connection");
             }
         });
     }

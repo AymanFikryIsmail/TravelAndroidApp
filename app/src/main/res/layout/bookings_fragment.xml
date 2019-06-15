@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.home.fragments.booking.BookingsFragment">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/booking_fragment"
-    android:orientation="vertical"
-    tools:context=".view.activity.home.fragments.booking.BookingsFragment">
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -43,5 +50,29 @@
         android:id="@+id/recyclerViewId"
         android:layout_margin="16dp"
         />
-
 </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progress_view"
+        android:alpha="0.8"
+        android:animateLayoutChanges="true"
+        android:layout_centerInParent="true"
+        android:background="#B0E6CECE"
+        android:clickable="true"
+        android:visibility="gone"
+
+        >
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"/>
+    </FrameLayout>
+
+
+</RelativeLayout>
+

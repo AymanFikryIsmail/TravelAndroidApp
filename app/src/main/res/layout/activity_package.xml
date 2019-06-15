@@ -76,5 +76,24 @@
             android:layout_margin="16dp" />
 
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progress_view"
+        android:alpha="0.8"
+        android:animateLayoutChanges="true"
+        android:layout_centerInParent="true"
+        android:background="#B0E6CECE"
+        android:clickable="true"
+        android:visibility="gone"
 
+        >
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"/>
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

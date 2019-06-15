@@ -45,7 +45,7 @@ public class SearchViewModel extends ViewModel {
                 }
             }
             @Override
-            public void onFailure(Call<ApiResponse<List<CityPackage>>> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<List<CityPackage>>> scall, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
 
             }

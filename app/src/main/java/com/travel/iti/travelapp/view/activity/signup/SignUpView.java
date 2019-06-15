@@ -7,5 +7,5 @@ package com.travel.iti.travelapp.view.activity.signup;
 public interface SignUpView {
 
     void shwoError(String error);
-    void showSuccess();
+    void showSuccess(String success);
 }
