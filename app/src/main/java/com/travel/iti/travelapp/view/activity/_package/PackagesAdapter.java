@@ -146,13 +146,33 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         this.notifyDataSetChanged();
     }
 
-    public void filter(int price, int duration, int startOfRate) {
+    public void filter(int price, int duration, int startOfRate , String first_date_check , String last_date_check) {
 
         packagesPojoList.clear();
         List<PackagesPojo> filteredList = new ArrayList<>();
-        for (PackagesPojo packagesPojo : originList) {
 
-            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration) && (packagesPojo.getRate() >= startOfRate)) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date first_date = null ;
+        Date second_date = null ;
+        try {
+            first_date = format.parse(first_date_check);
+            second_date = format.parse(last_date_check);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        for (PackagesPojo packagesPojo : originList) {
+            Date package_date = null ;
+            try {
+                package_date = format.parse(packagesPojo.getDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+            ///&& (package_date.compareTo(first_date) >= 0) && (package_date.compareTo(second_date) <= 0)
+            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration) && (packagesPojo.getRate() >= startOfRate) && (package_date.compareTo(first_date) >= 0) && (package_date.compareTo(second_date) <= 0)) {
                 filteredList.add(packagesPojo);
             }
 

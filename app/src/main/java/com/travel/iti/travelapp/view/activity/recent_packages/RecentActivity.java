@@ -45,6 +45,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private String fromCity;
     private String toCity;
     FrameLayout progressView;
+    int maxPrice = 0 ;
+    float maxRate = 0 ;
 
     private PrefManager prefManager;
 
@@ -118,6 +120,21 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
+
+                for (PackagesPojo packagesPojo : packagesPojos)
+                {
+                    if (packagesPojo.getPrice() >= maxPrice ){
+                        maxPrice = packagesPojo.getPrice();
+                    }
+
+                    if (packagesPojo.getRate() >= maxRate){
+                        maxRate = packagesPojo.getRate() ;
+                    }
+
+
+                }
+
+                System.out.println(maxPrice);
             }
         });
     }
@@ -166,8 +183,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
 
 
     @Override
-    public void passData(int price, int duration, int startOfRate) {
-        packagesAdapter.filter(price, duration, startOfRate);
+    public void passData(int price, int duration, int startOfRate , String first_date_check , String last_date_check) {
+        packagesAdapter.filter(price, duration, startOfRate , first_date_check , last_date_check);
         recyclerView.setAdapter(packagesAdapter);
     }
 

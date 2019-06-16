@@ -1,83 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:background="@color/white">
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/btnGuideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Filter"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity = "center"/>
 
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.016">
+        android:layout_height="0.5dp"
+        android:background = "@color/black">
 
     </LinearLayout>
 
@@ -88,79 +31,51 @@
         android:text="Price Range"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.02"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
 
     <SeekBar
         android:id="@+id/priceRangeSeekBar"
         android:layout_width="300dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:thumbTint="@color/golden"
+        android:progressTint="@color/golden"/>
 
     <TextView
         android:id="@+id/priceValue"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/daysRangeSeekBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.828"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/priceRangeSeekBar"
-        app:layout_constraintVertical_bias="0.162" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"/>
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Days"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceRangeSeekBar"
-        app:layout_constraintVertical_bias="0.025" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"/>
 
     <SeekBar
         android:id="@+id/daysRangeSeekBar"
         android:layout_width="300dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.01" />
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:thumbTint="@color/golden"
+        android:progressTint="@color/golden"/>
 
     <TextView
         android:id="@+id/daysNumber"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/dateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.828"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/daysRangeSeekBar"
-        app:layout_constraintVertical_bias="0.162" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"/>
 
     <TextView
         android:id="@+id/textViewDate"
@@ -169,27 +84,17 @@
         android:text="Dates"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daysRangeSeekBar"
-        app:layout_constraintVertical_bias="0.03" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate"
-        app:layout_constraintVertical_bias="0.039"
-        android:background="@drawable/curved_border" />
+        android:layout_height="35dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rating_border_drawable"/>
 
     <TextView
         android:id="@+id/textViewRate"
@@ -198,12 +103,8 @@
         android:text="Company Rate"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="0.037" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -212,11 +113,8 @@
         android:foregroundGravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="3dp"
-        app:layout_constraintEnd_toEndOf="@id/btnGuideline1"
-        app:layout_constraintStart_toStartOf="@id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRate"
-        app:layout_constraintVertical_bias="0.064">
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
 
         <Button
             android:id="@+id/rateThree"
@@ -224,7 +122,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/left_curved_border_drawable"
             android:text="+3"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:drawableBottom="@drawable/ic_3_stars"
+            android:paddingBottom="2dp"/>
 
         <Button
             android:id="@+id/rateFour"
@@ -232,7 +132,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rating_border_drawable"
             android:text="+4"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:drawableBottom="@drawable/ic_4_starts"
+            android:paddingBottom="2dp"/>
 
         <Button
             android:id="@+id/rateFive"
@@ -240,31 +142,34 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rating_border_drawable"
             android:text="5"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:drawableBottom="@drawable/ic_5_strars"
+            android:paddingBottom="2dp"/>
 
         <Button
             android:id="@+id/rateAll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
             android:background="@drawable/right_curved_border_drawable"
             android:text="All"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:paddingBottom="2dp"
+            />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/filterBtn"
-        android:layout_width="322dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightPurple"
+        android:background="@drawable/filter_button_border"
         android:text="Apply"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuideline3"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuideline"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -39,6 +39,8 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
     int priceProgress = 0;
     int daysProgress = 0;
     TextView dateTextView;
+    String first_date_check = "";
+    String last_date_check = "" ;
     Button rateThree;
     Button rateFour;
     Button rateFive;
@@ -178,7 +180,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
             public void onClick(View v) {
 
                 if (filterFragmentInterface != null) {
-                    filterFragmentInterface.passData(priceProgress, daysProgress, startOfRate);
+                    filterFragmentInterface.passData(priceProgress, daysProgress, startOfRate ,first_date_check , last_date_check);
                 }
 
                 dialog.dismiss();
@@ -229,8 +231,10 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
         if (requestCode == 2) {
             String first_date = data.getStringExtra("firstDate");
             String last_date = data.getStringExtra("secondDate");
+            first_date_check = data.getStringExtra("first_date_check");
+            last_date_check = data.getStringExtra("last_date_check");
 
-            dateTextView.setText(first_date + "-" + last_date);
+            dateTextView.setText(first_date + "  -  " + last_date);
 
 //            packagesAdapter.searchByCityFilter(fromCity,toCity);
 //            recyclerView.setAdapter(packagesAdapter);

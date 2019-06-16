@@ -8,7 +8,7 @@
     <color name="darkPurple">#510567</color>
     <color name="lightPurple">#65087F</color>
     <color name="black">#000000</color>
-
+    <color name="golden">#FFD700</color>
     <!-- welcome screens background color-->
     <color name="backgroundg_image">#510567</color>
 

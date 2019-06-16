@@ -97,9 +97,9 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
     }
 
     @Override
-    public void passData(int price, int duration, int rate) {
+    public void passData(int price, int duration, int rate , String first_date_check , String last_date_check) {
 
-        packagesAdapter.filter(price, duration, rate);
+        packagesAdapter.filter(price, duration, rate , first_date_check , last_date_check);
         recyclerView.setAdapter(packagesAdapter);
 
     }

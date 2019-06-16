@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.squareup.timessquare.CalendarPickerView;
 import com.travel.iti.travelapp.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -54,27 +57,39 @@ public class RangeDatePickerActivity extends AppCompatActivity {
             }
         });
 
-        List<Date> dates = datePicker.getSelectedDates();
         setDatesBtn = findViewById(R.id.setDatesBtn);
         setDatesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0 ; i< datePicker.getSelectedDates().size() ; i++){
 
-                    //here you can fetch all dates
-//                    Toast.makeText(getApplicationContext(),datePicker.getSelectedDates().get(i).toString(),Toast.LENGTH_LONG).show();
+                //Strings to show
+//
+//                    String first_date = datePicker.getSelectedDates().get(0).toString() ;
+//                    String last_date  = datePicker.getSelectedDates().get(datePicker.getSelectedDates().size()-1).toString();
 
-                    String first_date = datePicker.getSelectedDates().get(0).toString();
-                    String last_date  = datePicker.getSelectedDates().get(datePicker.getSelectedDates().size()-1).toString();
+                    DateFormat dateInstance = SimpleDateFormat.getDateInstance();
+                    String first_date = dateInstance.format(datePicker.getSelectedDates().get(0).getTime()).toString();
+                    String last_date = dateInstance.format(datePicker.getSelectedDates().get(datePicker.getSelectedDates().size()-1)).toString();
+                    System.out.println(first_date + " " + last_date);
+
+                    // another date formate to use in filter
+                Date firstDate = datePicker.getSelectedDates().get(0);
+                Date lastDate = datePicker.getSelectedDates().get(datePicker.getSelectedDates().size()-1);
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String first_date_check = formatter.format(firstDate);
+                String last_date_check = formatter.format(lastDate);
 
                     Intent intent = new Intent();
                     intent.putExtra("firstDate" , first_date);
                     intent.putExtra("secondDate" , last_date);
+                    intent.putExtra("first_date_check",first_date_check);
+                    intent.putExtra("last_date_check",last_date_check);
+
                     setResult(2, intent);
                     finish();
 
                 }
-            }
         });
 
 
