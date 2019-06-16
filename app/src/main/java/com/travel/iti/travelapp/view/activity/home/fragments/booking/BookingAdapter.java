@@ -23,6 +23,8 @@ import com.travel.iti.travelapp.view.activity.qrcard.QRCardActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
+
 /**
  * Created by ayman on 2019-05-22.
  */
@@ -86,24 +88,22 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
             ratingBar.setRating(packagesPojo.getRate());
             date.setText(packagesPojo.getDate());
 
-            Picasso.with(context).load("http://172.16.5.220:3000/"+"4.jpg")//packagesPojo.getPhotoPaths().get(0)
+            Picasso.with(context).load(BASE_URL+packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            itemView.setOnClickListener((View v)-> {
                     Intent intent=new Intent(context, QRCardActivity.class);
                     intent.putExtra("packageDetails", packagesPojo);
+                    double totalCost= (packagesPojo.getTickets()*packagesPojo.getNoOfAdults())+(packagesPojo.getDiscounted_tickets()*packagesPojo.getNoOfChildren());
                     BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
                             packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets() ,
-                    packagesPojo.getName(), 00);
+                    packagesPojo.getName(), totalCost);
                     intent.putExtra("bookedPackage", bookedPackage);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                }
             });
         }
     }

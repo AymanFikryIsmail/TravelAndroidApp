@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 loadFragment(bookingsFragment,"favoritesFragment ");
                 break;
 
-            case R.id.settings:
-                loadFragment(SettingsFragment.newInstance(),"favoritesFragment ");
-                break;
+//            case R.id.settings:
+//                loadFragment(SettingsFragment.newInstance(),"favoritesFragment ");
+//                break;
             case R.id.logout:
                 Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();
                 prefManager.setUserId(0);
