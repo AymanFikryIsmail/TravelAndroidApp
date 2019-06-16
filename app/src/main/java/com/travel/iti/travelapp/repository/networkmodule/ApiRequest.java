@@ -70,6 +70,9 @@ public interface ApiRequest {
     @POST("packages/rate")
     Call<ApiResponse<String>> postRatePackages(
             @Body RatePackagePojo ratePackagePojo);
+
+    @POST("users/gplusfb")
+    Call<ApiResponse<User>> googlSignIn(@Body User body);
 }
 
 
