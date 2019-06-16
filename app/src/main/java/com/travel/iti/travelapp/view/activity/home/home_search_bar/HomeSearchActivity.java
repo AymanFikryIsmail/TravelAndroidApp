@@ -54,10 +54,14 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         searchAdapter = new SearchAdapter(getApplicationContext(), cityPackageList, searchViewModel, new CustomItemClickListener() {
             @Override
-            public void onItemClick(View v, int position) {
-
-                searchFrom.setText("hello");
-
+            public void onItemClick(String cityName) {
+                boolean to = searchTO.hasFocus();
+                boolean from= searchFrom.hasFocus();
+                if (from){
+                    searchFrom.setText(cityName);
+                }else{
+                    searchTO.setText(cityName);
+                }
             }
         });
         cityPackageList = null;

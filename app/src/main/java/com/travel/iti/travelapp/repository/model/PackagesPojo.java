@@ -20,8 +20,12 @@ public class PackagesPojo implements Serializable {
     private String travel_to;
     private int price;
     private float rate;
+    private float user_rate;
     private int discounted_price;
     private int avail_tickets;
+    private int tickets;
+    private int discounted_tickets;
+
     private int duration;
     private String date;
     private String description;
@@ -105,12 +109,25 @@ public class PackagesPojo implements Serializable {
         this.discounted_price = discounted_price;
     }
 
+    public float getUser_rate() {
+        return user_rate;
+    }
+
     public int getAvail_tickets() {
         return avail_tickets;
     }
 
     public void setAvail_tickets(int avail_tickets) {
         this.avail_tickets = avail_tickets;
+    }
+
+
+    public int getTickets() {
+        return tickets;
+    }
+
+    public int getDiscounted_tickets() {
+        return discounted_tickets;
     }
 
     public int getDuration() {

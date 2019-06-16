@@ -13,6 +13,8 @@ public class BookedPackage extends PackagesPojo {
     @SerializedName("package")
     int packageId;
     String userName;
+    String name;
+
     @SerializedName("user")
     int userId;
 
@@ -20,6 +22,7 @@ public class BookedPackage extends PackagesPojo {
     int noOfAdults;
     @SerializedName("children")
     int noOfChildren;
+    double totalCost;
 
 
     public BookedPackage(int packageId, int userId) {
@@ -28,12 +31,13 @@ public class BookedPackage extends PackagesPojo {
 
     }
 
-    public BookedPackage(int packageId, int userId, int noOfAdults, int noOfChildren , String userName) {
+    public BookedPackage(int packageId, int userId, int noOfAdults, int noOfChildren , String userName , double totalCost) {
         this.packageId = packageId;
         this.userId = userId;
         this.noOfAdults = noOfAdults;
         this.noOfChildren = noOfChildren;
         this.userName=userName;
+        this.totalCost=totalCost;
     }
 
 
@@ -43,6 +47,10 @@ public class BookedPackage extends PackagesPojo {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getUserId() {
@@ -55,5 +63,9 @@ public class BookedPackage extends PackagesPojo {
 
     public int getNoOfChildren() {
         return noOfChildren;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
     }
 }

@@ -17,9 +17,9 @@
         android:title="Booking"/>
 
 
-    <item android:id="@+id/settings"
-        android:icon="@drawable/settings_icon"
-        android:title="Settings"/>
+    <!--<item android:id="@+id/settings"-->
+        <!--android:icon="@drawable/settings_icon"-->
+        <!--android:title="Settings"/>-->
 
 
     <item android:id="@+id/logout"

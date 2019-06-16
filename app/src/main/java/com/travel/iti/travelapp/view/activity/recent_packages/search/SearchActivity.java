@@ -53,12 +53,17 @@ public class SearchActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
+//        searchAdapter.setO
         searchAdapter = new SearchAdapter(getApplicationContext(), cityPackageList, searchViewModel, new CustomItemClickListener() {
             @Override
-            public void onItemClick(View v, int position) {
-
-                searchFrom.setText("hello");
-
+            public void onItemClick(String cityName) {
+                boolean to = searchTO.hasFocus();
+                boolean from= searchFrom.hasFocus();
+                if (from){
+                  searchFrom.setText(cityName);
+                }else{
+                    searchTO.setText(cityName);
+                }
             }
         });
         cityPackageList = null;
@@ -138,4 +143,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

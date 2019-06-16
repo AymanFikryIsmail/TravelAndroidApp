@@ -64,6 +64,7 @@ public class PackageDetailsActivity extends AppCompatActivity {
         mRatingDialog = new RatingDialog(PackageDetailsActivity.this);
         mRatingDialog.setDefaultRating((int) packagesPojo.getRate());
         mRatingDialog.setEnable(true);
+        mRatingDialog.setDefaultRating((int) packagesPojo.getUser_rate());
 
         mRatingDialog.setRatingDialogListener(new RatingDialog.RatingDialogInterFace() {
             @Override
@@ -75,6 +76,7 @@ public class PackageDetailsActivity extends AppCompatActivity {
             public void onSubmit(float rating) {
                 Log.v("RATELISTERNER", "onSubmit " + rating);
                 rateValue = rating;
+                mRatingDialog.setDefaultRating((int) rating);
                 ratePackage();
             }
 

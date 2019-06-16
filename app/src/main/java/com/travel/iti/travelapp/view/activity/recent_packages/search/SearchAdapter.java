@@ -29,7 +29,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private List<CityPackage> originList;
     CustomItemClickListener listener;
 
-    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel , CustomItemClickListener listener) {
+    public SearchAdapter(Context context, List<CityPackage> cityPackages, SearchViewModel searchViewModel ,
+                         CustomItemClickListener listener) {
         this.context = context;
         this.cityPackageList = cityPackages;
         this.searchViewModel = searchViewModel;
@@ -44,14 +45,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.search_items_row, parent, false);
         final MyViewHolder myViewHolder = new MyViewHolder(itemView);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                listener.onItemClick(view , myViewHolder.getAdapterPosition());
-
-            }
-        });
         return myViewHolder;
     }
 
@@ -65,6 +59,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     public int getItemCount() {
         return cityPackageList.size();
     }
+
 
     ////////////////////////////////////////////////////////////////////
 
@@ -82,6 +77,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         public void bind(final CityPackage cityPackage) {
 
             cityName.setText(cityPackage.getCityName());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(cityPackage.getCityName());
+                }
+            });
         }
 
     }

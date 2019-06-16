@@ -21,6 +21,7 @@ public class SuccessActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(SuccessActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
