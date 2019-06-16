@@ -99,7 +99,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     intent.putExtra("packageDetails", packagesPojo);
                     BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
                             packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets() ,
-                    packagesPojo.getName());
+                    packagesPojo.getName(), 00);
                     intent.putExtra("bookedPackage", bookedPackage);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);

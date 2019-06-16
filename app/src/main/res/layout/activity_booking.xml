@@ -388,7 +388,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/login_button"
                 android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
-                android:text="Submit"
+                android:text="Payment"
                 android:textColor="@color/textColorHint"
                 android:textSize="18sp" />
 

@@ -13,6 +13,7 @@ import com.travel.iti.travelapp.databinding.ActivityBookingBinding;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
+import com.travel.iti.travelapp.view.activity.payment.VisaPaymentActivity;
 import com.travel.iti.travelapp.view.activity.qrcard.QRCardActivity;
 
 public class BookingActivity extends AppCompatActivity implements BookingView {
@@ -46,7 +47,7 @@ public class BookingActivity extends AppCompatActivity implements BookingView {
 
     @Override
     public void bookPackage(BookedPackage bookedPackage) {
-        Intent intent=new Intent(this , QRCardActivity.class);
+        Intent intent=new Intent(this , VisaPaymentActivity.class);
         intent.putExtra("packageDetails", packagesPojo);
         intent.putExtra("bookedPackage", bookedPackage);
 

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="java.lang.Integer" />
+        <import type="java.lang.Double" />
         <variable
             name="packageDetails"
             type="com.travel.iti.travelapp.repository.model.PackagesPojo" />
@@ -48,24 +49,29 @@
             android:gravity="center"
             android:layout_gravity="center"
             >
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:text="WE "
-                android:textColor="@color/white"
-                android:background="@color/colorAccent"
-               android:textSize="25sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Travel"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:paddingTop="15dp"
-                />
+                android:src="@drawable/logo"
+                android:layout_margin="10dp"/>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                 <!--android:text="WE "-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/colorAccent"-->
+               <!--android:textSize="25sp"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Travel"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="25sp"-->
+                <!--android:paddingTop="15dp"-->
+                <!--/>-->
         </LinearLayout>
 
         <LinearLayout
@@ -202,7 +208,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{Integer.toString(packageDetails.price),default=000}"
+                        android:text="@{Double.toString(bookedPackage.totalCost),default=000}"
                         android:textSize="12sp"
                         android:textColor   ="#000"
                         />

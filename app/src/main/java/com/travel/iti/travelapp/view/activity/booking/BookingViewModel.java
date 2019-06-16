@@ -92,7 +92,7 @@ public class BookingViewModel extends ViewModel {
         if (noOfChilds.getValue() != 0 || noOfAdults.getValue() != 0) {
 
             BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
-                    noOfChilds.getValue(), userName.getValue());
+                    noOfChilds.getValue(), userName.getValue() , totalCost.getValue());
             Call<ApiResponse<String>> call = Apiservice.getInstance().apiRequest.
                     postBookedPackages(bookedPackage);
             call.enqueue(new Callback<ApiResponse<String>>() {
