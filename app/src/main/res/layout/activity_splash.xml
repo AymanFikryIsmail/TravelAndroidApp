@@ -17,7 +17,7 @@
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="8dp"
         android:scaleType="centerInside"
-        android:src="@drawable/splash_logo"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
