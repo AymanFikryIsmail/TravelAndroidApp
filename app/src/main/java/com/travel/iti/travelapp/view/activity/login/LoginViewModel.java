@@ -66,10 +66,10 @@ public class LoginViewModel extends ViewModel {
             public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
                 if (response.body().status == "true" && response.body().data != null) {
                     loginData.setValue(response.body().data);
-                    loginView.showSuccess("Successfully authenticated");
+                    loginView.showSuccess("Signed in successfully ");
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 } else {
-                    loginView.showSuccess("authentication failed");
+                    loginView.showSuccess("Authentication failed");
                 }
             }
 
