@@ -89,38 +89,43 @@ public class BookingViewModel extends ViewModel {
 
     public void postBookedPackages(int packageId, int userId) {
 
-        if (noOfChilds.getValue() != 0 || noOfAdults.getValue() != 0) {
+        if(!userName.getValue().isEmpty()) {
 
-            BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
-                    noOfChilds.getValue(), userName.getValue() , totalCost.getValue());
-            Call<ApiResponse<String>> call = Apiservice.getInstance().apiRequest.
-                    postBookedPackages(bookedPackage);
-            call.enqueue(new Callback<ApiResponse<String>>() {
-                @Override
-                public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
-                    if (response.body().status == "true" && response.body().data != null) {
-                        Log.d("tag", "articles total result:: " + response.body().getMessage());
-                        bookingView.bookPackage(bookedPackage);
-                        bookingView.showSuccess("");
-                        Log.d("tag", "articles total result:: " + response.body().getMessage());
+
+            if (noOfChilds.getValue() != 0 || noOfAdults.getValue() != 0) {
+
+                BookedPackage bookedPackage = new BookedPackage(packageId, userId, noOfAdults.getValue(),
+                        noOfChilds.getValue(), userName.getValue(), totalCost.getValue());
+                Call<ApiResponse<String>> call = Apiservice.getInstance().apiRequest.
+                        postBookedPackages(bookedPackage);
+                call.enqueue(new Callback<ApiResponse<String>>() {
+                    @Override
+                    public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
+                        if (response.body().status == "true" && response.body().data != null) {
+                            Log.d("tag", "articles total result:: " + response.body().getMessage());
+                            bookingView.bookPackage(bookedPackage);
+                            bookingView.showSuccess("");
+                            Log.d("tag", "articles total result:: " + response.body().getMessage());
+                        } else {
+                            bookingView.shwoError("Error in connection");
+                        }
                     }
-                    else {
+
+                    @Override
+                    public void onFailure(Call<ApiResponse<String>> call, Throwable t) {
+                        Log.d("tag", "articles total result:: " + t.getMessage());
                         bookingView.shwoError("Error in connection");
+
                     }
-                }
+                });
 
-                @Override
-                public void onFailure(Call<ApiResponse<String>> call, Throwable t) {
-                    Log.d("tag", "articles total result:: " + t.getMessage());
-                    bookingView.shwoError("Error in connection");
+            } else {
 
-                }
-            });
+                bookingView.shwoError(" Number of passengers can't be 0");
 
-        }
-        else {
-
-            bookingView.shwoError(" Number of passengers can't be 0");
+            }
+        }else {
+            bookingView.shwoError(" You must enter the user name");
 
         }
     }

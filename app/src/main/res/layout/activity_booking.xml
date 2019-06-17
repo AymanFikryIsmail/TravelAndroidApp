@@ -153,7 +153,7 @@
                 android:drawablePadding="10dp"
                 android:id="@+id/remainingId"
                 android:drawableStart="@drawable/circle_drawable"
-                android:text="@{`Number of individuals remaining : ` + Integer.toString(bookingViewModel.noOfAvails),default=`Number of individuals remaining : 0`}"
+                android:text="@{`Number of individuals remaining : ` + Integer.toString(safeUnbox(bookingViewModel.noOfAvails)),default=`Number of individuals remaining : 0`}"
                 android:textColor="@color/black" />
 
             <TextView
@@ -292,7 +292,7 @@
                 android:layout_marginTop="15dp"
                 android:drawablePadding="10dp"
                 android:id="@+id/totalcost"
-                android:text="@{`Total Cost : ` + Double.toString(bookingViewModel.totalCost),default=`Total Cost : 000`}"
+                android:text="@{`Total Cost : ` + Double.toString(safeUnbox(bookingViewModel.totalCost)),default=`Total Cost : 000`}"
 
                 android:textColor="@color/secondblue" />
 
@@ -311,6 +311,7 @@
                 android:text="@={bookingViewModel.userName}"
                 android:inputType="text"
                 android:padding="10dp"
+                android:focusable="false"
                 android:paddingStart="15dp"
                 android:textSize="12sp"
                 android:textColor="@color/black"

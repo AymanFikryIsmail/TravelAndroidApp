@@ -102,6 +102,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
             }
         });
         searchEditText = findViewById(R.id.searchEditText);
+        searchEditText.setFocusable(false);
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

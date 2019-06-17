@@ -99,7 +99,6 @@
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.Password}"
             android:textColorHint="@color/textColorHint"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="0.0"
@@ -122,6 +121,18 @@
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/txtPassword"
             app:layout_constraintVertical_bias="0.092" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/btnFaceBook"
+            app:layout_constraintVertical_bias="0.219"
+            tools:layout_editor_absoluteX="27dp" />
 
         <Button
             android:id="@+id/btnGoogle"
@@ -172,18 +183,15 @@
                 android:textSize="11sp"
                 android:textColor="#ffffff"
                 tools:text="SIGN UP"
-                android:onClick="@{(v) -> activity.onClick(v)}"
                 />
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnFaceBook"
+            android:id="@+id/btnsignup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/googleplus_button"
-            android:onClick="@{(v) -> activity.onClick(v)}"
+            android:background="@drawable/signup_button"
             android:text="Sign up"
-
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="14sp"

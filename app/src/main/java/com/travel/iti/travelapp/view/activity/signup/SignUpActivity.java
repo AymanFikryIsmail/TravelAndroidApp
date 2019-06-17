@@ -72,13 +72,13 @@ public class SignUpActivity extends AppCompatActivity implements  SignUpView {
 
             }
         });
-        binding2.editTextCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = new Intent(SignUpActivity.this, MapsActivity.class);
-                startActivityForResult(intent, 11);
-            }
-        });
+//        binding2.editTextCity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Intent intent = new Intent(SignUpActivity.this, MapsActivity.class);
+//                startActivityForResult(intent, 11);
+//            }
+//        });
         signUpViewModel.isSuccess.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isSuccess) {

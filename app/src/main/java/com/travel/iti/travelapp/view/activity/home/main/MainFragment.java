@@ -69,6 +69,8 @@ public class MainFragment extends Fragment implements MainView{
         getData();
 
         searchEditText = view.findViewById(R.id.search_bar);
+        searchEditText.clearFocus();
+        searchEditText.setFocusable(false);
         searchEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
