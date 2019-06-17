@@ -72,7 +72,11 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
             } else if (!Patterns.EMAIL_ADDRESS.matcher(loginUser.getEmail().trim()).matches()) {
                 binding.txtEmailAddress.setError(getString(R.string.input_error_email_invalid));
                 binding.txtEmailAddress.requestFocus();
-            } else if (loginUser.getPassword().length() < 6) {
+            }else if (TextUtils.isEmpty(loginUser.getPassword())) {
+                 binding.txtPassword.setError(getString(R.string.input_error_password));
+                 binding.txtPassword.requestFocus();
+             }
+             else if (loginUser.getPassword().length() < 6) {
                  binding.txtPassword.setError(getString(R.string.input_error_password_length));
                  binding.txtPassword.requestFocus();
             }
