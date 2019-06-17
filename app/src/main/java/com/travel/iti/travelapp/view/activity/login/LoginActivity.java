@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,15 +66,16 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
         loginViewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User loginUser) {
-
-                if (TextUtils.isEmpty(loginUser.getEmail())) {
-                    binding.txtEmailAddress.setError("Enter an E-Mail Address");
-                    binding.txtEmailAddress.requestFocus();
-                }
-                else if (TextUtils.isEmpty(loginUser.getPassword())) {
-                    binding.txtPassword.setError("Enter a Password");
-                    binding.txtPassword.requestFocus();
-                }
+             if (TextUtils.isEmpty(loginUser.getEmail())) {
+                binding.txtEmailAddress.setError(getString(R.string.input_error_email));
+                binding.txtEmailAddress.requestFocus();
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(loginUser.getEmail().trim()).matches()) {
+                binding.txtEmailAddress.setError(getString(R.string.input_error_email_invalid));
+                binding.txtEmailAddress.requestFocus();
+            } else if (loginUser.getPassword().length() < 6) {
+                 binding.txtPassword.setError(getString(R.string.input_error_password_length));
+                 binding.txtPassword.requestFocus();
+            }
                 else {
                     binding.progressView.setVisibility(View.VISIBLE);
                     loginViewModel.signIn(loginUser);
