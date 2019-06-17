@@ -105,7 +105,7 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void getRecommendedPackages( int userId){
+    public void getRecommendedPackages(int userId){
 
         Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getRecommendedPackages (userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {

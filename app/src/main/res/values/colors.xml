@@ -51,8 +51,8 @@
     <color name="blue">#425BB4</color>
     <color name="secondblue">#2680eb</color>
 
-    <color name="brown">#3d3d3d</color>
-    <color name="grey">#f1f1f1</color>
+    <color name= "brown">#3d3d3d</color>
+    <color name= "grey">#f1f1f1</color>
 
 
 </resources>

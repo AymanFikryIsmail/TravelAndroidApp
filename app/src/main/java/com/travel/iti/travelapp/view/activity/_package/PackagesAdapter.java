@@ -102,7 +102,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         }
 
         public void bind(final PackagesPojo packagesPojo) {
-            travelTo.setText(packagesPojo.getTravel_to());
+            travelTo.setText(packagesPojo.getPackageName());
             date.setText(packagesPojo.getDate());
             duration.setText(packagesPojo.getDuration() + " Days");
             price.setText(packagesPojo.getPrice() + " LE");
