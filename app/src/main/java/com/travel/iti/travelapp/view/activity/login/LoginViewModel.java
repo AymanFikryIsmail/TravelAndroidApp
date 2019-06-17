@@ -27,14 +27,15 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData<String> EmailAddress;
     public MutableLiveData<String> Password;
     private MutableLiveData<User> userMutableLiveData;
-    public MutableLiveData<User> loginData = new MutableLiveData<>();
-    public MutableLiveData<Boolean> isSuccess = new MutableLiveData<>();
+    public MutableLiveData<User> loginData;
+    public MutableLiveData<Boolean> isSuccess ;
 
     LoginView loginView;
     public LoginViewModel() {
         EmailAddress = new MutableLiveData<>();
         Password = new MutableLiveData<>();
         isSuccess = new MutableLiveData<>();
+        loginData = new MutableLiveData<>();
 
     }
 
@@ -80,5 +81,28 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
+
+//    public void googleSignIn(User loginGoogleUser){
+//        Call<ApiResponse<User>> call = Apiservice.getInstance().apiRequest.googlSignIn(loginGoogleUser);
+//        call.enqueue(new Callback<ApiResponse<User>>() {
+//            @Override
+//            public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
+//                if (response.body().status == "true" && response.body().data != null) {
+//                    loginData.setValue(response.body().data);
+//                    loginView.showSuccess("Successfully authenticated");
+//                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+//                } else {
+//                    loginView.showSuccess("authentication failed");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ApiResponse<User>> call, Throwable t) {
+//                Log.d("tag", "articles total result:: " + t.getMessage());
+//                loginView.showSuccess("authentication failed : Check your network");
+//
+//            }
+//        });
+//    }
 
 }

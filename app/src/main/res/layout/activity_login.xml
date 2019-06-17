@@ -99,7 +99,6 @@
             android:paddingStart="15dp"
             android:text="@={LoginViewModel.Password}"
             android:textColorHint="@color/textColorHint"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="0.0"
@@ -122,6 +121,18 @@
             app:layout_constraintStart_toEndOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/txtPassword"
             app:layout_constraintVertical_bias="0.092" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/btnFaceBook"
+            app:layout_constraintVertical_bias="0.219"
+            tools:layout_editor_absoluteX="27dp" />
 
         <Button
             android:id="@+id/btnGoogle"
