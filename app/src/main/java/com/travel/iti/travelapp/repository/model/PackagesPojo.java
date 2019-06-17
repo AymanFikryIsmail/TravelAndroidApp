@@ -27,7 +27,7 @@ public class PackagesPojo implements Serializable {
     private int discounted_tickets;
 
     private int duration;
-    private String date;
+    private long date;
     private String description;
     private int fav_flag;
     @SerializedName("c_id")
@@ -38,7 +38,7 @@ public class PackagesPojo implements Serializable {
     public PackagesPojo() {
     }
 
-    public PackagesPojo(int packageId, String packageName, String travel_from, String travel_to, int price, int discounted_price, int avail_tickets, int duration, String date, String description, int cityId, String addingDate) {
+    public PackagesPojo(int packageId, String packageName, String travel_from, String travel_to, int price, int discounted_price, int avail_tickets, int duration, long date, String description, int cityId, String addingDate) {
         this.packageId = packageId;
         this.packageName = packageName;
         this.travel_from = travel_from;
@@ -139,21 +139,24 @@ public class PackagesPojo implements Serializable {
     }
 
     public String getDate() {
-        String strCurrentDate = this.date;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date newDate = null;
-        try {
-            newDate = format.parse(strCurrentDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        format = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = new Date(newDate.getTime());
-        String d = format.format(currentDate);
-        return d;
+        long val = this.date;
+        Date date=new Date(val);
+        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+        String dateText = df2.format(date);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//        Date newDate = null;
+//        try {
+//            newDate = format.parse(strCurrentDate);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date currentDate = new Date(newDate.getTime());
+//        String d = format.format(currentDate);
+        return dateText;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

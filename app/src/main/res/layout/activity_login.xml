@@ -172,18 +172,15 @@
                 android:textSize="11sp"
                 android:textColor="#ffffff"
                 tools:text="SIGN UP"
-                android:onClick="@{(v) -> activity.onClick(v)}"
                 />
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnFaceBook"
+            android:id="@+id/btnsignup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/googleplus_button"
-            android:onClick="@{(v) -> activity.onClick(v)}"
+            android:background="@drawable/signup_button"
             android:text="Sign up"
-
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="14sp"

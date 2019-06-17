@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
                 prefManager.setUserData(user);
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         loginViewModel.getUser().observe(this, new Observer<User>() {
@@ -67,10 +68,14 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
 
             }
         });
+
+        binding.btnsignup.setOnClickListener((View v)-> {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+        });
     }
     public void onClick(View view) {
-            Intent intent = new Intent(this, SignUpActivity.class);
-            startActivity(intent);
+
     }
 
     @Override
