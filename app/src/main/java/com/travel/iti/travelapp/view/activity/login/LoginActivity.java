@@ -155,7 +155,6 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
 //            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 //        }
 //
->>>>>>> 9ff9c65f83c0f75ab2c6c0371ab76014dd91fa48
     }
 
     public void onClick(View view) {
