@@ -76,6 +76,7 @@ public class BookingActivity extends AppCompatActivity implements BookingView {
         binding.setPackageDetails(packagesPojo);
         binding.setBookingViewModel(bookingViewModel);
         binding.setGotoBooking(this);
+//        binding.userNameEd.setFocusable(false);
         Intent intent = new Intent(this, PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         startService(intent);
