@@ -91,7 +91,7 @@ public class PackageActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         progressView.setVisibility(View.GONE);
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
 

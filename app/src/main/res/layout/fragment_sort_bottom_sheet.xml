@@ -42,7 +42,7 @@ android:background="@color/white"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.90" />
+    app:layout_constraintGuide_percent="0.40" />
 
 <android.support.constraint.Guideline
     android:id="@+id/btnGuideline4"
@@ -93,6 +93,7 @@ android:background="@color/white"
             android:clickable="false"
             android:hint="Price Low to High"
             android:textColor="@color/black"
+            android:visibility="gone"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,6 +146,6 @@ android:background="@color/white"
     app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
     app:layout_constraintTop_toBottomOf="@+id/btnGuideline3"
     app:layout_constraintBottom_toTopOf="@+id/btnGuideline"
-    app:layout_constraintVertical_bias="1.0" />
+    />
 
 </android.support.constraint.ConstraintLayout>

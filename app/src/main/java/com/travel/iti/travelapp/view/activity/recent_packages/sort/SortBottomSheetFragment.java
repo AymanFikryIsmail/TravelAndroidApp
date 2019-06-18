@@ -28,6 +28,7 @@ public class SortBottomSheetFragment extends BottomSheetDialogFragment {
     AlertDialog alertDialog1;
     private String priceRange = "" ;
     private  String sortType = "";
+    private int price = 0;
     CharSequence[] values = {" Low to High "," High to Low "};
 
 
@@ -105,7 +106,7 @@ public class SortBottomSheetFragment extends BottomSheetDialogFragment {
             public void onClick(View v) {
 
                 if (sortFragmentinterface != null) {
-                    sortFragmentinterface.passSortData(priceRange , sortType);
+                    sortFragmentinterface.passSortData(priceRange , sortType, price);
                 }
 
                 dialog.dismiss();
