@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.view.activity.home.fragments.booking.BookingsFragment;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText searchDestinationEditText ;
     TextView userName , email;
     private PrefManager prefManager;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = (DrawerLayout)findViewById(R.id.activity_main);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.Open, R.string.Close);
         toggle.setDrawerIndicatorEnabled(true);
+      //  toolbar = findViewById(R.id.activity_main);
+
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -59,11 +63,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         email.setText(prefManager.getUserData().getEmail());
 
         MainFragment mainFragment= new MainFragment();
-        loadFragment(mainFragment,"mainFragment ");
+        loadFragment(mainFragment,"Home");
 
     }
     private void loadFragment(Fragment fragment, String barTitle){
-       // toolbar.setTitle(barTitle);
+        setTitle(barTitle);
+
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_container,fragment,barTitle);
         fragmentTransaction.addToBackStack(null);
@@ -98,17 +103,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             case R.id.home:
                 MainFragment mainFragment= new MainFragment();
-                loadFragment(mainFragment,"mainFragment ");
+                loadFragment(mainFragment,"Home ");
                 break;
             case R.id.favorites:
 
                 FavoritesFragment favoritesFragment= new FavoritesFragment();
-                loadFragment(favoritesFragment,"favoritesFragment ");
+                loadFragment(favoritesFragment,"My Favorites ");
                 break;
 
             case R.id.booking:
                 BookingsFragment bookingsFragment= new BookingsFragment();
-                loadFragment(bookingsFragment,"favoritesFragment ");
+                loadFragment(bookingsFragment,"My Bookings ");
                 break;
 
 //            case R.id.settings:

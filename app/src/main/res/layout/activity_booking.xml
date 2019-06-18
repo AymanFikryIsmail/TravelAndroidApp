@@ -311,7 +311,6 @@
                 android:text="@={bookingViewModel.userName}"
                 android:inputType="text"
                 android:padding="10dp"
-                android:focusable="false"
                 android:paddingStart="15dp"
                 android:textSize="12sp"
                 android:textColor="@color/black"
