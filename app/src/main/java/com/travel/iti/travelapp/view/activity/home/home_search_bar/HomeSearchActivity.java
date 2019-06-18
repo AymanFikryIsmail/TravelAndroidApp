@@ -125,6 +125,7 @@ public class HomeSearchActivity extends AppCompatActivity implements MainView {
                 i.putExtra("fromCity",fromCity);
                 i.putExtra("toCity",toCity);
                 startActivity(i);
+                finish();
 
             }
         });
