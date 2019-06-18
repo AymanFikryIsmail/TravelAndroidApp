@@ -21,6 +21,7 @@ import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
+import com.travel.iti.travelapp.view.activity.home.MainActivity;
 import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
@@ -129,5 +130,11 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(HomeSearchResultActivity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
