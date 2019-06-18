@@ -33,7 +33,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
 
 public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
@@ -44,6 +43,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
     private PackagesViewModel packagesViewModel;
 
     private PrefManager prefManager;
+
     public PackagesAdapter() {
         packagesPojoList = new ArrayList<>();
     }
@@ -51,7 +51,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
     public PackagesAdapter(Context context, List<PackagesPojo> packagesPojoList, PackagesViewModel packagesViewModel) {
         this.context = context;
-        prefManager=new PrefManager(context);
+        prefManager = new PrefManager(context);
         this.packagesPojoList = packagesPojoList;
         this.originList = new ArrayList<>();
         this.packagesViewModel = packagesViewModel;
@@ -122,13 +122,13 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
                 }
             });
 
-            if (packagesPojo.getFav_flag()==1)
+            if (packagesPojo.getFav_flag() == 1)
                 packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
             else
                 packageFavBtn.setImageResource(R.drawable.ic_favorite);
 
             packageFavBtn.setOnClickListener((View v) -> {
-                packagesViewModel.setFavPackage(packagesPojo.getPackageId(),  prefManager.getUserId(),(boolean isFav) -> {
+                packagesViewModel.setFavPackage(packagesPojo.getPackageId(), prefManager.getUserId(), (boolean isFav) -> {
                             if (isFav)
                                 packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);
                             else
@@ -146,15 +146,15 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         this.notifyDataSetChanged();
     }
 
-    public void filter(int price, int duration, int startOfRate , String first_date_check , String last_date_check) {
+    public void filter(int price, int duration, int startOfRate, String first_date_check, String last_date_check) {
 
         packagesPojoList.clear();
         List<PackagesPojo> filteredList = new ArrayList<>();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date first_date = null ;
-        Date second_date = null ;
+        Date first_date = null;
+        Date second_date = null;
         try {
             first_date = format.parse(first_date_check);
             second_date = format.parse(last_date_check);
@@ -163,18 +163,30 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         }
 
         for (PackagesPojo packagesPojo : originList) {
-            Date package_date = null ;
+            Date package_date = null;
+            SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yy");
             try {
-                package_date = format.parse(packagesPojo.getDate());
+                package_date = format2.parse(packagesPojo.getDate());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
 
             ///&& (package_date.compareTo(first_date) >= 0) && (package_date.compareTo(second_date) <= 0)
-            if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration) && (packagesPojo.getRate() >= startOfRate) && (package_date.compareTo(first_date) >= 0) && (package_date.compareTo(second_date) <= 0)) {
-                filteredList.add(packagesPojo);
+            if (first_date != null && second_date != null) {
+                if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration)
+                        && (packagesPojo.getRate() >= startOfRate) && (package_date.compareTo(first_date) >= 0) && (package_date.compareTo(second_date) <= 0)
+                ) {
+                    filteredList.add(packagesPojo);
+                }
+            } else {
+                if ((packagesPojo.getPrice() <= price) && (packagesPojo.getDuration() <= duration)
+                        && (packagesPojo.getRate() >= startOfRate)
+                ) {
+                    filteredList.add(packagesPojo);
+                }
             }
+
 
         }
 
@@ -183,49 +195,42 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
     }
 
-    public void searchByCityFilter(String fromCity , String toCity){
+    public void searchByCityFilter(String fromCity, String toCity) {
 
         packagesPojoList.clear();
         List<PackagesPojo> filteredList = new ArrayList<>();
 
-        if (fromCity.equals("") && toCity.equals("") ){
-           filteredList = originList ;
-        }
+        if (fromCity.equals("") && toCity.equals("")) {
+            filteredList = originList;
+        } else {
+            for (PackagesPojo packagesPojo : originList) {
 
-        else {
-            for (PackagesPojo packagesPojo : originList){
+                if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))) {
+                    filteredList.add(packagesPojo);
+                } else if (packagesPojo.getTravel_from().equals(fromCity) && (toCity.equals(""))) {
+                    filteredList.add(packagesPojo);
+                } else if (fromCity.equals("") && packagesPojo.getTravel_to().equals(toCity)) {
+                    filteredList.add(packagesPojo);
+                } else {
 
-            if ((packagesPojo.getTravel_from().equals(fromCity)) && (packagesPojo.getTravel_to().equals(toCity))){
-                filteredList.add (packagesPojo);
-            }
-
-            else if (packagesPojo.getTravel_from().equals(fromCity) && (toCity.equals(""))){
-                filteredList.add(packagesPojo);
-            }
-
-            else if (fromCity.equals("") && packagesPojo.getTravel_to().equals(toCity)){
-                filteredList.add (packagesPojo);
-            }
-            else {
-
+                }
             }
         }
-        }
-        packagesPojoList = filteredList ;
+        packagesPojoList = filteredList;
         this.notifyDataSetChanged();
 
 
     }
 
 
-    public void sortByDate(String sortType){
+    public void sortByDate(String sortType) {
         Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
             @Override
             public int compare(PackagesPojo o1, PackagesPojo o2) {
-                if (sortType.equals("asc")){
-                    return ( String.valueOf(o1.getDate())).compareToIgnoreCase(String.valueOf(o2.getDate()));
-                }else {
-                    return ( String.valueOf(o2.getDate())).compareToIgnoreCase(String.valueOf(o1.getDate()));
+                if (sortType.equals("asc")) {
+                    return (String.valueOf(o1.getDate())).compareToIgnoreCase(String.valueOf(o2.getDate()));
+                } else {
+                    return (String.valueOf(o2.getDate())).compareToIgnoreCase(String.valueOf(o1.getDate()));
                 }
             }
         };
@@ -238,11 +243,11 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
 
             @Override
             public int compare(PackagesPojo o1, PackagesPojo o2) {
-                if (sortType.equals("asc")){
-                    return ( String.valueOf(o1.getRate())).compareToIgnoreCase(String.valueOf(o2.getRate()));
+                if (sortType.equals("asc")) {
+                    return (String.valueOf(o1.getRate())).compareToIgnoreCase(String.valueOf(o2.getRate()));
 
-                }else {
-                    return ( String.valueOf(o2.getRate())).compareToIgnoreCase(String.valueOf(o1.getRate()));
+                } else {
+                    return (String.valueOf(o2.getRate())).compareToIgnoreCase(String.valueOf(o1.getRate()));
 
                 }
             }

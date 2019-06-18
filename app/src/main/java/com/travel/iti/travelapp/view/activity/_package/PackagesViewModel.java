@@ -154,29 +154,26 @@ public class PackagesViewModel extends ViewModel {
 
     }
 
-    public void getHomeSearchedPackages (int userId){
+    public void getHomeSearchedPackages (int userId) {
 
-        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getHomeSearchedPackages (userId);
+        Call<ApiResponse<List<PackagesPojo>>> call = Apiservice.getInstance().apiRequest.getHomeSearchedPackages(userId);
         call.enqueue(new Callback<ApiResponse<List<PackagesPojo>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<PackagesPojo>>> call, Response<ApiResponse<List<PackagesPojo>>> response) {
-                if (response.body().status == "true"&&response.body().data!=null  ) {
+                if (response.body().status == "true" && response.body().data != null) {
                     packagesData.setValue(response.body().data);
                     mainView.showSuccess("");
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
-                }
-                else {
+                } else {
                     mainView.shwoError("Error in connection");
                 }
             }
+
             @Override
             public void onFailure(Call<ApiResponse<List<PackagesPojo>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
                 mainView.shwoError("Error in connection");
             }
         });
-
     }
-
-
 }

@@ -104,7 +104,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
         filterFragmentInterface = (FilterFragmentInterface) getActivity();
 
         priceSeekBar = view.findViewById(R.id.priceRangeSeekBar);
-        priceSeekBar.setMax(3000);
+        priceSeekBar.setMax(RecentActivity.maxPrice);
 
         priceTextiew = view.findViewById(R.id.priceValue);
         priceTextiew.setText(priceSeekBar.getProgress() + "/" + priceSeekBar.getMax());
@@ -129,7 +129,7 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
         });
 
         daysSeekBar = view.findViewById(R.id.daysRangeSeekBar);
-        daysSeekBar.setMax(5);
+        daysSeekBar.setMax(RecentActivity.maxDays);
         daysSeekBar.incrementProgressBy(1);
 
         daysTextView = view.findViewById(R.id.daysNumber);
@@ -178,7 +178,12 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
         btnApply = view.findViewById(R.id.filterBtn);
         btnApply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                if (priceProgress == 0 ){
+                    priceProgress = RecentActivity.maxPrice ;
+                }
+                if (daysProgress == 0 ){
+                    daysProgress = RecentActivity.maxDays ;
+                }
                 if (filterFragmentInterface != null) {
                     filterFragmentInterface.passData(priceProgress, daysProgress, startOfRate ,first_date_check , last_date_check);
                 }
@@ -203,23 +208,19 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
             case R.id.rateThree:
                 startOfRate = 3;
                 btnShape3.setColor(getResources().getColor(R.color.darkYellow));
-                Toast.makeText(getActivity(), "rate is 3", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.rateFour:
                 startOfRate = 4;
                 btnShape4.setColor(getResources().getColor(R.color.darkYellow));
-                Toast.makeText(getActivity(), "rate is 4", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rateFive:
                 startOfRate = 5;
                 btnShape5.setColor(getResources().getColor(R.color.darkYellow));
-                Toast.makeText(getActivity(), "rate is 5", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rateAll:
                 startOfRate = 1;
                 btnShapeAll.setColor(getResources().getColor(R.color.darkYellow));
-                Toast.makeText(getActivity(), "rate is all", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

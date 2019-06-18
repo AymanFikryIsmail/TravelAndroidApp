@@ -12,19 +12,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
+import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeSearchResultActivity extends AppCompatActivity implements FilterFragmentInterface {
+public class HomeSearchResultActivity extends AppCompatActivity implements FilterFragmentInterface , MainView {
 
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
@@ -48,7 +50,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
         setContentView(R.layout.activity_home_search_result);
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-
+        packagesViewModel.init(this);
         prefManager=new PrefManager(this);
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -103,4 +105,15 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
         recyclerView.setAdapter(packagesAdapter);
 
     }
+    @Override
+    public void showSuccess(String success) {
+        // Toast.makeText(getContext(), success , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shwoError(String error) {
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
+    }
+
+
 }

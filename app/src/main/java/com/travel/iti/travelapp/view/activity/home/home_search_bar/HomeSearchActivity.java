@@ -14,10 +14,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.CityPackage;
+import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.CustomItemClickListener;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchViewModel;
@@ -26,7 +28,7 @@ import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashAct
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeSearchActivity extends AppCompatActivity {
+public class HomeSearchActivity extends AppCompatActivity implements MainView {
 
     List<CityPackage> cityPackageList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -46,7 +48,7 @@ public class HomeSearchActivity extends AppCompatActivity {
 
 
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-        searchViewModel.init(getApplicationContext());
+        searchViewModel.init(this);
 
         recyclerView = findViewById(R.id.recyclerViewId);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -140,5 +142,15 @@ public class HomeSearchActivity extends AppCompatActivity {
                 recyclerView.setAdapter(searchAdapter);
             }
         });
+    }
+
+    @Override
+    public void showSuccess(String success) {
+    }
+
+    @Override
+    public void shwoError(String error) {
+        Toast.makeText(this, error , Toast.LENGTH_LONG).show();
+
     }
 }

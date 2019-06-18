@@ -45,8 +45,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     private String fromCity;
     private String toCity;
     FrameLayout progressView;
-    int maxPrice = 0 ;
-    float maxRate = 0 ;
+    public static int maxPrice = 0 ;
+    public static int maxDays = 0 ;
 
     private PrefManager prefManager;
 
@@ -128,8 +128,8 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                         maxPrice = packagesPojo.getPrice();
                     }
 
-                    if (packagesPojo.getRate() >= maxRate){
-                        maxRate = packagesPojo.getRate() ;
+                    if (packagesPojo.getDuration() >= maxDays){
+                        maxDays = packagesPojo.getDuration() ;
                     }
 
 
@@ -148,6 +148,20 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
+
+                for (PackagesPojo packagesPojo : packagesPojos)
+                {
+                    if (packagesPojo.getPrice() >= maxPrice ){
+                        maxPrice = packagesPojo.getPrice();
+                    }
+
+                    if (packagesPojo.getDuration() >= maxDays){
+                        maxDays = packagesPojo.getDuration() ;
+                    }
+
+
+                }
+
             }
         });
     }
@@ -160,6 +174,20 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
                 packagesPojoList = packagesPojos;
                 packagesAdapter.updateList(packagesPojoList, packagesPojos);
                 recyclerView.setAdapter(packagesAdapter);
+
+                for (PackagesPojo packagesPojo : packagesPojos)
+                {
+                    if (packagesPojo.getPrice() >= maxPrice ){
+                        maxPrice = packagesPojo.getPrice();
+                    }
+
+                    if (packagesPojo.getDuration() >= maxDays){
+                        maxDays = packagesPojo.getDuration() ;
+                    }
+
+
+                }
+
             }
         });
     }
