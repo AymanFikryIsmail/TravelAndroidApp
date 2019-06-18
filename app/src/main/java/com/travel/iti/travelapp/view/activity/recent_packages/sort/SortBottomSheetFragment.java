@@ -22,13 +22,14 @@ import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 public class SortBottomSheetFragment extends BottomSheetDialogFragment {
    // private PackagesAdapter packagesAdapter;
     private EditText editTextPriceRange;
-    Button btnApply;
+    private Button btnApply;
     private SortFragmentinterface sortFragmentinterface;
-    RadioGroup radioGroup;
-    AlertDialog alertDialog1;
+    private RadioGroup radioGroup;
+    private AlertDialog alertDialog1;
     private String priceRange = "" ;
     private  String sortType = "";
-    CharSequence[] values = {" Low to High "," High to Low "};
+    private int price = 0;
+    private CharSequence[] values = {" Low to High "," High to Low "};
 
 
     @SuppressLint("RestrictedApi")
@@ -105,7 +106,7 @@ public class SortBottomSheetFragment extends BottomSheetDialogFragment {
             public void onClick(View v) {
 
                 if (sortFragmentinterface != null) {
-                    sortFragmentinterface.passSortData(priceRange , sortType);
+                    sortFragmentinterface.passSortData(priceRange , sortType, price);
                 }
 
                 dialog.dismiss();
@@ -124,12 +125,12 @@ public class SortBottomSheetFragment extends BottomSheetDialogFragment {
                     case 0:
                         editTextPriceRange.setText("Low to High");
                         priceRange = "asc";
-                        Toast.makeText(getContext(), "Low to High", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getContext(), "Low to High", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         editTextPriceRange.setText("High to Low");
                         priceRange ="desc";//editTextPriceRange.getText().toString();
-                        Toast.makeText(getContext(), "High to Low", Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(getContext(), "High to Low", Toast.LENGTH_LONG).show();
                         break;
                 }
                 alertDialog1.dismiss();

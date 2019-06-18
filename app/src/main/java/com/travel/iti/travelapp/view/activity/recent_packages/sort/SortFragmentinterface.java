@@ -6,5 +6,5 @@ package com.travel.iti.travelapp.view.activity.recent_packages.sort;
 
 public interface SortFragmentinterface {
 
-    void passSortData (String priceRange, String sortType);
+    void passSortData (String priceRange, String sortType ,int price);
 }

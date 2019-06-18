@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ import com.travel.iti.travelapp.view.activity._package.PackagesViewModel;
 import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterBottomSheetFragment;
 import com.travel.iti.travelapp.view.activity.recent_packages.filter.FilterFragmentInterface;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment;
+import com.travel.iti.travelapp.view.activity.recent_packages.sort.SortFragmentinterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
     private TextView filterBtn;
     private Button sortBtn;
     public static final String TAG = "bottom_sheet";
+    public static final String SORT_TAG = "sort_bottom_sheet";
     private FilterFragmentInterface filterFragmentInterface;
     private String fromCity;
     private String toCity;
@@ -79,6 +84,15 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
                 filterFragment.show(getSupportFragmentManager(), TAG);
             }
         });
+
+        sortBtn = findViewById(R.id.sort);
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SortBottomSheetFragment sortBottomSheetFragment = new SortBottomSheetFragment();
+                sortBottomSheetFragment.show(getSupportFragmentManager(), SORT_TAG);
+            }
+        });
     }
 
 
@@ -111,7 +125,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
     }
 
