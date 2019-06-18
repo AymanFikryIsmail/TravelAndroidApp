@@ -208,19 +208,31 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
             case R.id.rateThree:
                 startOfRate = 3;
                 btnShape3.setColor(getResources().getColor(R.color.darkYellow));
+                btnShape4.setColor(getResources().getColor(R.color.white));
+                btnShape5.setColor(getResources().getColor(R.color.white));
+                btnShapeAll.setColor(getResources().getColor(R.color.white));
                 break;
 
             case R.id.rateFour:
                 startOfRate = 4;
                 btnShape4.setColor(getResources().getColor(R.color.darkYellow));
+                btnShape3.setColor(getResources().getColor(R.color.white));
+                btnShape5.setColor(getResources().getColor(R.color.white));
+                btnShapeAll.setColor(getResources().getColor(R.color.white));
                 break;
             case R.id.rateFive:
                 startOfRate = 5;
                 btnShape5.setColor(getResources().getColor(R.color.darkYellow));
+                btnShape3.setColor(getResources().getColor(R.color.white));
+                btnShape4.setColor(getResources().getColor(R.color.white));
+                btnShapeAll.setColor(getResources().getColor(R.color.white));
                 break;
             case R.id.rateAll:
                 startOfRate = 1;
                 btnShapeAll.setColor(getResources().getColor(R.color.darkYellow));
+                btnShape3.setColor(getResources().getColor(R.color.white));
+                btnShape4.setColor(getResources().getColor(R.color.white));
+                btnShape5.setColor(getResources().getColor(R.color.white));
                 break;
         }
     }
