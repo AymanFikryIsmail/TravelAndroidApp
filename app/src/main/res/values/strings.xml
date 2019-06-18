@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TravelApp</string>
+    <string name="app_name">WETravel</string>
 
 
     <string name="input_error_name">name required</string>
