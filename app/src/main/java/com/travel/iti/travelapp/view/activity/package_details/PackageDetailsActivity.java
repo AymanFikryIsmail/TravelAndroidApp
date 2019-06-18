@@ -39,7 +39,7 @@ public class PackageDetailsActivity extends AppCompatActivity {
     Button rateBtn;
     public RatingBar ratingBar;
     RatingDialog mRatingDialog;
-
+    //ImageView fav_btn;
     private float rateValue;
     private PrefManager prefManager;
     PackageDetailViewModel packageDetailViewModel;
@@ -55,6 +55,13 @@ public class PackageDetailsActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
         binding.setGotoBooking(this);
+        binding.favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         sliderLayout = findViewById(R.id.imageSlider);
 //        sliderLayout.setIndicatorAnimation(IndicatorAnimations.SWAP); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderLayout.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);

@@ -65,8 +65,8 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView travelTo ,date ,departure , arrival;
-        public ImageView  maskImage;
+        public TextView travelTo, date, departure, arrival;
+        public ImageView maskImage;
         public RatingBar ratingBar;
         public LinearLayout packageDataLayout;
 
@@ -75,7 +75,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
             travelTo = itemView.findViewById(R.id.travel_to);
             departure = itemView.findViewById(R.id.departureId);
             arrival = itemView.findViewById(R.id.arrivalId);
-            ratingBar=itemView.findViewById(R.id.ratingBar);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
             date = itemView.findViewById(R.id.dateId);
             maskImage = itemView.findViewById(R.id.mask);
             packageDataLayout = itemView.findViewById(R.id.package_data_layout);
@@ -88,22 +88,23 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
             ratingBar.setRating(packagesPojo.getRate());
             date.setText(packagesPojo.getDate());
 
-            Picasso.with(context).load(BASE_URL+packagesPojo.getPhotoPaths().get(0))
+            Picasso.with(context).load(BASE_URL + packagesPojo.getPhotoPaths().get(0))
                     .fit().centerCrop()
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
 
-            itemView.setOnClickListener((View v)-> {
-                    Intent intent=new Intent(context, QRCardActivity.class);
-                    intent.putExtra("packageDetails", packagesPojo);
-                    double totalCost= (packagesPojo.getTickets()*packagesPojo.getNoOfAdults())+(packagesPojo.getDiscounted_tickets()*packagesPojo.getNoOfChildren());
-                    BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
-                            packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets() ,
-                    packagesPojo.getName(), totalCost);
-                    intent.putExtra("bookedPackage", bookedPackage);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+            itemView.setOnClickListener((View v) -> {
+                Intent intent = new Intent(context, QRCardActivity.class);
+                intent.putExtra("packageDetails", packagesPojo);
+                double totalCost = (packagesPojo.getTickets() * packagesPojo.getPrice()) + (packagesPojo.getDiscounted_tickets() * packagesPojo.getDiscounted_price());
+                BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
+                        packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets(),
+                        packagesPojo.getName(), totalCost);
+                intent.putExtra("bookedPackage", bookedPackage);
+                intent.putExtra("isBooked", true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             });
         }
     }
