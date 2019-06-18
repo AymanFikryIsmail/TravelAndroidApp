@@ -58,7 +58,13 @@ public class PackageDetailsActivity extends AppCompatActivity {
         binding.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                packageDetailViewModel.setFavPackage(packagesPojo.getPackageId(), prefManager.getUserId(), (boolean isFav) -> {
+                            if (isFav)
+                                binding.favBtn.setImageResource(R.drawable.ic_favorite_fill);
+                            else
+                                binding.favBtn.setImageResource(R.drawable.ic_favorite);
+                        }
+                );
             }
         });
 

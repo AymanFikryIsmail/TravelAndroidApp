@@ -7,6 +7,7 @@ import com.travel.iti.travelapp.repository.model.BookedPackage;
 import com.travel.iti.travelapp.repository.model.RatePackagePojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
+import com.travel.iti.travelapp.view.activity._package.FavPressCallBack;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,4 +46,28 @@ public class PackageDetailViewModel  extends ViewModel{
             }
         });
     }
+
+    public void setFavPackage(int pcgId , int userId, FavPressCallBack favPressCallBack){
+        Call<ApiResponse<Boolean>> call = Apiservice.getInstance().apiRequest.postFavouritePackages( userId,pcgId);
+        call.enqueue(new Callback<ApiResponse<Boolean>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Boolean>> call, Response<ApiResponse<Boolean>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    Log.d("tag", "articles total result:: " + response.body().getMessage());
+                    // isFavPressed.setValue(response.body().data);
+                    favPressCallBack.setIsFav(response.body().data);
+                }
+                else {
+                    //Toast.makeText(mcontext,"auth failed", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Boolean>> call, Throwable t) {
+                Log.d("tag", "articles total result:: " + t.getMessage());
+
+            }
+        });
+    }
+
 }
