@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView userName , email;
     private PrefManager prefManager;
     private Toolbar toolbar;
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,11 +91,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (drawerLayout.isDrawerOpen(GravityCompat.START)){
                 drawerLayout.closeDrawer(GravityCompat.START);
             }else {
-                super.onBackPressed();
-               finish();
+                if (doubleBackToExitPressedOnce) {
+                    finish();
+                }
+                loadFragment( MainFragment.newInstance(),"Home");
+
+                this.doubleBackToExitPressedOnce = true;
+
             }
-            finishAffinity();
         }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -101,18 +108,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(id)
         {
             case R.id.home:
-                MainFragment mainFragment= new MainFragment();
-                loadFragment(mainFragment,"Home ");
+                //MainFragment mainFragment= new MainFragment();
+                loadFragment(MainFragment.newInstance(),"Home ");
                 break;
             case R.id.favorites:
 
-                FavoritesFragment favoritesFragment= new FavoritesFragment();
-                loadFragment(favoritesFragment,"My Favorites ");
+              //  FavoritesFragment favoritesFragment= new FavoritesFragment();
+                loadFragment(FavoritesFragment.newInstance(),"My Favorites ");
                 break;
 
             case R.id.booking:
-                BookingsFragment bookingsFragment= new BookingsFragment();
-                loadFragment(bookingsFragment,"My Bookings ");
+               // BookingsFragment bookingsFragment= new BookingsFragment();
+                loadFragment(BookingsFragment.newInstance(),"My Bookings ");
                 break;
 
 //            case R.id.settings:
