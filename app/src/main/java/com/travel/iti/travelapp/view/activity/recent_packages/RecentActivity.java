@@ -219,12 +219,14 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
 
 
     @Override
-    public void passSortData(String priceRange, String sortType) {
+    public void passSortData(String priceRange, String sortType, int price) {
 
         if (sortType.equals("Rating")) {
             packagesAdapter.sortByRate(priceRange);
         } else if (sortType.equals("Date")) {
             packagesAdapter.sortByDate(priceRange);
+        }else if (sortType.equals("Price")){
+            packagesAdapter.sortByPrice(priceRange);
         }
 
     }
@@ -236,7 +238,7 @@ public class RecentActivity extends AppCompatActivity implements FilterFragmentI
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         progressView.setVisibility(View.GONE);
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
     }

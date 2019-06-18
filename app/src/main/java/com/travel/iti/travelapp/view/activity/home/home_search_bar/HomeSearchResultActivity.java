@@ -111,7 +111,7 @@ public class HomeSearchResultActivity extends AppCompatActivity implements Filte
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
     }
 

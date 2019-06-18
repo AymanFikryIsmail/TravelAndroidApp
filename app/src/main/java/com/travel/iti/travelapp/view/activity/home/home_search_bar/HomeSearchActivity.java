@@ -149,7 +149,7 @@ public class HomeSearchActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         Toast.makeText(this, error , Toast.LENGTH_LONG).show();
 
     }

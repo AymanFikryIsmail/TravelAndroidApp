@@ -91,7 +91,7 @@ public class FavoritesFragment extends Fragment implements MainView {
     }
 
     @Override
-    public void shwoError(String error) {
+    public void showError(String error) {
         progressView.setVisibility(View.GONE);
         Toast.makeText(getContext(), error , Toast.LENGTH_LONG).show();
 

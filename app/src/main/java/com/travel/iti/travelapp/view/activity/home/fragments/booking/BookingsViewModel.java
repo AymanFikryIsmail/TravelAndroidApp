@@ -42,13 +42,13 @@ public class BookingsViewModel extends ViewModel {
                     Log.d("tag", "articles total result:: " + response.body().getMessage());
                 }
                 else {
-                    mainView.shwoError("Error in connection");
+                    mainView.showError("Error in connection");
                 }
             }
             @Override
             public void onFailure(Call<ApiResponse<List<BookedPackage>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
-                mainView.shwoError("Error in connection");
+                mainView.showError("Error in connection");
             }
         });
     }
