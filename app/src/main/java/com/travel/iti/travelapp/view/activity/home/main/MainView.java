@@ -7,6 +7,6 @@ package com.travel.iti.travelapp.view.activity.home.main;
 public interface MainView {
 
 
-    void shwoError(String error);
+    void showError(String error);
     void showSuccess(String success);
 }

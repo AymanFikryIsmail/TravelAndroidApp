@@ -13,7 +13,7 @@
 
     <string name="recent_to_oldest_radio_btn">Date</string>
     <string name="rating_radio_btn">Rating</string>
-    <string name="recommended_radio_btn">Recommended</string>
+    <string name="price_radio_btn">Price</string>
 
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>

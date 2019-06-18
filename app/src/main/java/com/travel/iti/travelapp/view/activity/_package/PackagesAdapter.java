@@ -237,6 +237,20 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
         Collections.sort(packagesPojoList, comparator);
         notifyDataSetChanged();
     }
+    public void sortByPrice(String sortType) {
+        Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
+            @Override
+            public int compare(PackagesPojo o1, PackagesPojo o2) {
+                if (sortType.equals("asc")) {
+                    return (String.valueOf(o1.getPrice())).compareToIgnoreCase(String.valueOf(o2.getPrice()));
+                } else {
+                    return (String.valueOf(o2.getPrice())).compareToIgnoreCase(String.valueOf(o1.getPrice()));
+                }
+            }
+        };
+        Collections.sort(packagesPojoList, comparator);
+        notifyDataSetChanged();
+    }
 
     public void sortByRate(String sortType) {
         Comparator<PackagesPojo> comparator = new Comparator<PackagesPojo>() {
