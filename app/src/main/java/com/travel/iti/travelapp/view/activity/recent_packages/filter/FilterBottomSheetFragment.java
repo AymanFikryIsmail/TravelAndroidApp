@@ -130,7 +130,6 @@ public class FilterBottomSheetFragment extends BottomSheetDialogFragment impleme
 
         daysSeekBar = view.findViewById(R.id.daysRangeSeekBar);
         daysSeekBar.setMax(RecentActivity.maxDays);
-        daysSeekBar.incrementProgressBy(1);
 
         daysTextView = view.findViewById(R.id.daysNumber);
         daysTextView.setText(daysSeekBar.getProgress() + "/" + daysSeekBar.getMax());
