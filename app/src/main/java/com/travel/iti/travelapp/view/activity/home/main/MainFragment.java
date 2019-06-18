@@ -47,6 +47,9 @@ public class MainFragment extends Fragment implements MainView{
         super.onCreate(savedInstanceState);
 
     }
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
