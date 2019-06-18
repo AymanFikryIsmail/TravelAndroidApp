@@ -26,9 +26,11 @@ import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
+
 public class PackageActivity extends AppCompatActivity implements MainView {
 
-    ImageView sliderLayout;
+    ImageView   packageImage;
     private List<PackagesPojo> packagesPojoList;
     private RecyclerView recyclerView;
     private PackagesAdapter packagesAdapter;
@@ -40,6 +42,7 @@ public class PackageActivity extends AppCompatActivity implements MainView {
 
     PrefManager prefManager;
     private CityPackage cityPackage;
+    private  TextView package_city_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,11 @@ public class PackageActivity extends AppCompatActivity implements MainView {
         cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
 
         prefManager= new PrefManager(this);
-        sliderLayout = findViewById(R.id.packageImage);
+
+        package_city_name= findViewById(R.id.package_city_name);
+        package_city_name.setText(cityPackage.getCityName());
+        packageImage= findViewById(R.id.packageImage);
+
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         packagesViewModel.init(this);
@@ -59,11 +66,10 @@ public class PackageActivity extends AppCompatActivity implements MainView {
         packagesAdapter = new PackagesAdapter(getApplicationContext(), packagesPojoList, packagesViewModel);
         packagesPojoList = null;
 
-            cityPackage= (CityPackage) getIntent().getSerializableExtra("cityPackage");
-            Picasso.with(this).load("http://172.16.5.220:3000/"+cityPackage.getCityImage())
+            Picasso.with(this).load(BASE_URL+cityPackage.getCityImage())
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
-                    .into(sliderLayout);
+                    .into(packageImage);
             getData();
     }
     void getData(){
