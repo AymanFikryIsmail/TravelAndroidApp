@@ -248,21 +248,22 @@
         android:id="@+id/bookLayoutId"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
+
         <TextView
             android:id="@+id/btrRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginRight = "10dp"
             android:drawableStart="@drawable/filled"
             android:drawablePadding="10dp"
-            android:text="Rate now"
             android:gravity="center"
-            android:layout_gravity="center"
             android:onClick="@{(v) -> gotoBooking.rate(v)}"
-            android:textSize="18sp"
+            android:text="Rate now"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="18sp" />
         <Button
             android:id="@+id/btnBook"
             android:layout_width="match_parent"

@@ -36,7 +36,10 @@ public class QRCardActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setPackageDetails(packagesPojo);
         binding.setBookedPackage(bookedPackage);
-
+        if (getIntent().getBooleanExtra("isBooked", false)){
+            binding.btnSuccess.setVisibility(View.GONE);
+         //   binding.totalcostId.setText(""+bookedPackage.getTotalCost());
+        }
 
         qrCodeImage=findViewById(R.id.qrcodeImage);
         Bitmap bitmap = null;
