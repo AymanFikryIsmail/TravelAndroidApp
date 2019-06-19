@@ -62,7 +62,7 @@ public class PackageDetailsActivity extends AppCompatActivity {
                             if (isFav)
                                 binding.favBtn.setImageResource(R.drawable.ic_favorite_fill);
                             else
-                                binding.favBtn.setImageResource(R.drawable.ic_favorite);
+                                binding.favBtn.setImageResource(R.drawable.ic_favorite_white);
                         }
                 );
             }

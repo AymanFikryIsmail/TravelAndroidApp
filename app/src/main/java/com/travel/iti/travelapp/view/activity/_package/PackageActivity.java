@@ -1,7 +1,9 @@
 package com.travel.iti.travelapp.view.activity._package;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +45,8 @@ public class PackageActivity extends AppCompatActivity implements MainView {
     PrefManager prefManager;
     private CityPackage cityPackage;
     private  TextView package_city_name;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +58,23 @@ public class PackageActivity extends AppCompatActivity implements MainView {
         package_city_name= findViewById(R.id.package_city_name);
         package_city_name.setText(cityPackage.getCityName());
         packageImage= findViewById(R.id.packageImage);
-
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
 
         packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         packagesViewModel.init(this);

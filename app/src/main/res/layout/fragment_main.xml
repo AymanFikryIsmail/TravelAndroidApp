@@ -7,6 +7,11 @@
     <!--<android.support.v4.widget.NestedScrollView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -188,5 +193,6 @@
             android:layout_gravity="center"
             android:indeterminate="true"/>
     </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
     <!--</android.support.v4.widget.NestedScrollView>-->
 </FrameLayout>

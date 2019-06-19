@@ -25,11 +25,15 @@
         <activity android:name=".view.activity.recent_packages.filter.RangeDatePickerActivity" />
         <activity
             android:name=".view.activity.home.home_search_bar.HomeSearchActivity"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".view.activity.home.home_search_bar.HomeSearchResultActivity" />
         <activity
             android:name=".view.activity.recent_packages.search.SearchActivity"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".view.activity._package.PackageActivity"
             android:label="Packages"
@@ -71,7 +75,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.booking.BookingActivity"
-            android:label="Booking" />
+            android:label="Booking"
+            android:windowSoftInputMode="adjustNothing"
+            />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

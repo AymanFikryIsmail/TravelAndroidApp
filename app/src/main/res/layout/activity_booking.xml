@@ -323,7 +323,13 @@
                 android:drawablePadding="10dp"
                 android:text="100% refund if Not Satisfied"
                 android:textColor="@color/brown" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"
+                android:text="To cancel please contact us from our site"
+                android:textColor="@color/brown" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -336,7 +342,7 @@
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="user name" />
+                android:hint="Please enter your real name" />
 
 
 
@@ -350,7 +356,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/book_button"
                 android:onClick="@{(v) -> gotoBooking.gotoBooking(v)}"
-                android:text="Payment"
+                android:text="Check out"
                 android:textAllCaps="false"
                 android:textColor="@color/textColorHint"
                 android:textSize="18sp" />

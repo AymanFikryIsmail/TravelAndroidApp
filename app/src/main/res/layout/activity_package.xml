@@ -8,7 +8,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity._package.PackageActivity">
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:id="@+id/slider_package_layout"
         android:layout_width="match_parent"
@@ -96,4 +100,6 @@
             android:layout_gravity="center"
             android:indeterminate="true"/>
     </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </android.support.constraint.ConstraintLayout>

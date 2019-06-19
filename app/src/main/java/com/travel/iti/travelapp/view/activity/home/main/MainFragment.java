@@ -4,8 +4,10 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +43,7 @@ public class MainFragment extends Fragment implements MainView{
     ImageView recommendedPackages ;
     ImageView allOffersPackages ;
     FrameLayout progressView;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,23 @@ public class MainFragment extends Fragment implements MainView{
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.init(this);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
         // prefManager=new PrefManager(getContext());
         progressView= view.findViewById(R.id.progress_view);
         progressView.setVisibility(View.VISIBLE);
