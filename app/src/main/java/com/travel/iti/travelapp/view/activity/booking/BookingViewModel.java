@@ -55,8 +55,8 @@ public class BookingViewModel extends ViewModel {
         if (noOfAvails.getValue() > 0) {
             noOfAvails.setValue(noOfAvails.getValue() - 1);
             noOfAdults.setValue(noOfAdults.getValue() + 1);
-            totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
-
+            totalCost.setValue((double) ((noOfChilds.getValue()* packagesPojo.getDiscounted_price())
+                    + (noOfAdults.getValue()* packagesPojo.getPrice()) ));
         }
     }
 
@@ -64,8 +64,8 @@ public class BookingViewModel extends ViewModel {
         if (noOfAdults.getValue() > 0) {
             noOfAvails.setValue(noOfAvails.getValue() + 1);
             noOfAdults.setValue(noOfAdults.getValue() - 1);
-            totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
-
+            totalCost.setValue((double) ((noOfChilds.getValue()* packagesPojo.getDiscounted_price())
+                    + (noOfAdults.getValue()* packagesPojo.getPrice()) ));
         }
     }
 
@@ -73,7 +73,8 @@ public class BookingViewModel extends ViewModel {
         if (noOfAvails.getValue() > 0) {
             noOfAvails.setValue(noOfAvails.getValue() - 1);
             noOfChilds.setValue(noOfChilds.getValue() + 1);
-            totalCost.setValue((double) ((noOfChilds.getValue() + noOfAdults.getValue()) * packagesPojo.getPrice()));
+            totalCost.setValue((double) ((noOfChilds.getValue()* packagesPojo.getDiscounted_price())
+                    + (noOfAdults.getValue()* packagesPojo.getPrice()) ));
         }
     }
 

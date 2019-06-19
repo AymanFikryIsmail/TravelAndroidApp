@@ -146,10 +146,10 @@ public class BookingActivity extends AppCompatActivity implements BookingView {
 
     protected void displayResultText(String result) {
         //((TextView)findViewById(R.id.txtResult)).setText("Result : " + result);
-        Toast.makeText(
-                getApplicationContext(),
-                result, Toast.LENGTH_LONG)
-                .show();
+//        Toast.makeText(
+//                getApplicationContext(),
+//                result, Toast.LENGTH_LONG)
+//                .show();
         Intent intent=new Intent(this , QRCardActivity.class);
         intent.putExtra("packageDetails", packagesPojo);
         intent.putExtra("bookedPackage", bookedPackage);

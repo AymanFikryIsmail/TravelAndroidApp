@@ -136,10 +136,29 @@
                 android:textStyle="normal"
                 android:textColor="#089e1c"
                 android:lineSpacingExtra="5sp"
-                android:text=" For one traveller"
+                android:text=" For adult traveller"
                 android:layout_gravity="end"
                 />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/priceDescId"
+                android:layout_gravity="end"
+                android:drawablePadding="8dp"
+                android:gravity="end"
+                android:text="@{Integer.toString(packageDetails.discounted_price),default=000}"
+                android:textColor="@color/blue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.7sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#089e1c"
+                android:lineSpacingExtra="5sp"
+                android:text=" For child traveller"
+                android:layout_gravity="end"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
