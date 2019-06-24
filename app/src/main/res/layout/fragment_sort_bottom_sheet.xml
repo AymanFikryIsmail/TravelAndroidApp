@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="wrap_content"
+android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_margin="16dp"
 android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment">
 
 <android.support.constraint.Guideline
@@ -66,6 +68,7 @@ android:background="@color/white"
         android:text="Sort"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,18 +144,18 @@ android:background="@color/white"
 
     <Button
         android:id="@+id/apply_sort_btn"
-        android:layout_width="322dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/lightPurple"
         android:text="Apply"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/btnGuideline1"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/btnGuideline2"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuideline3"
-        app:layout_constraintVertical_bias="0.096" />
 
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintBottom_toTopOf="@+id/btnGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/btnGuideline3"
+        app:layout_constraintVertical_bias="0.096"
+        />
+
+</LinearLayout>
