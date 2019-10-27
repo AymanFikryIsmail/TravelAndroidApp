@@ -16,7 +16,7 @@
             android:layout_above="@+id/btnSubmit"
             android:layout_marginLeft="5dp"
             android:src="@drawable/ribonl" />
-        <ImageView
+        <mageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_above="@+id/btnSubmit"
