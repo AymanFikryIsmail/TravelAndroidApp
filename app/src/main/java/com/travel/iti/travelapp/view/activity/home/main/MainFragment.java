@@ -55,83 +55,82 @@ public class MainFragment extends Fragment implements MainView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.init(this);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        getData();
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                });
-            }
-        });
-        // prefManager=new PrefManager(getContext());
-        progressView= view.findViewById(R.id.progress_view);
-        progressView.setVisibility(View.VISIBLE);
-        recyclerView = view.findViewById(R.id.recyclerViewId);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new CityPackagesAdapter(getContext(), cityPackageList);
-        cityPackageList = null;
-        //getCities();
-        getData();
-
-        searchEditText = view.findViewById(R.id.search_bar);
-        searchEditText.clearFocus();
-        searchEditText.setFocusable(false);
-        searchEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext() , HomeSearchActivity.class);
-                startActivity(i);
-            }
-        });
-
-        recentPackages = view.findViewById(R.id.recentPackages);
-        recommendedPackages = view.findViewById(R.id.recommendedPackages);
-        allOffersPackages = view.findViewById(R.id.allOffersPackages);
-
-        recentPackages.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                Intent i = new Intent(getContext(), RecentActivity.class);
-                i.putExtra("key" , "recent");
-                startActivity(i);
-
-            }
-        });
-
-        recommendedPackages.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                Intent i = new Intent(getContext(), RecentActivity.class);
-                i.putExtra("key" , "recommended");
-                startActivity(i);
-
-            }
-        });
-
-        allOffersPackages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext() , RecentActivity.class);
-                i.putExtra("key" , "allOffers");
-                startActivity(i);
-            }
-        });
+//        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+//        mainViewModel.init(this);
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+//        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+//                android.R.color.holo_green_light,
+//                android.R.color.holo_orange_light,
+//                android.R.color.holo_red_light);
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                new Handler().post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        getData();
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    }
+//                });
+//            }
+//        });
+//        // prefManager=new PrefManager(getContext());
+//        progressView= view.findViewById(R.id.progress_view);
+//        progressView.setVisibility(View.VISIBLE);
+//        recyclerView = view.findViewById(R.id.recyclerViewId);
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(mLayoutManager);
+//        adapter = new CityPackagesAdapter(getContext(), cityPackageList);
+//        cityPackageList = null;
+//        //getCities();
+//        getData();
+//
+//        searchEditText = view.findViewById(R.id.search_bar);
+//        searchEditText.clearFocus();
+//        searchEditText.setFocusable(false);
+//        searchEditText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(getContext() , HomeSearchActivity.class);
+//                startActivity(i);
+//            }
+//        });
+//
+//        recentPackages = view.findViewById(R.id.imageCompanies);
+//        recommendedPackages = view.findViewById(R.id.imageTrips);
+////        allOffersPackages = view.findViewById(R.id.imageCompanies);
+//
+//        recentPackages.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent i = new Intent(getContext(), RecentActivity.class);
+//                i.putExtra("key" , "recent");
+//                startActivity(i);
+//
+//            }
+//        });
+//
+//        recommendedPackages.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent i = new Intent(getContext(), RecentActivity.class);
+//                i.putExtra("key" , "recommended");
+//                startActivity(i);
+//
+//            }
+//        });
+//
+////        allOffersPackages.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View view) {
+////                Intent i = new Intent(getContext() , RecentActivity.class);
+////                i.putExtra("key" , "allOffers");
+////                startActivity(i);
+////            }
+////        });
 
         return view;
     }
