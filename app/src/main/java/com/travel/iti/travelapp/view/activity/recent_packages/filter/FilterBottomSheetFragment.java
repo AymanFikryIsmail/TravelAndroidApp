@@ -2,32 +2,23 @@ package com.travel.iti.travelapp.view.activity.recent_packages.filter;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.view.activity.recent_packages.RecentActivity;
-import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashActivity;
 
 public class FilterBottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
 

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="@color/white">
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="Login"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+        <EditText
+            android:id="@+id/txtEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="E-Mail"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:paddingStart="15dp"
+            android:text="@={LoginViewModel.EmailAddress}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintVertical_bias="0.127" />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Password"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingStart="15dp"
+            android:text="@={LoginViewModel.Password}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmailAddress"
+            app:layout_constraintVertical_bias="0.031" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button"
+            android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/textColorHint"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
+            app:layout_constraintVertical_bias="0.092" />
+
+        <TextView
+            style="@style/viewParent"
+            android:text="Forgot Password?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/newsMoreTextSize"
+            android:layout_gravity="end"
+            android:onClick="viewForgotPAssword"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            style="@style/parent"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:text="login_signup_hint"
+            android:onClick="viewRegisterClicked"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

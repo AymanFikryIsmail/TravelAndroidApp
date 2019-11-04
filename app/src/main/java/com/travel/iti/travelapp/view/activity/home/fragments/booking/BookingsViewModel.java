@@ -1,12 +1,10 @@
 package com.travel.iti.travelapp.view.activity.home.fragments.booking;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.travel.iti.travelapp.repository.model.BookedPackage;
-import com.travel.iti.travelapp.repository.model.CityPackage;
-import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 import com.travel.iti.travelapp.view.activity.home.main.MainView;

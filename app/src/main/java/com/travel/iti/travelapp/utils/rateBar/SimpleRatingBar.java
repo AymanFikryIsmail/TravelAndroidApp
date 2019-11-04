@@ -1,7 +1,8 @@
 package com.travel.iti.travelapp.utils.rateBar;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by willy on 2017/5/10.

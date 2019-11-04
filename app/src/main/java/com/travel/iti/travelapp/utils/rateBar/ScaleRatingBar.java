@@ -2,8 +2,8 @@ package com.travel.iti.travelapp.utils.rateBar;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 

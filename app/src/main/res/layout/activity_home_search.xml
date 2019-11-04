@@ -8,7 +8,7 @@
     tools:context=".view.activity.recent_packages.search.SearchActivity">
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         />
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

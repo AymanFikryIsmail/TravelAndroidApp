@@ -1,6 +1,6 @@
 package com.travel.iti.travelapp.view.activity.package_desc;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 

@@ -11,49 +11,49 @@ android:background="@color/white"
     android:padding="16dp"
     tools:context="com.travel.iti.travelapp.view.activity.recent_packages.sort.SortBottomSheetFragment">
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/guideline1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     app:layout_constraintGuide_percent="0.04" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     app:layout_constraintGuide_percent="0.88" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_constraintGuide_percent="0.90" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_constraintGuide_percent="0.10" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline3"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     app:layout_constraintGuide_percent="0.40" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     app:layout_constraintGuide_percent="0.60" />
 
-<android.support.constraint.Guideline
+<androidx.constraintlayout.widget.Guideline
     android:id="@+id/btnGuideline5"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

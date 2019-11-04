@@ -1,12 +1,10 @@
 package com.travel.iti.travelapp.view.activity._package;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.travel.iti.travelapp.repository.local.PrefManager;
+import android.util.Log;
+
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;

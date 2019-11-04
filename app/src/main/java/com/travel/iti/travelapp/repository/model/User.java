@@ -10,14 +10,16 @@ public class User {
 
     int id;
     String email;
+    @SerializedName("passwd")
     String password;
     @SerializedName("name")
     String username;
-    @SerializedName("user_phone")
+    @SerializedName("phone")
     String phone;
     @SerializedName("city")
     String city;
-
+    @SerializedName("city_id")
+    int city_id;
     public int getId() {
         return id;
     }
@@ -30,12 +32,12 @@ public class User {
         return city;
     }
 
-    public User(String email, String password, String username, String phone , String city) {
+    public User(String username,String password,  String phone , int cityId) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.phone=phone;
-        this.city=city;
+        this.city_id=cityId;
     }
 
     public User(String email, String password) {
@@ -53,5 +55,9 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public int getCity_id() {
+        return city_id;
     }
 }

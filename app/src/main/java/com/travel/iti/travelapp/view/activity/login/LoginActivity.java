@@ -1,27 +1,18 @@
 package com.travel.iti.travelapp.view.activity.login;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.Task;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.databinding.ActivityLoginBinding;
 import com.travel.iti.travelapp.repository.local.PrefManager;
@@ -66,12 +57,9 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
         loginViewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User loginUser) {
-             if (TextUtils.isEmpty(loginUser.getEmail())) {
-                binding.txtEmailAddress.setError(getString(R.string.input_error_email));
-                binding.txtEmailAddress.requestFocus();
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(loginUser.getEmail().trim()).matches()) {
-                binding.txtEmailAddress.setError(getString(R.string.input_error_email_invalid));
-                binding.txtEmailAddress.requestFocus();
+             if (TextUtils.isEmpty(loginUser.getPhone())) {
+                binding.txtphone.setError("phone required");
+                binding.txtphone.requestFocus();
             }else if (TextUtils.isEmpty(loginUser.getPassword())) {
                  binding.txtPassword.setError(getString(R.string.input_error_password));
                  binding.txtPassword.requestFocus();
@@ -88,7 +76,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView{
             }
         });
 
-        binding.btnsignup.setOnClickListener((View v)-> {
+        binding.signuplayout.setOnClickListener((View v)-> {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
         });

@@ -1,17 +1,13 @@
 package com.travel.iti.travelapp.view.activity.login;
 
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.content.Context;
-import android.content.Intent;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.User;
-import com.travel.iti.travelapp.view.activity.signup.SignUpActivity;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
 
@@ -24,7 +20,7 @@ import retrofit2.Response;
  */
 
 public class LoginViewModel extends ViewModel {
-    public MutableLiveData<String> EmailAddress;
+    public MutableLiveData<String> phone;
     public MutableLiveData<String> Password;
     private MutableLiveData<User> userMutableLiveData;
     public MutableLiveData<User> loginData;
@@ -32,7 +28,7 @@ public class LoginViewModel extends ViewModel {
 
     LoginView loginView;
     public LoginViewModel() {
-        EmailAddress = new MutableLiveData<>();
+        phone = new MutableLiveData<>();
         Password = new MutableLiveData<>();
         isSuccess = new MutableLiveData<>();
         loginData = new MutableLiveData<>();
@@ -53,7 +49,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onClick(View view) {
-            User loginUser = new User(EmailAddress.getValue(), Password.getValue());
+            User loginUser = new User(phone.getValue(), Password.getValue());
             userMutableLiveData.setValue(loginUser);
     }
 

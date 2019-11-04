@@ -2,8 +2,8 @@ package com.travel.iti.travelapp.view.activity.splash_and_welcomScreens;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;

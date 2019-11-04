@@ -1,19 +1,21 @@
 package com.travel.iti.travelapp.view.activity.home;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.travel.iti.travelapp.R;
 //import com.travel.iti.travelapp.view.adapter.RecyclerViewAdapter;
 
-import android.support.design.widget.NavigationView;
+import com.google.android.material.navigation.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -25,8 +27,6 @@ import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.view.activity.home.fragments.booking.BookingsFragment;
 import com.travel.iti.travelapp.view.activity.home.fragments.favourite.FavoritesFragment;
 import com.travel.iti.travelapp.view.activity.home.main.MainFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.MyProfileFragment;
-import com.travel.iti.travelapp.view.activity.home.fragments.SettingsFragment;
 import com.travel.iti.travelapp.view.activity.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

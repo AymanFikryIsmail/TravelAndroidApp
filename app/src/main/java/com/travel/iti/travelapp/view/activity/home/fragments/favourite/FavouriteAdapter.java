@@ -2,9 +2,8 @@ package com.travel.iti.travelapp.view.activity.home.fragments.favourite;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,15 +96,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
                         }
                 );
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, PackageDetailsActivity.class);
-                    intent.putExtra("packageDetails", packagesPojo);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            });
+
 
         }
     }

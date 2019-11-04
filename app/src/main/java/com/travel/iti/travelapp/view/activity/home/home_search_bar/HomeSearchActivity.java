@@ -1,14 +1,16 @@
 package com.travel.iti.travelapp.view.activity.home.home_search_bar;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,7 +25,6 @@ import com.travel.iti.travelapp.view.activity.home.main.MainView;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.CustomItemClickListener;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchAdapter;
 import com.travel.iti.travelapp.view.activity.recent_packages.search.SearchViewModel;
-import com.travel.iti.travelapp.view.activity.splash_and_welcomScreens.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,11 +3,11 @@ package com.travel.iti.travelapp.view.activity.recent_packages.sort;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.travel.iti.travelapp.R;
-import com.travel.iti.travelapp.view.activity._package.PackagesAdapter;
 
 
 public class SortBottomSheetFragment extends BottomSheetDialogFragment {

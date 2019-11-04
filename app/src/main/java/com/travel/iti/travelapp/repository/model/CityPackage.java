@@ -9,7 +9,8 @@ import java.io.Serializable;
  */
 
 public class CityPackage implements Serializable{
-    @SerializedName("city_name")
+    private int id;
+    @SerializedName("name")
     private String cityName;
     @SerializedName("p_name")
     private String cityDesc;
@@ -25,6 +26,10 @@ public class CityPackage implements Serializable{
         this.cityDesc = cityDesc;
         this.cityImage = cityImage;
         this.cityFav = cityFav;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCityName() {

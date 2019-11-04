@@ -1,18 +1,20 @@
 package com.travel.iti.travelapp.view.activity.signup;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
+import com.travel.iti.travelapp.repository.model.CityPackage;
 import com.travel.iti.travelapp.repository.model.User;
 import com.travel.iti.travelapp.repository.networkmodule.ApiResponse;
 import com.travel.iti.travelapp.repository.networkmodule.Apiservice;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,27 +27,20 @@ import retrofit2.Response;
 public class SignUpViewModel extends ViewModel {
 
 
-    public MutableLiveData<String> EmailAddress;
-    public MutableLiveData<String> Password;
-    public MutableLiveData<String> UserName;
-    public MutableLiveData<String> phone;
-    public MutableLiveData<String> city;
     private MutableLiveData<User> userMutableLiveData;
     public MutableLiveData<User> signUpData;
     public MutableLiveData<Boolean> isSuccess;
+    public MutableLiveData<List<CityPackage>> cityPackageMutableLiveData;
 
     private Context mcontext;
     private PrefManager prefManager;
 
     private SignUpView view;
     public SignUpViewModel() {
-        EmailAddress = new MutableLiveData<>();
-        Password = new MutableLiveData<>();
-        UserName = new MutableLiveData<>();
-        phone = new MutableLiveData<>();
-        city = new MutableLiveData<>();
+
         signUpData = new MutableLiveData<>();
         isSuccess = new MutableLiveData<>();
+        cityPackageMutableLiveData = new MutableLiveData<>();
     }
 
     public void init(Context context) {
@@ -60,7 +55,12 @@ public class SignUpViewModel extends ViewModel {
         }
         return signUpData;
     }
-
+    public MutableLiveData<List<CityPackage>> getCityPackage() {
+        if (cityPackageMutableLiveData == null) {
+            cityPackageMutableLiveData = new MutableLiveData<>();
+        }
+        return cityPackageMutableLiveData;
+    }
     public MutableLiveData<User> getUser() {
 
         if (userMutableLiveData == null) {
@@ -70,23 +70,7 @@ public class SignUpViewModel extends ViewModel {
 
     }
 
-    public void onClick(View view) {
 
-        if (view == view.findViewById(R.id.btnLogin)) {
-            User loginUser = new User(EmailAddress.getValue(), Password.getValue());
-            userMutableLiveData.setValue(loginUser);
-        } else {
-            Intent intent = new Intent(mcontext, SignUpActivity.class);
-            mcontext.startActivity(intent);
-        }
-    }
-
-    public void signUpOnClick(View view) {
-
-        User loginUser = new User(EmailAddress.getValue(), Password.getValue(), UserName.getValue(), phone.getValue(), city.getValue());
-        userMutableLiveData.setValue(loginUser);
-
-    }
     public void signUp(User signUpUser) {
         //signUpData = new MutableLiveData<>();
         Call<ApiResponse<User>> signUpCall = Apiservice.getInstance().apiRequest.signup(signUpUser);
@@ -110,6 +94,21 @@ public class SignUpViewModel extends ViewModel {
                 isSuccess.setValue(false);
                 view.shwoError(t.getMessage());
                 view.shwoError("Authentication failed . plesae, check your network");
+                Log.d("tag", "articles total result:: " + t.getMessage());
+            }
+        });
+    }
+    public void getCities(){
+        Call<ApiResponse<List<CityPackage>>> call = Apiservice.getInstance().apiRequest.getPackageCity();
+        call.enqueue(new Callback<ApiResponse<List<CityPackage>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<CityPackage>>> call, Response<ApiResponse<List<CityPackage>>> response) {
+                if (response.body().status == "true"&&response.body().data!=null  ) {
+                    cityPackageMutableLiveData.setValue(response.body().data);
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiResponse<List<CityPackage>>> call, Throwable t) {
                 Log.d("tag", "articles total result:: " + t.getMessage());
             }
         });

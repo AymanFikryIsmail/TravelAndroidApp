@@ -2,9 +2,11 @@ package com.travel.iti.travelapp.view.activity.home.fragments.booking;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +18,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.model.BookedPackage;
-import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
-import com.travel.iti.travelapp.view.activity.qrcard.QRCardActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,18 +93,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.MyViewHo
                     .error(R.drawable.mask)
                     .into(maskImage);
 
-            itemView.setOnClickListener((View v) -> {
-                Intent intent = new Intent(context, QRCardActivity.class);
-                intent.putExtra("packageDetails", packagesPojo);
-                double totalCost = (packagesPojo.getTickets() * packagesPojo.getPrice()) + (packagesPojo.getDiscounted_tickets() * packagesPojo.getDiscounted_price());
-                BookedPackage bookedPackage = new BookedPackage(packagesPojo.getPackageId(), packagesPojo.getUserId(),
-                        packagesPojo.getTickets(), packagesPojo.getDiscounted_tickets(),
-                        packagesPojo.getName(), totalCost);
-                intent.putExtra("bookedPackage", bookedPackage);
-                intent.putExtra("isBooked", true);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            });
+
         }
     }
 

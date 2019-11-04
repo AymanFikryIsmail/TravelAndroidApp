@@ -3,9 +3,11 @@ package com.travel.iti.travelapp.utils.rateBar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;

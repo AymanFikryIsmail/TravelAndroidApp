@@ -1,12 +1,14 @@
 package com.travel.iti.travelapp.view.activity._package;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,24 +16,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.travel.iti.travelapp.R;
 import com.travel.iti.travelapp.repository.local.PrefManager;
 import com.travel.iti.travelapp.repository.model.PackagesPojo;
-import com.travel.iti.travelapp.view.activity.package_details.PackageDetailsActivity;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.travel.iti.travelapp.repository.networkmodule.NetworkManager.BASE_URL;
 
@@ -112,15 +109,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
                     .placeholder(R.drawable.mask)
                     .error(R.drawable.mask)
                     .into(maskImage);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, PackageDetailsActivity.class);
-                    intent.putExtra("packageDetails", packagesPojo);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            });
+
 
             if (packagesPojo.getFav_flag() == 1)
                 packageFavBtn.setImageResource(R.drawable.ic_favorite_fill);

@@ -1,6 +1,6 @@
 package com.travel.iti.travelapp.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 public class ShareViewModel extends ViewModel {
     // TODO: Implement the ViewModel
